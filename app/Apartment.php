@@ -34,4 +34,9 @@ class Apartment extends Model
     {
         return $this->hasMany('App\Visualization');
     }
+
+    public function galleries() 
+    {
+        return $this->hasMany('App\Gallery');
+    }
 }
