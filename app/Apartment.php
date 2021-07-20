@@ -14,4 +14,9 @@ class Apartment extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function extra_services()
+    {
+        return $this->belongsToMany('App\Extra_service');
+    }
 }
