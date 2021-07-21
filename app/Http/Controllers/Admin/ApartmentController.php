@@ -80,9 +80,17 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Apartment $apartment)
     {
-        //
+        // $apartment = Apartment::findOrFail($id);
+        $extraServices = Extra_service::all();
+
+        $data = [
+            'apartment' => $apartment,
+            'extraServices' => $extraServices
+        ];
+
+        return view('admin.apartments.edit', $data);
     }
 
     /**
@@ -92,9 +100,23 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        $formData = $request->all();
+
+        if (key_exists("img_url", $formData)) {
+            if ($apartment->img_url) {
+                Storage::delete($apartment->img_url);
+            }
+
+            $storageResult = Storage::put("img_url", $formData["img_url"]);
+
+            $formData["img_url"] = $storageResult;
+        }
+
+        $apartment->update($formData);
+
+        return redirect()->route('admin.apartments.index');
     }
 
     /**

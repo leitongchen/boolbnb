@@ -32,5 +32,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
         Route::get('/apartments/create', 'ApartmentController@create')->name('apartments.create');
-        Route::post('/apartments', 'ApartmentsController@store')->name('apartments.store');
+        Route::post('/apartments', 'ApartmentController@store')->name('apartments.store');
+        Route::get('/apartments/{apartment}/edit', 'ApartmentController@edit')->name('apartments.edit');
+        Route::put('/apartments/{apartment}/update', 'ApartmentController@update')->name('apartments.update');
     });

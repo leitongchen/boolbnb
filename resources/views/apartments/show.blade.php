@@ -18,6 +18,7 @@
         </li>
         <li>{{ $apartment->visible }}</li>
     </ul>
+    <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a>
        
     
 @endsection
