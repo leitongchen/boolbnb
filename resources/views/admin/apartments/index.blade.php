@@ -3,6 +3,7 @@
 @section('content')
 
     <h1>TUTTI GLI APPARTAMENTI (PRIVATO)</h1>
+    <a href="{{ route('admin.apartments.create') }}">Aggiungi un nuovo appartamento</a>
 
     @foreach ($apartments as $apartment) 
         <h3>{{ $apartment->title }}<h3>

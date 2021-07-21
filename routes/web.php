@@ -31,4 +31,6 @@ Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
         Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
+        Route::get('/apartments/create', 'ApartmentController@create')->name('apartments.create');
+        Route::post('/apartments', 'ApartmentsController@store')->name('apartments.store');
     });

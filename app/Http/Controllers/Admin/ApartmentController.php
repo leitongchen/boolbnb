@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Apartment;
+use App\Extra_service;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -31,7 +33,9 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        $extraServices = Extra_service::all();
+
+        return view('admin.apartments.create', ['extraServices' => $extraServices]);
     }
 
     /**
@@ -42,7 +46,21 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+        $newApartment = new Apartment;
+        $newApartment->fill($formData);
+
+        $newApartment->user_id = $request->user()->id;
+
+         //carico l'immagine di copertina
+        if (key_exists("img_url", $formData)) {
+            $storageResult = Storage::put("img_url", $formData["img_url"]);
+            $newApartment->img_url = $storageResult;
+        }
+
+        $newApartment->save();
+
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
