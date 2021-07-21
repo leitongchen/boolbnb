@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
+Route::get('/apartments/{id}', 'ApartmentController@show')->name('apartments.show');
 
 Auth::routes();
 

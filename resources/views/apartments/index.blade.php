@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <h1>TUTTI GLI APPARTAMENTI (PUBBLICO)</h1>
+
     @foreach ($apartments as $apartment) 
         <h3>{{ $apartment->title }}<h3>
         <ul>
@@ -16,6 +18,7 @@
                 <img src="{{ $apartment->img_url }}" alt="">
             </li>
             <li>{{ $apartment->visible }}</li>
+            <li><a href="{{ route('apartments.show', $apartment->id) }}">Vedi i dettagli</a></li>
         </ul>
        
     @endforeach
