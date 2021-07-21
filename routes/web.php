@@ -35,4 +35,5 @@ Route::prefix('admin')
         Route::post('/apartments', 'ApartmentController@store')->name('apartments.store');
         Route::get('/apartments/{apartment}/edit', 'ApartmentController@edit')->name('apartments.edit');
         Route::put('/apartments/{apartment}/update', 'ApartmentController@update')->name('apartments.update');
+        Route::delete('/apartments/{apartment}', 'ApartmentController@destroy')->name('apartments.destroy');
     });

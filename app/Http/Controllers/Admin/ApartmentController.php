@@ -57,9 +57,11 @@ class ApartmentController extends Controller
             $storageResult = Storage::put("img_url", $formData["img_url"]);
             $newApartment->img_url = $storageResult;
         }
-
+        
         $newApartment->save();
 
+        //$newApartment->extra_services()->sync($formData["extraServices"]);
+        
         return redirect()->route('admin.apartments.index');
     }
 
@@ -125,8 +127,11 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        // $apartment->user()->delete();
+        $apartment->delete();
+
+        return redirect()->route('admin.apartments.index');
     }
 }

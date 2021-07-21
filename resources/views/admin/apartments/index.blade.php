@@ -17,10 +17,20 @@
             <li>Metratura: {{ $apartment->floor_area . ' mq' }}</li>
             <li>
                 <img src="{{ $apartment->img_url }}" alt="">
+                {{-- <img src="{{ asset('storage/' . $apartment->img_url) }}"> --}}
+
             </li>
             <li>{{ $apartment->visible }}</li>
             <li><a href="{{ route('apartments.show', $apartment->id) }}">Vedi i dettagli</a></li>
-            <li><a href="#">ELIMINA</a></li>
+
+            <form action="{{ route('admin.apartments.destroy', $apartment->id) }}"
+                method="POST">
+                @csrf
+
+                @method('DELETE')
+            
+                <input type="submit" value="ELIMINA">
+            </form>
         </ul>
        
     @endforeach

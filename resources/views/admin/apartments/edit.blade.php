@@ -45,10 +45,12 @@
     <label for="visible">Rendi visibile l'appartamento</label>
     <input type="checkbox" name="visible" id="visible" value="{{ $apartment->visible }}"> <br>
 
-    @foreach($extraServices as $extraService)
-        <label for="">{{ $extraService->name }}</label>
-        <input type="checkbox" name="" id=""> <br>
-    @endforeach
+    {{-- @foreach($extraServices as $extraService)
+        <label>
+            <input name="exreaServices[]" type="checkbox" value="{{ $extraService->id }}" {{ $apartment->extraServices->contains($extraService) ? 'checked' : '' }}>
+            {{ $extraService->name }} <br>
+        </label>
+    @endforeach --}}
 
     <label for="img_url">Immagine principale</label>
     <input type="file" name="img_url" accept=".jpeg, .jpg, .png">
