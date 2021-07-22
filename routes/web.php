@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
 Route::get('/apartments/{id}', 'ApartmentController@show')->name('apartments.show');
@@ -30,6 +28,8 @@ Route::prefix('admin')
     ->middleware('auth')
     ->name('admin.')
     ->group(function () {
+        //home
+        Route::get('/', 'HomeController@index')->name('home');
 
         //appartamenti admin
         Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
