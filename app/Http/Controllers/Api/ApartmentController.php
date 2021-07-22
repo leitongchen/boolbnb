@@ -15,7 +15,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
 
         return response()->json([
             'success' => true,
