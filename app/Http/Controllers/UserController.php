@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Apartment;
 use Illuminate\Http\Request;
 
-class ApartmentController extends Controller
+use App\User;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +15,11 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $incomingData = Apartment::all();
+        $users = User::all();
 
-        $data = [
-            'apartments' => $incomingData
-        ];
-
-        return view('apartments.index', $data);
+        return view("users.index", [
+            "users" => $users
+        ]);
     }
 
     /**
@@ -50,11 +49,9 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $data = ['apartment' => Apartment::findOrFail($id)];
-
-        return view('apartments.show', $data);
+        return view("users.show", compact("user"));
     }
 
     /**
