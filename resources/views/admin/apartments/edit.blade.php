@@ -56,7 +56,7 @@
     <input type="file" name="img_url" accept=".jpeg, .jpg, .png">
 
     <div class="form-group">
-        <button type="submit">Crea</button>
+        <button type="submit">Fatto</button>
     </div>
     
 

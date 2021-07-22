@@ -46,6 +46,22 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+          $request->validate([
+            'title' => 'required',
+            'address_street' => 'required|max:255',
+            'street_number' => 'required|max:10',
+            'city' => 'required|max:100',
+            'zip_code' => 'required|max:10',
+            'province' => 'required|max:100',
+            'nation' => 'required|max:100',
+            'rooms_number' => 'required|integer',
+            'beds_number' => 'required|integer',
+            'bathrooms_number' => 'required|integer',
+            'floor_area' => 'required|numeric',
+            'img_url' => 'required|max:255',
+            'visible' => 'required'
+          ]);
+
         $formData = $request->all();
         $newApartment = new Apartment;
         $newApartment->fill($formData);
@@ -73,7 +89,9 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = ['apartment' => Apartment::findOrFail($id)];
+
+        return view('admin.apartments.show', $data);
     }
 
     /**
@@ -104,6 +122,22 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
+        $request->validate([
+            'title' => 'required',
+            'address_street' => 'required|max:255',
+            'street_number' => 'required|max:10',
+            'city' => 'required|max:100',
+            'zip_code' => 'required|max:10',
+            'province' => 'required|max:100',
+            'nation' => 'required|max:100',
+            'rooms_number' => 'required|integer',
+            'beds_number' => 'required|integer',
+            'bathrooms_number' => 'required|integer',
+            'floor_area' => 'required|numeric',
+            'img_url' => 'required|max:255',
+            'visible' => 'required'
+        ]);
+
         $formData = $request->all();
 
         if (key_exists("img_url", $formData)) {
@@ -129,7 +163,9 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        // $apartment->user()->delete();
+        //elimina i messaggi collegati all'appartamento
+        $apartment->messages()->delete();
+
         $apartment->delete();
 
         return redirect()->route('admin.apartments.index');

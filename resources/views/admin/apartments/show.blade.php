@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>DETTAGLI APPARTAMENTO (PUBBLICO)</h1>
+    <h1>DETTAGLI APPARTAMENTO (PRIVATO)</h1>
 
     <h3>{{ $apartment->title }}<h3>
     <ul>
@@ -18,7 +18,19 @@
         </li>
         <li>{{ $apartment->visible }}</li>
     </ul>
+
+
+    <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a> <br>
     <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+
+    <form action="{{ route('admin.apartments.destroy', $apartment->id) }}"
+        method="POST">
+        @csrf
+
+        @method('DELETE')
+    
+        <input type="submit" value="ELIMINA">
+    </form>
        
     
 @endsection

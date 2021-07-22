@@ -21,7 +21,7 @@
 
             </li>
             <li>{{ $apartment->visible }}</li>
-            <li><a href="{{ route('apartments.show', $apartment->id) }}">Vedi i dettagli</a></li>
+            <li><a href="{{ route('admin.apartments.show', $apartment->id) }}">Vedi i dettagli</a></li>
 
             <form action="{{ route('admin.apartments.destroy', $apartment->id) }}"
                 method="POST">
