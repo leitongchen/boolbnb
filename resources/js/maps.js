@@ -1,6 +1,7 @@
 const api_key = "SznQN02yzAXGOlDubCqT3PTfefEyd5Go";
 var nav = new tt.NavigationControl({});
 
+// [longitude,latitude]
 const treviso = [12.250000,45.666668];
 const italia = [12.49427,41.89056];
 
@@ -8,7 +9,7 @@ let map = tt.map({
     key: api_key,
     container: 'mymap',
     center: italia,
-    zoom: 5,
+    zoom: 14,
     style: 'tomtom://vector/1/basic-main'
 })
 

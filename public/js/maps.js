@@ -94,14 +94,15 @@
 /***/ (function(module, exports) {
 
 var api_key = "SznQN02yzAXGOlDubCqT3PTfefEyd5Go";
-var nav = new tt.NavigationControl({});
+var nav = new tt.NavigationControl({}); // [longitude,latitude]
+
 var treviso = [12.250000, 45.666668];
 var italia = [12.49427, 41.89056];
 var map = tt.map({
   key: api_key,
   container: 'mymap',
   center: italia,
-  zoom: 5,
+  zoom: 14,
   style: 'tomtom://vector/1/basic-main'
 });
 map.addControl(nav, 'top-left'); // On queryBtn click 

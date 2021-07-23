@@ -17,7 +17,7 @@
 
 
     <input type="text" id="query" value="">
-    <button id="queryBtn">Search</button>
+    <button id="queryBtn">Cerca</button>
 
 
     <br>
