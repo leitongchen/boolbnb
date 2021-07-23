@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-
+ 
+Route::get('/', 'HomeController@index')->name("index");
 Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
 Route::get('/apartments/{id}', 'ApartmentController@show')->name('apartments.show');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')
     ->namespace('Admin')

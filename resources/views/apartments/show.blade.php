@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
 
@@ -18,7 +18,7 @@
         </li>
         <li>{{ $apartment->visible }}</li>
     </ul>
-    <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+    <a href="{{ route('apartments.index') }}">Torna a tutti gli appartamenti</a>
        
     
 @endsection

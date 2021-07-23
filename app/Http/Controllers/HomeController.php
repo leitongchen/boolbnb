@@ -25,10 +25,6 @@ class HomeController extends Controller
     public function index()
     {
 
-        $users = User::all();
-
-        return view('welcome', [
-            "users" => $users
-        ]);
+        return view('welcome');
     }
 }
