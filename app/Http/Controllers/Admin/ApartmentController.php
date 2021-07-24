@@ -6,6 +6,7 @@ use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -89,7 +90,13 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $data = ['apartment' => Apartment::findOrFail($id)];
+        $user = Auth::user();
+        $userId = Auth::id();
+
+        $data = [
+            'apartment' => Apartment::findOrFail($id),
+            'user' => $user,
+            'userId' => $userId];
 
         return view('admin.apartments.show', $data);
     }

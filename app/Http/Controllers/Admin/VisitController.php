@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Apartment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VisitController extends Controller
 {
@@ -44,9 +46,18 @@ class VisitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Apartment $apartment)
     {
-        //
+        $user = Auth::user();
+        $userId = Auth::id();
+
+        $data = [
+            'apartment' => $apartment,
+            'user' => $user,
+            'userId' => $userId
+        ];
+
+        return view('admin.visits.show', $data);
     }
 
     /**
