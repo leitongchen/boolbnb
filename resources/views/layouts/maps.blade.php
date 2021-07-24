@@ -12,12 +12,22 @@
     <title>@yield('pageTitle')</title>
 </head>
 <body>
+    <div id="app">
+        <search-form></search-form>
+    
+    </div>
 
-    <h1>Dov'è Florian?</h1>
+    {{-- <div>
+        <h1>prova 2</h1>
+        <input type="text" id="query" v-model="querySearch">
+        <button type="submit" @click="onSubmit">Cerca</button>
+
+    </div> --}}
 
 
+    {{-- <h1>Dov'è Florian?</h1>
     <input type="text" id="query" value="">
-    <button id="queryBtn">Cerca</button>
+    <button id="queryBtn">Cerca</button> --}}
 
 
     <br>
@@ -30,6 +40,8 @@
     </div>
 
     <script src="{{ asset('js/maps.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
 
     {{-- <script>
         const api_key = "SznQN02yzAXGOlDubCqT3PTfefEyd5Go";
