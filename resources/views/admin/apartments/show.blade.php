@@ -24,7 +24,7 @@
 
             <button class="btn btn-warning"> <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a> <br></button>
 
-            <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+         
 
             <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
                 @csrf
@@ -35,6 +35,12 @@
                         <input class="btn btn-danger" type="submit" value="ELIMINA">
                     </div>
             </form>
+
+               <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+               <br>
+               <a href="#">Vedi le statistiche</a>
+               <br>
+               <a href="#">Leggi i messaggi ricevuti</a>
 
 
 </div>
