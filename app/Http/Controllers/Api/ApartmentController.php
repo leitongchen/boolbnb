@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Apartment;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
@@ -14,13 +15,12 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $incomingData = Apartment::all();
+        $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
 
-        $data = [
-            'apartments' => $incomingData
-        ];
-
-        return view('apartments.index', $data);
+        return response()->json([
+            'success' => true,
+            'results' => $apartments, 
+        ]);
     }
 
     /**
@@ -52,9 +52,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $data = ['apartment' => Apartment::findOrFail($id)];
-
-        return view('apartments.show', $data);
+        //
     }
 
     /**
