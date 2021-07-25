@@ -57,6 +57,7 @@ class ApartmentController extends Controller
         return view('apartments.show', $data);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *

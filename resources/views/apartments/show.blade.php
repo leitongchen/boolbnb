@@ -20,7 +20,7 @@
                 </li>
                 <li>{{ $apartment->visible }}</li>
             </ul>
-            <a href="{{ route("messages.create") }}">Invia un messaggio al proprietario</a><br>
+            <a href="{{ route("messages.create", ['apartment' => $apartment->id]) }}">Invia un messaggio al proprietario</a><br>
             <a href="{{ route('apartments.index') }}">Torna a tutti gli appartamenti</a>
 </div>
 
