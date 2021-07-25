@@ -42,6 +42,9 @@
                <br>
                <a href="#">Leggi i messaggi ricevuti</a>
 
+               <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>
+
+
 
 </div>
 

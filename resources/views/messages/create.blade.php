@@ -20,6 +20,8 @@
 <label for="message">messaggio</label>
 <input type="text" name="content" id="message">
 
+<input type="hidden" name="apartment_id" value="{{ $apartment->id }}"">
+
 
 <input type="submit" value="Invia">
 </form>

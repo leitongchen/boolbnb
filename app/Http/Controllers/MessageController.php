@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Apartment;
 use Illuminate\Http\Request;
 use App\Message;
 
@@ -25,9 +26,9 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Apartment $apartment)
     {
-        return view("messages.create");
+        return view("messages.create", ['apartment'=>$apartment]);
     }
 
     /**
@@ -48,6 +49,8 @@ class MessageController extends Controller
         $newMessage->phone_number = $newMessageData["phone_number"];
         $newMessage->sender_mail = $newMessageData["sender_mail"];
         $newMessage->content = $newMessageData["content"];
+        $newMessage->apartment_id = $newMessageData["apartment_id"];
+
 
         // salva i dati all'interno del database
         $newMessage->save();

@@ -25,7 +25,7 @@ Auth::routes();
 // Messages
 Route::get("/messages", "MessageController@index")->name("messages.index");
 
-Route::get("/messages/create", "MessageController@create")->name("messages.create");
+Route::get("/messages/create/{apartment}", "MessageController@create")->name("messages.create");
 
 Route::get("/messages/{id}", "MessageController@show")->name("messages.show");
 
