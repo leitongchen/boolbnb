@@ -15,7 +15,7 @@
 
     <h1>pagina search</h1>
     <div id="app">
-        <search-form></search-form>
+        <create-form></create-form>
     
     </div>
 

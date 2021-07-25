@@ -1,90 +1,90 @@
 <template>
     <div>
-        <form @submit.prevent="search"
+        <form @submit.prevent="createApartment"
         action="#" method="post" enctype="multipart/form-data">
                 
             <input-atom
                 label="Titolo riepilogativo"
                 name="title"
-                v-model="userQuery.titleInput"
+                v-model="userQuery.title"
             ></input-atom>
 
             <input-atom
                 label="Via"
                 name="address_street"
-                v-model="userQuery.addressStreetInput"
+                v-model="userQuery.address_street"
             ></input-atom>
 
             <input-atom
                 label="Numero civico"
                 name="street_number"
-                v-model="userQuery.streetNumberInput"
+                v-model="userQuery.street_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="CAP"
                 name="zip_code"
-                v-model="userQuery.zipCodeInput"
+                v-model="userQuery.zip_code"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Città"
                 name="city"
-                v-model="userQuery.cityInput"
+                v-model="userQuery.city"
             ></input-atom>
 
             <input-atom
                 label="Provincia"
                 name="province"
-                v-model="userQuery.provinceInput"
+                v-model="userQuery.province"
             ></input-atom>  
 
             <input-atom
                 label="Stato"
                 name="nation"
-                v-model="userQuery.nationInput"
+                v-model="userQuery.nation"
             ></input-atom>
 
             <input-atom
                 label="Locali"
                 name="rooms_number"
-                v-model="userQuery.roomsNumberInput"
+                v-model="userQuery.rooms_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Posti letto"
                 name="beds_number"
-                v-model="userQuery.bedsNumberInput"
+                v-model="userQuery.beds_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Bagni"
                 name="bathrooms_number"
-                v-model="userQuery.bathroomsNumberInput"
+                v-model="userQuery.bathrooms_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
-                label="floor_area"
-                name="Superficie"
-                v-model="userQuery.floorAreaInput"
+                label="Superficie"
+                name="floor_area"
+                v-model="userQuery.floor_area"
                 inputType="number"
             ></input-atom>
 
 
             <label for="visible">Rendi visibile l'appartamento</label>
-            <input type="checkbox" name="visible" id="visible"> <br>
+            <input type="number" name="visible" id="visible" v-model="userQuery.visible"> <br>
 
 
             <label for="img_url">Immagine principale</label>
             <input type="file" name="img_url" accept=".jpeg, .jpg, .png">
 
             <div class="form-group">
-                <button type="submit">Cerca</button>
+                <button @click="getLatLng">Cerca</button>
             </div>
         
         </form>
@@ -106,8 +106,9 @@
         },
         data() {
             return {
-                // userQuery: {},
                 // querySearch: "",
+
+                userQuery: {},
 
                 //TOMTOM APIKEY
                 api_key: "SznQN02yzAXGOlDubCqT3PTfefEyd5Go",
@@ -142,8 +143,11 @@
 
             getLatLng() {
                 
-                const el = this.allApartmentsData[0];
-                this.apartmentData = el; 
+                const el = this.userQuery;
+                this.apartmentData = this.userQuery; 
+
+                console.log(this.apartmentData);
+                console.log('ciao');
 
                 let completeAddress = {
                     address_street: el.address_street,
@@ -160,10 +164,11 @@
             },
 
             setLatLng(position) {
-                // console.log(position);
+
                 this.apartmentData.latitude = position.lat;
                 this.apartmentData.longitude = position.lng;
-                // console.log(this.apartmentData)
+
+                
             },
 
             searchApartment(query) {
