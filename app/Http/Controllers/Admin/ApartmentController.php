@@ -6,6 +6,7 @@ use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -76,7 +77,7 @@ class ApartmentController extends Controller
         
         $newApartment->save();
 
-        //$newApartment->extra_services()->sync($formData["extraServices"]);
+        $newApartment->extra_services()->sync($formData["extraServices"]);
         
         return redirect()->route('admin.apartments.index');
     }
@@ -89,7 +90,13 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $data = ['apartment' => Apartment::findOrFail($id)];
+        $user = Auth::user();
+        $userId = Auth::id();
+
+        $data = [
+            'apartment' => Apartment::findOrFail($id),
+            'user' => $user,
+            'userId' => $userId];
 
         return view('admin.apartments.show', $data);
     }
@@ -134,11 +141,19 @@ class ApartmentController extends Controller
             'beds_number' => 'required|integer',
             'bathrooms_number' => 'required|integer',
             'floor_area' => 'required|numeric',
-            'img_url' => 'required|max:255',
+            'img_url' => 'max:255',
             'visible' => 'required'
         ]);
 
         $formData = $request->all();
+
+        if (!key_exists("extra_services", $formData)) {
+            $formData["extra_services"] = [];
+        }
+
+        $apartment->extra_services()->sync($formData["extraServices"]);
+
+
 
         if (key_exists("img_url", $formData)) {
             if ($apartment->img_url) {
