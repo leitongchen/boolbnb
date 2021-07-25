@@ -72,7 +72,7 @@
 
         @foreach($extraServices as $extraService)
         <label>
-                <input name="extraServices[]" type="checkbox" value="{{ $extraService->id }}" {{ $apartment->extraServices->contains($extraService) ? 'checked' : '' }}>
+                <input name="extraServices[]" type="checkbox" value="{{ $extraService->id }}" {{ $apartment->extra_services->contains($extraService) ? 'checked' : '' }}>
                 {{ $extraService->name }} <br>
         </label>
         @endforeach
