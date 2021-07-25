@@ -1,7 +1,7 @@
 <template>
 <!-- @submit.prevent="createApartment" -->
     <div>
-        <form @submit.prevent="createApartment"
+        <form @submit="createApartment"
         action="#" method="post" enctype="multipart/form-data">
                 
             <input-atom
@@ -145,8 +145,8 @@
             getLatLng() {
                 
                 // const el = this.userQuery;
-                const el = this.allApartmentsData[0];
-                this.apartmentData = this.allApartmentsData[0];
+                const el = this.allApartmentsData[2];
+                this.apartmentData = this.allApartmentsData[2];
 
                 console.log(this.apartmentData);
                 console.log('ciao');
