@@ -1,7 +1,3 @@
-
-@guest
-    
-@endguest
 <form action="{{ route("messages.store")}}" method="post">
 @csrf
 
@@ -20,7 +16,7 @@
 <label for="message">messaggio</label>
 <input type="text" name="content" id="message">
 
-<input type="hidden" name="apartment_id" value="{{ $apartment->id }}"">
+<input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
 
 
 <input type="submit" value="Invia">
