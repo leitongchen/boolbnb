@@ -18,7 +18,7 @@ class Apartment extends Model
     public function extra_services()
     {
          //argometi per specificare le colonne che erano scritte sbagliatamente
-         return $this->belongsToMany(
+        return $this->belongsToMany(
             'App\Extra_service',
             'apartment_extra_service',
             'apartment_id',

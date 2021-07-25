@@ -21,15 +21,16 @@
         </li>
         <li>{{ $apartment->visible }}</li>
 
-        {{-- @if (count($apartment->extraService > 0)) --}}
+
+        {{-- @if (count($apartment->extra_services > 0)) --}}
             <li>Servizi inclusi:</li>
-            @foreach($apartment->extraServices as $extraService)
-                <ul>
-                    <li>
-                        {{ $extraService->name }}
-                    </li>
-                </ul>
+            <ul>
+            @foreach($apartment->extra_services as $extraService)
+                <li>
+                    {{ $extraService->name }}
+                </li>
             @endforeach
+            </ul>
         {{-- @endif --}}
     </ul>
 

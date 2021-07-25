@@ -77,7 +77,7 @@ class ApartmentController extends Controller
         
         $newApartment->save();
 
-        //$newApartment->extra_services()->sync($formData["extraServices"]);
+        $newApartment->extra_services()->sync($formData["extraServices"]);
         
         return redirect()->route('admin.apartments.index');
     }

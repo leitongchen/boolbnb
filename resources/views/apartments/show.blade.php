@@ -19,6 +19,16 @@
                     <img src="{{ $apartment->img_url }}" alt="">
                 </li>
                 <li>{{ $apartment->visible }}</li>
+
+                <li>Servizi inclusi:
+                    <ul>
+                    @foreach($apartment->extra_services as $extraService)
+                        <li>
+                            {{ $extraService->name }}
+                        </li>
+                    @endforeach
+                    </ul>
+                </li>
             </ul>
             <a href="{{ route('apartments.index') }}">Torna a tutti gli appartamenti</a>
 </div>
