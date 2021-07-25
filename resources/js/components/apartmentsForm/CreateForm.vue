@@ -1,4 +1,5 @@
 <template>
+<!-- @submit.prevent="createApartment" -->
     <div>
         <form @submit.prevent="createApartment"
         action="#" method="post" enctype="multipart/form-data">
@@ -143,8 +144,9 @@
 
             getLatLng() {
                 
-                const el = this.userQuery;
-                this.apartmentData = this.userQuery; 
+                // const el = this.userQuery;
+                const el = this.allApartmentsData[0];
+                this.apartmentData = this.allApartmentsData[0];
 
                 console.log(this.apartmentData);
                 console.log('ciao');
@@ -168,7 +170,7 @@
                 this.apartmentData.latitude = position.lat;
                 this.apartmentData.longitude = position.lng;
 
-                
+                // this.$refs.formSubmit.submit();
             },
 
             searchApartment(query) {
@@ -186,23 +188,28 @@
                     console.log(er);
                 });
             },
+
+            createApartment() {
+                // API POST request passing the new apartment object to ApartmentController@store
+                axios.post('http://127.0.0.1:8000/api/apartment', this.apartmentData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        // 'Authorization': `Bearer ${this.auth_token}` 
+                    }
+                })
+                .then(resp => {
+                    alert('Apartment added')
+                    console.log(resp)
+                })
+                .catch(er => {
+                    console.log(er.response.data);
+                })
+            }
         },
         mounted() {
-            // API POST request passing the new apartment object to ApartmentController@store
-            axios.post('http://127.0.0.1:8000/api/user/apartment', {
-                headers: {
-                    'Authorization': `Bearer ${this.auth_token}` 
-                }
-            })
-            .then(resp => {
-                alert('Apartment added')
-                console.log(resp)
-            })
-            .catch(er => {
-                console.log(er);
-            })
+            
 
-            // API GET request to get all the apartments saved in db
+            //API GET request to get all the apartments saved in db
             axios.get('http://127.0.0.1:8000/api/user/apartments', {
                 headers: {
                     'Authorization': `Bearer ${this.auth_token}` 

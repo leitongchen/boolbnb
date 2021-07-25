@@ -27,7 +27,8 @@ Route::prefix('/user')->group( function() {
 
     Route::post('/login', 'Api\LoginController@login');
     Route::middleware('auth:api')->get('/apartments', 'Api\ApartmentController@index');
-    Route::middleware('auth:api')->post('/apartment', 'Admin\ApartmentController@store');
+    // Route::middleware('auth:api')->post('/apartment', 'Admin\ApartmentController@store');
 
 });
 
+Route::post('/apartment', 'Admin\ApartmentController@store');
