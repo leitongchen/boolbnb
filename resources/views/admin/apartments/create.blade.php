@@ -69,19 +69,20 @@
 
         <div class="form-group">
             <label for="visible">Rendi visibile l'appartamento</label>
-            <input class="form-control" type="checkbox" name="visible" id="visible"> <br>
-        </div>
-        {{-- @foreach($extraServices as $extraService)
-         <label>
-            <input class="form-control" name="extraServices[]" type="checkbox" value="{{ $extraService->id }}">
-        {{ $extraService->name }} <br>
-        </label>
-        @endforeach --}}
-        <div class="form-group">
-            <label for="img_url">Immagine principale</label>
-            <input class="form-control" type="file" name="img_url" accept=".jpeg, .jpg, .png">
+            <input type="checkbox" name="visible" id="visible"> <br>
         </div>
 
+        @foreach($extraServices as $extraService)
+            <label>
+                <input name="extraServices[]" type="checkbox" value="{{ $extraService->id }}">
+            {{ $extraService->name }}
+            </label> <br>
+        @endforeach
+
+        <div class="form-group">
+            <label for="img_url">Immagine principale</label>
+            <input type="file" name="img_url" accept=".jpeg, .jpg, .png">
+        </div>
 
         <div class="form-group">
             <button type="submit" class="btn btn-success">Crea</button>
