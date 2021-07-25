@@ -20,5 +20,6 @@
 <label for="message">messaggio</label>
 <input type="text" name="content" id="message">
 
+
 <input type="submit" value="Invia">
 </form>
