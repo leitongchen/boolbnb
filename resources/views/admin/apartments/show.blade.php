@@ -20,6 +20,17 @@
             <img src="{{ $apartment->img_url }}" alt="">
         </li>
         <li>{{ $apartment->visible }}</li>
+
+        {{-- @if (count($apartment->extraService > 0)) --}}
+            <li>Servizi inclusi:</li>
+            @foreach($apartment->extraServices as $extraService)
+                <ul>
+                    <li>
+                        {{ $extraService->name }}
+                    </li>
+                </ul>
+            @endforeach
+        {{-- @endif --}}
     </ul>
 
     <button class="btn btn-warning"> <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a> <br></button>
