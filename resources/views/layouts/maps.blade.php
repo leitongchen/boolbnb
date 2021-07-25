@@ -12,6 +12,8 @@
     <title>@yield('pageTitle')</title>
 </head>
 <body>
+
+    <h1>pagina search</h1>
     <div id="app">
         <search-form></search-form>
     
@@ -39,40 +41,8 @@
     
     </div>
 
-    <script src="{{ asset('js/maps.js') }}"></script>
+    {{-- <script src="{{ asset('js/maps.js') }}"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
 
-
-    {{-- <script>
-        const api_key = "SznQN02yzAXGOlDubCqT3PTfefEyd5Go";
-        var nav = new tt.NavigationControl({});
-
-        const treviso = [12.250000,45.666668];
-
-        let map = tt.map({
-            key: api_key,
-            container: 'mymap',
-            center: treviso,
-            zoom: 14,
-            style: 'tomtom://vector/1/basic-main'
-        })
-
-        map.addControl(nav, 'top-left');
-
-
-        function handleResults(result) {
-            console.log(result)
-        }
-
-        function search() {
-
-            tt.services.fuzzySearch({
-                key: api_key,
-                query: document.getElementById('query').value,
-
-
-            }).go().then(handleResults);
-        }
-    </script> --}}
 </body>
 </html>
