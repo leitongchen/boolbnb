@@ -6,6 +6,8 @@
 <div class="container">
     <h1>Crea un nuovo appatamento</h1>
 
+    {{$errors}}
+
     <form action="{{ route('admin.apartments.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 

@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="container">
+
+{{$errors}}
+
     <h1>Modifica un appartamento</h1>
 
     <form action="{{ route('admin.apartments.update', ['apartment' => $apartment->id]) }}" method="post" enctype="multipart/form-data">

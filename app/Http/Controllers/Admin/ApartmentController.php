@@ -59,7 +59,7 @@ class ApartmentController extends Controller
             'beds_number' => 'required|integer',
             'bathrooms_number' => 'required|integer',
             'floor_area' => 'required|numeric',
-            'img_url' => 'required|max:255',
+            'img_url' => 'required',
             'visible' => 'required'
         ]);
 
@@ -141,7 +141,6 @@ class ApartmentController extends Controller
             'beds_number' => 'required|integer',
             'bathrooms_number' => 'required|integer',
             'floor_area' => 'required|numeric',
-            'img_url' => 'max:255',
             'visible' => 'required'
         ]);
 
