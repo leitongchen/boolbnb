@@ -71,7 +71,7 @@
 
         <div class="form-group">
             <label for="visible">Rendi visibile l'appartamento</label>
-            <input type="checkbox" name="visible" id="visible"> <br>
+            <input type="checkbox" name="visible" id="visible" checked> <br>
         </div>
 
         @foreach($extraServices as $extraService)
