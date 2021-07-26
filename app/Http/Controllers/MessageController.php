@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Apartment;
 use Illuminate\Http\Request;
 use App\Message;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -15,10 +16,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        // prende tutto dal database
-        $messages = Message::all();
-
-        return view("messages.index", ["messages" => $messages]);
+      //
     }
 
     /**
@@ -67,10 +65,12 @@ class MessageController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $message = Message::find($id);
 
         return view("messages.show", [
-            "messages" => $message
+            "messages" => $message,
+            'user' => $user
         ]);
     }
 

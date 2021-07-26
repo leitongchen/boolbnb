@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Apartment;
 use App\Http\Controllers\Controller;
+use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -13,9 +15,22 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    //  Vedi i tutti i messaggi di un appartamento
+    public function index(Apartment $apartment)
     {
-        //
+        // $user = Auth::user();
+        // $userId = Auth::id();
+
+        $messages = $apartment->messages()->get();
+
+        $data = [
+            'apartment' => $apartment,
+            'messages' => $messages,
+            // 'userId' => $userId
+        ];
+
+        return view('admin.messages.index', $data);
     }
 
     /**
@@ -47,11 +62,7 @@ class MessageController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        $data = [
-            'apartment' => $apartment
-        ];
-
-        return view('admin.messages.show', $data);
+       //vedi i dettagli di un solo messaggio
     }
 
     /**

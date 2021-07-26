@@ -55,7 +55,7 @@
             @if ($userId == $apartment->user_id)
             <a href="{{ route('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a>
             <br>
-            <a href="{{route("messages.show", $message->id) }}">Leggi i messaggi ricevuti</a>
+            <a href="{{route("admin.messages.index", $apartment->id) }}">Leggi i messaggi ricevuti</a>
             @endif
 
             <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>

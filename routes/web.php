@@ -54,5 +54,8 @@ Route::prefix('admin')
 
         //visits
         Route::get('/visits/{apartment}', 'VisitController@show')->name('visits.show');
+
+        //messages
+        Route::get('/messages/{apartment}', 'MessageController@index')->name('messages.index');
     });
 
