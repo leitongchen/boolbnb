@@ -3,7 +3,7 @@
     <div>
         <label :for="label"> {{ label }} </label>
         <input :type="inputType" 
-            :name="label" 
+            :name="name" 
             :id="label"
             :value="value"
             @input="$emit('input', $event.currentTarget.value)"

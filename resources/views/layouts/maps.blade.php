@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <h1>pagina search</h1>
+    <h1>Crea un appartamento</h1>
     <div id="app">
         <create-form></create-form>
     

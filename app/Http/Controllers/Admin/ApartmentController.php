@@ -6,6 +6,7 @@ use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -46,29 +47,31 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'address_street' => 'required|max:255',
-        //     'street_number' => 'required|max:10',
-        //     'city' => 'required|max:100',
-        //     'zip_code' => 'required|max:10',
-        //     'province' => 'required|max:100',
-        //     'nation' => 'required|max:100',
-        //     'rooms_number' => 'required|integer',
-        //     'beds_number' => 'required|integer',
-        //     'bathrooms_number' => 'required|integer',
-        //     'floor_area' => 'required|numeric',
-        //     'img_url' => 'required|max:255',
-        //     'visible' => 'required'
-        // ]);
+        $request->validate([
+            'title' => 'required',
+            'address_street' => 'required|max:255',
+            'street_number' => 'required|max:10',
+            'city' => 'required|max:100',
+            'zip_code' => 'required|max:10',
+            'province' => 'required|max:100',
+            'nation' => 'required|max:100',
+            'rooms_number' => 'required|integer',
+            'beds_number' => 'required|integer',
+            'bathrooms_number' => 'required|integer',
+            'floor_area' => 'required|numeric',
+            'img_url' => 'required|max:255',
+            'visible' => 'required'
+        ]);
 
         dump($request->all());
+        dump(Auth::user());
+        // return; 
 
         $formData = $request->all();
         $newApartment = new Apartment;
         $newApartment->fill($formData);
 
-        $newApartment->user_id = $request->user()->id;
+        $newApartment->user_id = 2;
 
          //carico l'immagine di copertina
         if (key_exists("img_url", $formData)) {
