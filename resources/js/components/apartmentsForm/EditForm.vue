@@ -86,10 +86,10 @@
                 <label>
                     <input name="extraServices[]" type="checkbox" 
                     :value="extraService.id" 
-                    v-model="apartment.extraServices"
-                    checkExtraServices>
+                    :v-model="apartment.extra_services">
                     {{ extraService.name }}
                 </label>
+                <!-- checkedServices.includes(extraService.id) -->
 
             </div>
 
@@ -136,28 +136,6 @@
         data() {
             return {
 
-                userQuery: {
-                    title: "",
-
-                    rooms_number: "",
-                    beds_number: "",
-                    bathrooms_number: "",
-                    floor_area: "",
-
-                    address_street: "", 
-                    street_number: "", 
-                    city: "", 
-                    zip_code: "", 
-                    province: "", 
-                    nation: "",
-                    latitude: "",
-                    longitude: "",
-
-                    visible: null,
-
-                    extraServices: [],
-                },
-
                 // CSRF
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
@@ -167,30 +145,11 @@
                 auth_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmE4NDU3OTc0MDUyMDViNzZhMzhmMzFlZTcwYzVjODliNmUzMDMyYmRkODJjOGJjOTM3ZDg1ZjUzMjQyY2M0Y2ViZDgxNjQxYmQ5MTc4YTYiLCJpYXQiOjE2MjcxOTgxMTQuNTk0NTkyLCJuYmYiOjE2MjcxOTgxMTQuNTk0NjA3LCJleHAiOjE2NTg3MzQxMTQuNTcxNDYyLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.p-RjR6BmklJGosGbYy1B3zDF3eDnMOddKNalJSw5Xfrxo3maqQFK9SUVL60-RaMt1Gcjcl4XOTA7ta29lYkASN3yZrmo7EG_Vn_BvyZZu7rp3gofegeQBgvB1JcMZTeSYVxGjyq2WL0Q3nV-PENfL1OcDSClLCR0_M_cOc4HorgBnvk3D5uRZZlbg6j602cmOWhDCa4axB4Sa-X_1DsBHc6ejKeYCEKdsGps7jNt2uKidSA9Hdo38-NscChCuh60jNghkeyDqwasGXQVPGVqE8-vQRImd4faqyx0t0imosnewQ5KKbmGp4WObuj-qWeVh9xipVjLffxs9Yruy8xHT_VrxJLCOrjSiXnJlR0_tqnbs1SuvXITfL_40xSNf8-BYzsWMPZJsstnDNpP5HKyZRxWrXpNt-koqZ-A8GDS1ZivXGo-tQQjtqXb8vktPF1t4fwwvDZdyaGG0UTO8Mt4b1PClo0JxdGvZq5qSk4Bgwa7cFbsXJ_fim5I-leX7u1p2adJJC18Nj1bpAK8KjOmwZYYPLMYgtATZ241NaO2lpHwZILAqWKZU765yg4B760rg8VpwEy40IYwJzDiZuU1XY_F6BPWAeuTegZR0Lm5aJMfvPUi-u_8Tn-HOA5HTi50rHydeg9t3-X588YLRhEifp7JWzXolHUgnl48vUPWHD0",
             
                 apartmentData: this.apartment,
+
+                checkedServices: [],
             }
         },
-        methods: {
-            // set dinamically old values on form
-            setValues() {
-                this.userQuery.title = this.apartment.title;
-
-                this.userQuery.rooms_number = this.apartment.rooms_number;
-                this.userQuery.beds_number = this.apartment.beds_number;
-                this.userQuery.bathrooms_number = this.apartment.bathrooms_number;
-                this.userQuery.floor_area = this.apartment.floor_area;
-
-                this.userQuery.address_street = this.apartment.address_street;
-                this.userQuery.street_number = this.apartment.street_number;
-                this.userQuery.city = this.apartment.city;
-                this.userQuery.zip_code = this.apartment.zip_code;
-                this.userQuery.province = this.apartment.province;
-                this.userQuery.nation = this.apartment.nation;
-                this.userQuery.latitude = this.apartment.latitude;
-                this.userQuery.longitude = this.apartment.longitude;
-                this.userQuery.visible = this.apartment.visible;
-            },
-
-           
+        methods: {           
 
             // set extra services on userQuery obj
             setExtraServices() {
@@ -199,7 +158,9 @@
                 this.ApExtraservices.forEach( el => {
                     services.push(el.id);
                 })
-                this.userQuery.extra_services = services;
+                // this.checkedServices = services;
+                // this.apartment.extra_services = services; 
+                console.log(this.extraServices)
             },
 
             // after user click
@@ -207,8 +168,7 @@
             // clean the query and make api request to tomtom
             getLatLng() {
                 
-                const el = this.userQuery;
-                // this.apartmentData = this.userQuery;
+                const el = this.apartmentData;
 
                 let completeAddress = {
                     address_street: el.address_street,
@@ -225,10 +185,8 @@
 
             // save lat and lng values to aparmentData(obj)
             setLatLng(position) {
-
-                this.userQuery.latitude = position.lat;
-                this.userQuery.longitude = position.lng;
-
+                this.apartmentData.latitude = position.lat;
+                this.apartmentData.longitude = position.lng;
             },
 
             // API reequest to tomtom return lat and lng position values
@@ -283,10 +241,9 @@
 
         },
         mounted() {
-            console.log(this.apartmentData);
-            console.log(this.apartment);
+            // console.log(this.apartmentData);
+            // console.log(this.apartment);
 
-            this.setValues();
             this.setExtraServices();
 
 
