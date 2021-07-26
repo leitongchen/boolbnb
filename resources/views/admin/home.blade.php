@@ -14,7 +14,7 @@
                     </div>
                     @endif
 
-                    {{ __('Benvenuto Admin ! '. Auth::user()->name . '!') }} <br>
+                    {{ __('Benvenuto Admin '. Auth::user()->name . '!') }} <br>
 
                     <br>
 
