@@ -63,8 +63,8 @@ class ApartmentController extends Controller
             'visible' => 'required'
         ]);
 
-        dump($request->all());
-        dump(Auth::user());
+        // dump($request->all());
+        // dump(Auth::user());
         // return; 
 
         $formData = $request->all();
@@ -75,7 +75,7 @@ class ApartmentController extends Controller
 
          //carico l'immagine di copertina
         if (key_exists("img_url", $formData)) {
-            $storageResult = Storage::put("img_url", $formData["img_url"]);
+            $storageResult = Storage::put("uploads", $formData["img_url"]);
             $newApartment->img_url = $storageResult;
         }
         
