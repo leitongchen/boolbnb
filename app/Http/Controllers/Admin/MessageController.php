@@ -60,7 +60,7 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show()
     {
        //vedi i dettagli di un solo messaggio
     }
@@ -94,8 +94,13 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    //elimina il messaggio se l'utente è il destinatario
+    public function destroy(Message $message)
     {
-        //
+        if($message->apartment->user_id = Auth::id()) {
+            $message->delete();
+        }
     }
+
 }

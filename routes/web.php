@@ -23,7 +23,7 @@ Auth::routes();
 
 
 // Messages
-Route::get("/messages", "MessageController@index")->name("messages.index");
+// Route::get("/messages", "MessageController@index")->name("messages.index");
 
 Route::get("/messages/create/{apartment}", "MessageController@create")->name("messages.create");
 
@@ -31,7 +31,8 @@ Route::get("/messages/{id}", "MessageController@show")->name("messages.show");
 
 Route::post("/messages", "MessageController@store")->name("messages.store");
 
-Route::delete("/messages/{id}", "MessageController@destroy")->name("messages.destroy");
+// Route::delete("/messages/{id}", "MessageController@destroy")->name("messages.destroy");
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
@@ -57,5 +58,8 @@ Route::prefix('admin')
 
         //messages
         Route::get('/messages/{apartment}', 'MessageController@index')->name('messages.index');
+        Route::get('/messages/{apartment}/show', 'MessageController@show')->name('messages.show');
+        Route::delete('/messages/{message}/destroy', 'MessageController@destroy')->name('messages.destroy');
+
     });
 
