@@ -14,10 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
 
-
-
+Route::get('/', 'HomeController@index')->name("index");
 Route::prefix('apartments')
     ->name('apartments.')
     ->group(function () {
@@ -31,11 +29,21 @@ Route::prefix('apartments')
 });
 
 
-
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+// Messages
+Route::get("/messages", "MessageController@index")->name("messages.index");
+
+Route::get("/messages/create", "MessageController@create")->name("messages.create");
+
+Route::get("/messages/{id}", "MessageController@show")->name("messages.show");
+
+Route::post("/messages", "MessageController@store")->name("messages.store");
+
+Route::delete("/messages/{id}", "MessageController@destroy")->name("messages.destroy");
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')
     ->namespace('Admin')
@@ -53,6 +61,7 @@ Route::prefix('admin')
         Route::get('/apartments/{apartment}/edit', 'ApartmentController@edit')->name('apartments.edit');
         Route::put('/apartments/{apartment}/update', 'ApartmentController@update')->name('apartments.update');
         Route::delete('/apartments/{apartment}', 'ApartmentController@destroy')->name('apartments.destroy');
+
+        //visits
+        Route::get('/visits/{apartment}', 'VisitController@show')->name('visits.show');
     });
-
-

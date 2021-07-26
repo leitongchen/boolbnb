@@ -14,17 +14,13 @@
                     </div>
                     @endif
 
-                    {{ __('Benvenuto Admin ! '. Auth::user()->name . '!') }}
-                </div>
+                    {{ __('Benvenuto Admin ! '. Auth::user()->name . '!') }} <br>
 
-                {{-- <tbody>
-                    @foreach($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        @endforeach
-                </tbody> --}}
+                    <br>
+
+                <a href="{{ route('admin.apartments.index') }}">INDEX APPARTAMENTI PRIVATO</a>
+
+                </div>
             </div>
         </div>
     </div>
