@@ -3,7 +3,12 @@
 @section('content')
 
 <div class="container">
-    <h1>Messaggi ricevuti appartamento {{ $apartment->id }}</h1>
+
+    @if (count($messages) == 0)
+        <h1>Non hai messaggi da visualizzare</h1>
+    @else
+        <h1>Messaggi ricevuti appartamento {{ $apartment->id }}</h1>
+    @endif
 
     <table class="table">
         <thead>

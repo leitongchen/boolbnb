@@ -20,7 +20,7 @@
         <input type="email" name="sender_mail" id="sender_mail">
 
         <label for="message">messaggio</label>
-        <input type="text" name="content" id="message">
+        <input type="text" name="content" id="message" value="{{ Auth::check() ? Auth::user()->email : '' }}">
 
         <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
 
