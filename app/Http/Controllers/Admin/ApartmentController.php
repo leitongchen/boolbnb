@@ -51,23 +51,23 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'address_street' => 'required|max:255',
-        //     'street_number' => 'required|max:10',
-        //     'city' => 'required|max:100',
-        //     'zip_code' => 'required|max:10',
-        //     'province' => 'required|max:100',
-        //     'nation' => 'required|max:100',
-        //     'rooms_number' => 'required|integer',
-        //     'beds_number' => 'required|integer',
-        //     'bathrooms_number' => 'required|integer',
-        //     'floor_area' => 'required|numeric',
-        //     'img_url' => 'required',
-        //     'visible' => 'required'
-        // ]);
+        $request->validate([
+            'title' => 'required',
+            'address_street' => 'required|max:255',
+            'street_number' => 'required|max:10',
+            'city' => 'required|max:100',
+            'zip_code' => 'required|max:10',
+            'province' => 'required|max:100',
+            'nation' => 'required|max:100',
+            'rooms_number' => 'required|integer',
+            'beds_number' => 'required|integer',
+            'bathrooms_number' => 'required|integer',
+            'floor_area' => 'required|numeric',
+            'img_url' => 'required',
+            'visible' => 'required'
+        ]);
 
-        // dump($request->all());
+        // dump($request);
         // dump($request->user());
         // return; 
 
@@ -143,20 +143,20 @@ class ApartmentController extends Controller
     {
         // $request_all = $request->all(); 
 
-        // $request->validate([
-        //     'title' => 'required',
-        //     'address_street' => 'required|max:255',
-        //     'street_number' => 'required|max:10',
-        //     'city' => 'required|max:100',
-        //     'zip_code' => 'required|max:10',
-        //     'province' => 'required|max:100',
-        //     'nation' => 'required|max:100',
-        //     'rooms_number' => 'required|integer',
-        //     'beds_number' => 'required|integer',
-        //     'bathrooms_number' => 'required|integer',
-        //     'floor_area' => 'required|numeric',
-        //     'visible' => 'required'
-        // ]);
+        $request->validate([
+            'title' => 'required',
+            'address_street' => 'required|max:255',
+            'street_number' => 'required|max:10',
+            'city' => 'required|max:100',
+            'zip_code' => 'required|max:10',
+            'province' => 'required|max:100',
+            'nation' => 'required|max:100',
+            'rooms_number' => 'required|integer',
+            'beds_number' => 'required|integer',
+            'bathrooms_number' => 'required|integer',
+            'floor_area' => 'required|numeric',
+            'visible' => 'required'
+        ]);
 
         $formData = $request->all();
 
@@ -172,7 +172,7 @@ class ApartmentController extends Controller
             $formData["extra_services"] = [];
         }
 
-        $apartment->extra_services()->sync($formData["extra_services"]);
+        $apartment->extra_services()->sync($formData["extraServices"]);
 
         if (key_exists("img_url", $formData)) {
             if ($apartment->img_url) {
