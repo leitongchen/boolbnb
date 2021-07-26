@@ -12,72 +12,72 @@
             <input-atom
                 label="Titolo riepilogativo"
                 name="title"
-                v-model="userQuery.title"
+                v-model="apartment.title"
             ></input-atom>
 
             <input-atom
                 label="Via"
                 name="address_street"
-                v-model="userQuery.address_street"
+                v-model="apartment.address_street"
             ></input-atom>
 
             <input-atom
                 label="Numero civico"
                 name="street_number"
-                v-model="userQuery.street_number"
+                v-model="apartment.street_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="CAP"
                 name="zip_code"
-                v-model="userQuery.zip_code"
+                v-model="apartment.zip_code"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Città"
                 name="city"
-                v-model="userQuery.city"
+                v-model="apartment.city"
             ></input-atom>
 
             <input-atom
                 label="Provincia"
                 name="province"
-                v-model="userQuery.province"
+                v-model="apartment.province"
             ></input-atom>  
 
             <input-atom
                 label="Stato"
                 name="nation"
-                v-model="userQuery.nation"
+                v-model="apartment.nation"
             ></input-atom>
 
             <input-atom
                 label="Locali"
                 name="rooms_number"
-                v-model="userQuery.rooms_number"
+                v-model="apartment.rooms_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Posti letto"
                 name="beds_number"
-                v-model="userQuery.beds_number"
+                v-model="apartment.beds_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Bagni"
                 name="bathrooms_number"
-                v-model="userQuery.bathrooms_number"
+                v-model="apartment.bathrooms_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Superficie"
                 name="floor_area"
-                v-model="userQuery.floor_area"
+                v-model="apartment.floor_area"
                 inputType="number"
             ></input-atom>
 
@@ -86,7 +86,7 @@
                 <label>
                     <input name="extraServices[]" type="checkbox" 
                     :value="extraService.id" 
-                    v-model="userQuery.extraServices"
+                    v-model="apartment.extraServices"
                     checkExtraServices>
                     {{ extraService.name }}
                 </label>
@@ -94,17 +94,17 @@
             </div>
 
             <label for="visible">Rendi visibile l'appartamento</label>
-            <input type="checkbox" name="visible" id="visible" v-model="userQuery.visible"> <br>
+            <input type="checkbox" name="visible" id="visible" v-model="apartment.visible"> <br>
 
             <label for="img_url">Immagine principale</label>
             <input type="file" name="img_url" ref="inputUpload" accept=".jpeg, .jpg, .png"> <br>
             
             <label for="latitude">
-                <input type="text" id="latitude" name="latitude" v-model="userQuery.latitude">
+                <input type="text" id="latitude" name="latitude" v-model="apartment.latitude">
             </label>
 
             <label for="longitude">
-                <input type="text" id="longitude" name="longitude" v-model="userQuery.longitude">
+                <input type="text" id="longitude" name="longitude" v-model="apartment.longitude">
             </label>
 
             <a href="#" @click.prevent="getLatLng" class="btn btn-primary">Genera Latitudine e Longitudine</a>
@@ -123,6 +123,7 @@
     import InputAtom from '../formInputs/InputAtom.vue';
 
     export default {
+
         components: { 
             InputAtom 
         },
@@ -165,12 +166,11 @@
 
                 auth_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmE4NDU3OTc0MDUyMDViNzZhMzhmMzFlZTcwYzVjODliNmUzMDMyYmRkODJjOGJjOTM3ZDg1ZjUzMjQyY2M0Y2ViZDgxNjQxYmQ5MTc4YTYiLCJpYXQiOjE2MjcxOTgxMTQuNTk0NTkyLCJuYmYiOjE2MjcxOTgxMTQuNTk0NjA3LCJleHAiOjE2NTg3MzQxMTQuNTcxNDYyLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.p-RjR6BmklJGosGbYy1B3zDF3eDnMOddKNalJSw5Xfrxo3maqQFK9SUVL60-RaMt1Gcjcl4XOTA7ta29lYkASN3yZrmo7EG_Vn_BvyZZu7rp3gofegeQBgvB1JcMZTeSYVxGjyq2WL0Q3nV-PENfL1OcDSClLCR0_M_cOc4HorgBnvk3D5uRZZlbg6j602cmOWhDCa4axB4Sa-X_1DsBHc6ejKeYCEKdsGps7jNt2uKidSA9Hdo38-NscChCuh60jNghkeyDqwasGXQVPGVqE8-vQRImd4faqyx0t0imosnewQ5KKbmGp4WObuj-qWeVh9xipVjLffxs9Yruy8xHT_VrxJLCOrjSiXnJlR0_tqnbs1SuvXITfL_40xSNf8-BYzsWMPZJsstnDNpP5HKyZRxWrXpNt-koqZ-A8GDS1ZivXGo-tQQjtqXb8vktPF1t4fwwvDZdyaGG0UTO8Mt4b1PClo0JxdGvZq5qSk4Bgwa7cFbsXJ_fim5I-leX7u1p2adJJC18Nj1bpAK8KjOmwZYYPLMYgtATZ241NaO2lpHwZILAqWKZU765yg4B760rg8VpwEy40IYwJzDiZuU1XY_F6BPWAeuTegZR0Lm5aJMfvPUi-u_8Tn-HOA5HTi50rHydeg9t3-X588YLRhEifp7JWzXolHUgnl48vUPWHD0",
             
-                allApartmentsData: [],
-                apartmentData: null,
+                apartmentData: this.apartment,
             }
         },
         methods: {
-            // set dinamically the form old values
+            // set dinamically old values on form
             setValues() {
                 this.userQuery.title = this.apartment.title;
 
@@ -188,10 +188,11 @@
                 this.userQuery.latitude = this.apartment.latitude;
                 this.userQuery.longitude = this.apartment.longitude;
                 this.userQuery.visible = this.apartment.visible;
-
-                
             },
 
+           
+
+            // set extra services on userQuery obj
             setExtraServices() {
                 let services = [];
 
@@ -201,17 +202,13 @@
                 this.userQuery.extra_services = services;
             },
 
-            clearQuery(addressObj) {
-
-                let valueArr = (Object.values(addressObj)).join(', ');
-
-                return valueArr;
-            },
-
+            // after user click
+            // retrieve complete address from form
+            // clean the query and make api request to tomtom
             getLatLng() {
                 
                 const el = this.userQuery;
-                this.apartmentData = this.userQuery;
+                // this.apartmentData = this.userQuery;
 
                 let completeAddress = {
                     address_street: el.address_street,
@@ -226,16 +223,16 @@
                 this.ttApiRequest(addressStr);          
             },
 
+            // save lat and lng values to aparmentData(obj)
             setLatLng(position) {
 
-                this.apartmentData.latitude = position.lat;
-                this.apartmentData.longitude = position.lng;
-                this.apartmentData.apartment_id = this.apartment.id;
+                this.userQuery.latitude = position.lat;
+                this.userQuery.longitude = position.lng;
 
             },
 
+            // API reequest to tomtom return lat and lng position values
             ttApiRequest(query) {
-
                 tt.services.fuzzySearch({
                     key: this.api_key,
                     query: query,
@@ -255,11 +252,12 @@
                 const imageData = this.$refs.inputUpload.files[0];
                 const formData = new FormData();
                 formData.append("img_url", imageData);
+                formData.append('_method', 'PUT');
 
                 // API POST request passing the new apartment object to ApartmentController@store
-                axios.post('http://127.0.0.1:8000/api/apartament/edit', { 
+                axios.put('http://127.0.0.1:8000/api/apartament/edit', { 
                     formData,
-                    ...this.apartmentData,
+                    ...this.apartment,
                     }, 
                     {
                     headers: {
@@ -276,12 +274,22 @@
                 })
             },
 
+            clearQuery(addressObj) {
+
+                let valueArr = (Object.values(addressObj)).join(', ');
+
+                return valueArr;
+            },
+
         },
         mounted() {
+            console.log(this.apartmentData);
+            console.log(this.apartment);
+
             this.setValues();
             this.setExtraServices();
 
-        
+
 
         }
     }

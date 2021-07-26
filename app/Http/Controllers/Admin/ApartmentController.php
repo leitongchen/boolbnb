@@ -51,21 +51,21 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'address_street' => 'required|max:255',
-            'street_number' => 'required|max:10',
-            'city' => 'required|max:100',
-            'zip_code' => 'required|max:10',
-            'province' => 'required|max:100',
-            'nation' => 'required|max:100',
-            'rooms_number' => 'required|integer',
-            'beds_number' => 'required|integer',
-            'bathrooms_number' => 'required|integer',
-            'floor_area' => 'required|numeric',
-            'img_url' => 'required',
-            'visible' => 'required'
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'address_street' => 'required|max:255',
+        //     'street_number' => 'required|max:10',
+        //     'city' => 'required|max:100',
+        //     'zip_code' => 'required|max:10',
+        //     'province' => 'required|max:100',
+        //     'nation' => 'required|max:100',
+        //     'rooms_number' => 'required|integer',
+        //     'beds_number' => 'required|integer',
+        //     'bathrooms_number' => 'required|integer',
+        //     'floor_area' => 'required|numeric',
+        //     'img_url' => 'required',
+        //     'visible' => 'required'
+        // ]);
 
         // dump($request->all());
         // dump($request->user());
@@ -75,12 +75,13 @@ class ApartmentController extends Controller
         $newApartment = new Apartment;
         $newApartment->fill($formData);
         
+        $newApartment->user_id = $formData['user_id'];
+
+        // dump($newApartment);
         // dump($formData);
         // return; 
 
-        $newApartment->user_id = $formData['user_id'];
-
-         //carico l'immagine di copertina
+        //carico l'immagine di copertina
         if (key_exists("img_url", $formData)) {
             $storageResult = Storage::put("uploads", $formData["img_url"]);
             $newApartment->img_url = $storageResult;
@@ -138,26 +139,31 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'address_street' => 'required|max:255',
-            'street_number' => 'required|max:10',
-            'city' => 'required|max:100',
-            'zip_code' => 'required|max:10',
-            'province' => 'required|max:100',
-            'nation' => 'required|max:100',
-            'rooms_number' => 'required|integer',
-            'beds_number' => 'required|integer',
-            'bathrooms_number' => 'required|integer',
-            'floor_area' => 'required|numeric',
-            'visible' => 'required'
-        ]);
+        // $request_all = $request->all(); 
+
+        // $request->validate([
+        //     'title' => 'required',
+        //     'address_street' => 'required|max:255',
+        //     'street_number' => 'required|max:10',
+        //     'city' => 'required|max:100',
+        //     'zip_code' => 'required|max:10',
+        //     'province' => 'required|max:100',
+        //     'nation' => 'required|max:100',
+        //     'rooms_number' => 'required|integer',
+        //     'beds_number' => 'required|integer',
+        //     'bathrooms_number' => 'required|integer',
+        //     'floor_area' => 'required|numeric',
+        //     'visible' => 'required'
+        // ]);
 
         $formData = $request->all();
 
-        dump($formData);
+        $apartment = Apartment::findOrFail($formData['apartment_id']);
+
+        // dump($request);
+        // dump($apartment);        
         // return; 
 
         // $apartment->aparment_id = $formData['apartment_id'];
@@ -167,9 +173,6 @@ class ApartmentController extends Controller
         }
 
         $apartment->extra_services()->sync($formData["extra_services"]);
-        dump($apartment);
-        return; 
-
 
         if (key_exists("img_url", $formData)) {
             if ($apartment->img_url) {
