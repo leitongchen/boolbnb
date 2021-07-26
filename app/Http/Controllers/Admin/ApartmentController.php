@@ -35,8 +35,12 @@ class ApartmentController extends Controller
     public function create()
     {
         $extraServices = Extra_service::all();
+        // $userId = Auth::user()->id;
 
-        return view('admin.apartments.create', ['extraServices' => $extraServices]);
+        return view('admin.apartments.create', [
+            'extraServices' => $extraServices,
+            // 'userId' => $userId,
+        ]);
     }
 
     /**
@@ -64,14 +68,17 @@ class ApartmentController extends Controller
         ]);
 
         // dump($request->all());
-        // dump(Auth::user());
+        // dump($request->user());
         // return; 
 
         $formData = $request->all();
         $newApartment = new Apartment;
         $newApartment->fill($formData);
+        
+        // dump($formData);
+        // return; 
 
-        $newApartment->user_id = 2;
+        $newApartment->user_id = $formData['user_id'];
 
          //carico l'immagine di copertina
         if (key_exists("img_url", $formData)) {
@@ -150,12 +157,18 @@ class ApartmentController extends Controller
 
         $formData = $request->all();
 
+        dump($formData);
+        // return; 
+
+        // $apartment->aparment_id = $formData['apartment_id'];
+
         if (!key_exists("extra_services", $formData)) {
             $formData["extra_services"] = [];
         }
 
-        $apartment->extra_services()->sync($formData["extraServices"]);
-
+        $apartment->extra_services()->sync($formData["extra_services"]);
+        dump($apartment);
+        return; 
 
 
         if (key_exists("img_url", $formData)) {

@@ -2,13 +2,15 @@
 <!-- @submit.prevent="createApartment" -->
     <div>
         <form @submit="createApartment"
-        action="/api/apartment" method="post" enctype="multipart/form-data">
+        action="/api/apartament/edit" method="post" enctype="multipart/form-data">
 
             <input type="hidden" name="_token" :value="csrf">
-            <input type="hidden" name="user_id" :value="this.userId">
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="apartment_id" :value="this.apartment.id">
+
 
             <input-atom
-                label="Breve descrizione dell'alloggio"
+                label="Titolo riepilogativo"
                 name="title"
                 v-model="userQuery.title"
             ></input-atom>
@@ -82,21 +84,17 @@
             <div v-for="extraService in extraServices" :key="extraService.id">
 
                 <label>
-                    <input name="extraServices[]" type="checkbox" :value="extraService.id">
+                    <input name="extraServices[]" type="checkbox" 
+                    :value="extraService.id" 
+                    v-model="userQuery.extraServices"
+                    checkExtraServices>
                     {{ extraService.name }}
                 </label>
 
             </div>
 
-            <!-- @foreach($extraServices as $extraService)
-            <label>
-                <input name="extraServices[]" type="checkbox" value="{{ $extraService->id }}">
-            {{ $extraService->name }}
-            </label> <br>
-            @endforeach -->
-
             <label for="visible">Rendi visibile l'appartamento</label>
-            <input type="checkbox" name="visible" id="visible" v-model="userQuery.visible" checked>
+            <input type="checkbox" name="visible" id="visible" v-model="userQuery.visible"> <br>
 
             <label for="img_url">Immagine principale</label>
             <input type="file" name="img_url" ref="inputUpload" accept=".jpeg, .jpg, .png"> <br>
@@ -104,6 +102,7 @@
             <label for="latitude">
                 <input type="text" id="latitude" name="latitude" v-model="userQuery.latitude">
             </label>
+
             <label for="longitude">
                 <input type="text" id="longitude" name="longitude" v-model="userQuery.longitude">
             </label>
@@ -111,7 +110,7 @@
             <a href="#" @click.prevent="getLatLng" class="btn btn-primary">Genera Latitudine e Longitudine</a>
 
             <div class="form-group">
-                <button>Crea appartamento</button>
+                <button>Fatto</button>
             </div>
         
         </form>
@@ -127,18 +126,35 @@
         components: { 
             InputAtom 
         },
-        name: "CreateForm",
+        name: "EditForm",
         props: {
+            apartment: Object,
             extraServices: Array,
-            userId: Number
+            ApExtraservices: Array
         },
         data() {
             return {
-                // querySearch: "",
 
                 userQuery: {
-                    latitude:"",
-                    longitude:"",
+                    title: "",
+
+                    rooms_number: "",
+                    beds_number: "",
+                    bathrooms_number: "",
+                    floor_area: "",
+
+                    address_street: "", 
+                    street_number: "", 
+                    city: "", 
+                    zip_code: "", 
+                    province: "", 
+                    nation: "",
+                    latitude: "",
+                    longitude: "",
+
+                    visible: null,
+
+                    extraServices: [],
                 },
 
                 // CSRF
@@ -154,20 +170,36 @@
             }
         },
         methods: {
+            // set dinamically the form old values
+            setValues() {
+                this.userQuery.title = this.apartment.title;
 
-            // When creating a new apartment
-            // we need to also save latitude and longitude fields (already existing but set to null)
-            // First: we need to format the address data to obtain only the values and convert to String
-                // - address_street 
-                // - street_number 
-                // - city 
-                // - zip_code 
-                // - province 
-                // - nation
-            // Second: we pass the value through the search function and handle the json result
-                // where we can find lat and lng values of the specific address
-            // Third: we save lat and lng values for each apartment of the array
-            // Fourth: the data needs to be sent to backend in order to be stored
+                this.userQuery.rooms_number = this.apartment.rooms_number;
+                this.userQuery.beds_number = this.apartment.beds_number;
+                this.userQuery.bathrooms_number = this.apartment.bathrooms_number;
+                this.userQuery.floor_area = this.apartment.floor_area;
+
+                this.userQuery.address_street = this.apartment.address_street;
+                this.userQuery.street_number = this.apartment.street_number;
+                this.userQuery.city = this.apartment.city;
+                this.userQuery.zip_code = this.apartment.zip_code;
+                this.userQuery.province = this.apartment.province;
+                this.userQuery.nation = this.apartment.nation;
+                this.userQuery.latitude = this.apartment.latitude;
+                this.userQuery.longitude = this.apartment.longitude;
+                this.userQuery.visible = this.apartment.visible;
+
+                
+            },
+
+            setExtraServices() {
+                let services = [];
+
+                this.ApExtraservices.forEach( el => {
+                    services.push(el.id);
+                })
+                this.userQuery.extra_services = services;
+            },
 
             clearQuery(addressObj) {
 
@@ -180,12 +212,6 @@
                 
                 const el = this.userQuery;
                 this.apartmentData = this.userQuery;
-
-                // const el = this.allApartmentsData[2];
-                // this.apartmentData = this.allApartmentsData[2];
-
-                console.log(this.apartmentData);
-                console.log('ciao');
 
                 let completeAddress = {
                     address_street: el.address_street,
@@ -204,6 +230,7 @@
 
                 this.apartmentData.latitude = position.lat;
                 this.apartmentData.longitude = position.lng;
+                this.apartmentData.apartment_id = this.apartment.id;
 
             },
 
@@ -223,7 +250,6 @@
                 });
             },
 
-
             createApartment() {
 
                 const imageData = this.$refs.inputUpload.files[0];
@@ -231,10 +257,9 @@
                 formData.append("img_url", imageData);
 
                 // API POST request passing the new apartment object to ApartmentController@store
-                axios.post('http://127.0.0.1:8000/api/apartment', { 
+                axios.post('http://127.0.0.1:8000/api/apartament/edit', { 
                     formData,
-                    ...this.apartmentData, 
-                    // user_id = this.userId
+                    ...this.apartmentData,
                     }, 
                     {
                     headers: {
@@ -249,24 +274,15 @@
                 .catch(er => {
                     console.log(er.response.data);
                 })
-            }
+            },
+
         },
         mounted() {
-            console.log(this.userId)
+            this.setValues();
+            this.setExtraServices();
 
-            //API GET request to get all the apartments saved in db
-            // axios.get('http://127.0.0.1:8000/api/user/apartments', {
-            //     headers: {
-            //         'Authorization': `Bearer ${this.auth_token}` 
-            //     }
-            // })
-            // .then(resp => {
-            //     this.allApartmentsData = resp.data.results;
-            //     this.getLatLng();
-            // })
-            // .catch(er => {
-            //     console.log(er);
-            // })
+        
+
         }
     }
 </script>

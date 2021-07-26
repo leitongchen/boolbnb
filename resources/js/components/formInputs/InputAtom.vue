@@ -18,7 +18,7 @@
         props: {
             label: String,
             name: String,
-            value: String,
+            value: [String, Number],
             inputType: {
                 type: String,
                 default: "text",

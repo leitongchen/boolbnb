@@ -32,3 +32,4 @@ Route::prefix('/user')->group( function() {
 });
 
 Route::post('/apartment', 'Admin\ApartmentController@store');
+Route::match(['PUT', 'PATCH'], '/apartament/edit', 'Admin\ApartmentController@update'); 
