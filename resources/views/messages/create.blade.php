@@ -7,6 +7,8 @@
     <form action="{{ route("messages.store")}}" method="post">
     @csrf
 
+    @dump($errors)
+
         <label for="sender_name">nome</label>
         <input type="text" name="sender_name" id="sender_name">
 
@@ -17,10 +19,10 @@
         <input type="text" name="phone_number" id="phone_number">
 
         <label for="sender_mail">email</label>
-        <input type="email" name="sender_mail" id="sender_mail">
+        <input type="email" name="sender_mail" id="sender_mail" value="{{ Auth::check() ? Auth::user()->email : '' }}">
 
         <label for="message">messaggio</label>
-        <input type="text" name="content" id="message" value="{{ Auth::check() ? Auth::user()->email : '' }}">
+        <input type="text" name="content" id="message">
 
         <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
 

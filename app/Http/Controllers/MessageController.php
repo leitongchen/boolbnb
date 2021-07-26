@@ -6,6 +6,7 @@ use App\Apartment;
 use Illuminate\Http\Request;
 use App\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
 {
@@ -37,9 +38,15 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'sender_name'=>'required',
+            'sender_surname'=>'required',
+            'sender_mail'=>'required',
+            'content'=>'required',
+       ]);
         // recupera tutti i dati del form
         $newMessageData = $request->all();
-
+       
         $newMessage = new Message();
 
         $newMessage->sender_name = $newMessageData["sender_name"];
