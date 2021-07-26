@@ -6,6 +6,8 @@
 <div class="container">
     <h1>Crea un nuovo appatamento</h1>
 
+    {{$errors}}
+
     <form action="{{ route('admin.apartments.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
@@ -69,7 +71,7 @@
 
         <div class="form-group">
             <label for="visible">Rendi visibile l'appartamento</label>
-            <input type="checkbox" name="visible" id="visible"> <br>
+            <input type="checkbox" name="visible" id="visible" checked> <br>
         </div>
 
         @foreach($extraServices as $extraService)
