@@ -17,7 +17,7 @@
         <li>Bagni: {{ $apartment->bathrooms_number }}</li>
         <li>Metratura: {{ $apartment->floor_area . ' mq' }}</li>
         <li>
-            <img src="{{ $apartment->img_url }}" alt="">
+            <img src="{{ asset('storage/' . $apartment->img_url) }}" alt="">
         </li>
         <li>{{ $apartment->visible }}</li>
 

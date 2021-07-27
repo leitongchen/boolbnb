@@ -176,6 +176,7 @@ class ApartmentController extends Controller
         $apartment->extra_services()->sync($formData["extraServices"]);
 
         if (key_exists("img_url", $formData)) {
+            
             if ($apartment->img_url) {
                 Storage::delete($apartment->img_url);
             }
