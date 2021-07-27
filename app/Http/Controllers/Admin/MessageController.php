@@ -60,9 +60,15 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+
+    //vedi i dettagli di un solo messaggio
+    public function show(Message $message)
     {
-       //vedi i dettagli di un solo messaggio
+        $data = [
+            'message' => Message::findOrFail($message -> id)
+        ];
+
+        return view('admin.messages.show', $data);
     }
 
     /**
@@ -101,6 +107,7 @@ class MessageController extends Controller
         if($message->apartment->user_id = Auth::id()) {
             $message->delete();
         }
+
     }
 
 }

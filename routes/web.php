@@ -58,7 +58,7 @@ Route::prefix('admin')
 
         //messages
         Route::get('/messages/{apartment}', 'MessageController@index')->name('messages.index');
-        Route::get('/messages/{apartment}/show', 'MessageController@show')->name('messages.show');
+        Route::get('/messages/{message}/show', 'MessageController@show')->name('messages.show');
         Route::delete('/messages/{message}/destroy', 'MessageController@destroy')->name('messages.destroy');
 
     });

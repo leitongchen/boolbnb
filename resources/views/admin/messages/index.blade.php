@@ -27,8 +27,7 @@
                     <td>{{ $message->created_at }}</td>
                     <td>{{ $message->sender_mail }}</td>
                     <td>
-                        {{-- <a href="{{ route('admin.messages.show') }}">Dettagli</a> --}}
-                        <a href="">Elimina</a>
+                        <a href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
 
                         <form action="{{ route('admin.messages.destroy', $message->id) }}" method="POST">
                         @csrf
