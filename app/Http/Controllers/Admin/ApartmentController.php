@@ -168,7 +168,7 @@ class ApartmentController extends Controller
         // dd($apartment);  
         // return; 
 
-        $apartment->aparment_id = $formData['apartment_id'];
+        // $apartment->apartment_id = $formData['apartment_id'];
         if (!key_exists("extraServices", $formData)) {
             $formData["extraServices"] = [];
         }
