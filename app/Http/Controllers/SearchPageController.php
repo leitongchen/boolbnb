@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Apartment;
 use Illuminate\Http\Request;
 
 class SearchPageController extends Controller
@@ -11,8 +12,18 @@ class SearchPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('layouts.maps');
+
+        
+        $data = $request->all();
+        dd($data); 
+        return; 
+
+
+        $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
+
+    
+        return view('search.search', ['apartments' => $apartments]);
     }
 }
