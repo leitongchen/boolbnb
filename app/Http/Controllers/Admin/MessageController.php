@@ -19,15 +19,12 @@ class MessageController extends Controller
     //  Vedi i tutti i messaggi di un appartamento
     public function index(Apartment $apartment)
     {
-        // $user = Auth::user();
-        // $userId = Auth::id();
 
         $messages = $apartment->messages()->get();
 
         $data = [
             'apartment' => $apartment,
             'messages' => $messages,
-            // 'userId' => $userId
         ];
 
         return view('admin.messages.index', $data);
@@ -102,6 +99,7 @@ class MessageController extends Controller
      */
 
     //elimina il messaggio se l'utente è il destinatario
+    //no redirect (lato client)
     public function destroy(Message $message)
     {
         if($message->apartment->user_id = Auth::id()) {

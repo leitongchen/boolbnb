@@ -14,28 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//Home public
 Route::get('/', 'HomeController@index')->name("index");
+
+//Apartments public
 Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
 Route::get('/apartments/{id}', 'ApartmentController@show')->name('apartments.show');
 
 Auth::routes();
 
 
-// Messages
-// Route::get("/messages", "MessageController@index")->name("messages.index");
-
+// Messages public
 Route::get("/messages/create/{apartment}", "MessageController@create")->name("messages.create");
-
 Route::get("/messages/{id}", "MessageController@show")->name("messages.show");
-
 Route::post("/messages", "MessageController@store")->name("messages.store");
 
-// Route::delete("/messages/{id}", "MessageController@destroy")->name("messages.destroy");
-
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
+//Rotte admin
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
