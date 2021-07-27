@@ -7,7 +7,7 @@
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="apartment_id" :value="this.apartment.id">
-
+            <input type="hidden" name="user_id" :value="this.userId">
 
             <input-atom
                 label="Titolo riepilogativo"
@@ -86,8 +86,8 @@
                 <label>
                     <input name="extraServices[]" type="checkbox" 
                     :value="extraService.id" 
-                    v-model="apartment.extraServices"
-                    checkExtraServices>
+                    v-model="checkedExtraServices"
+                    >
                     {{ extraService.name }}
                 </label>
 
@@ -131,7 +131,8 @@
         props: {
             apartment: Object,
             extraServices: Array,
-            ApExtraservices: Array
+            apExtraservices: Array,
+            userId: Number
         },
         data() {
             return {
@@ -167,39 +168,30 @@
                 auth_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmE4NDU3OTc0MDUyMDViNzZhMzhmMzFlZTcwYzVjODliNmUzMDMyYmRkODJjOGJjOTM3ZDg1ZjUzMjQyY2M0Y2ViZDgxNjQxYmQ5MTc4YTYiLCJpYXQiOjE2MjcxOTgxMTQuNTk0NTkyLCJuYmYiOjE2MjcxOTgxMTQuNTk0NjA3LCJleHAiOjE2NTg3MzQxMTQuNTcxNDYyLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.p-RjR6BmklJGosGbYy1B3zDF3eDnMOddKNalJSw5Xfrxo3maqQFK9SUVL60-RaMt1Gcjcl4XOTA7ta29lYkASN3yZrmo7EG_Vn_BvyZZu7rp3gofegeQBgvB1JcMZTeSYVxGjyq2WL0Q3nV-PENfL1OcDSClLCR0_M_cOc4HorgBnvk3D5uRZZlbg6j602cmOWhDCa4axB4Sa-X_1DsBHc6ejKeYCEKdsGps7jNt2uKidSA9Hdo38-NscChCuh60jNghkeyDqwasGXQVPGVqE8-vQRImd4faqyx0t0imosnewQ5KKbmGp4WObuj-qWeVh9xipVjLffxs9Yruy8xHT_VrxJLCOrjSiXnJlR0_tqnbs1SuvXITfL_40xSNf8-BYzsWMPZJsstnDNpP5HKyZRxWrXpNt-koqZ-A8GDS1ZivXGo-tQQjtqXb8vktPF1t4fwwvDZdyaGG0UTO8Mt4b1PClo0JxdGvZq5qSk4Bgwa7cFbsXJ_fim5I-leX7u1p2adJJC18Nj1bpAK8KjOmwZYYPLMYgtATZ241NaO2lpHwZILAqWKZU765yg4B760rg8VpwEy40IYwJzDiZuU1XY_F6BPWAeuTegZR0Lm5aJMfvPUi-u_8Tn-HOA5HTi50rHydeg9t3-X588YLRhEifp7JWzXolHUgnl48vUPWHD0",
             
                 apartmentData: this.apartment,
+                checkedExtraServices: [],
             }
         },
         methods: {
-            // set dinamically old values on form
-            setValues() {
-                this.userQuery.title = this.apartment.title;
 
-                this.userQuery.rooms_number = this.apartment.rooms_number;
-                this.userQuery.beds_number = this.apartment.beds_number;
-                this.userQuery.bathrooms_number = this.apartment.bathrooms_number;
-                this.userQuery.floor_area = this.apartment.floor_area;
+            extraServicesCheck() {
+                let services = [];
 
-                this.userQuery.address_street = this.apartment.address_street;
-                this.userQuery.street_number = this.apartment.street_number;
-                this.userQuery.city = this.apartment.city;
-                this.userQuery.zip_code = this.apartment.zip_code;
-                this.userQuery.province = this.apartment.province;
-                this.userQuery.nation = this.apartment.nation;
-                this.userQuery.latitude = this.apartment.latitude;
-                this.userQuery.longitude = this.apartment.longitude;
-                this.userQuery.visible = this.apartment.visible;
+                this.apExtraservices.forEach( el => {
+                    services.push(el.id);
+                })
+
+                return this.checkedExtraServices = services; 
             },
-
-           
+        
 
             // set extra services on userQuery obj
             setExtraServices() {
                 let services = [];
 
-                this.ApExtraservices.forEach( el => {
+                this.apExtraservices.forEach( el => {
                     services.push(el.id);
                 })
-                this.userQuery.extra_services = services;
+                this.apartment.extra_services = services;
             },
 
             // after user click
@@ -207,7 +199,7 @@
             // clean the query and make api request to tomtom
             getLatLng() {
                 
-                const el = this.userQuery;
+                const el = this.apartmentData;
                 // this.apartmentData = this.userQuery;
 
                 let completeAddress = {
@@ -226,8 +218,8 @@
             // save lat and lng values to aparmentData(obj)
             setLatLng(position) {
 
-                this.userQuery.latitude = position.lat;
-                this.userQuery.longitude = position.lng;
+                this.apartment.latitude = position.lat;
+                this.apartment.longitude = position.lng;
 
             },
 
@@ -257,7 +249,8 @@
                 // API POST request passing the new apartment object to ApartmentController@store
                 axios.put('http://127.0.0.1:8000/api/apartament/edit', { 
                     formData,
-                    ...this.apartment,
+                    ...this.apartmentData,
+                    ...this.checkedExtraServices,
                     }, 
                     {
                     headers: {
@@ -283,14 +276,8 @@
 
         },
         mounted() {
-            console.log(this.apartmentData);
-            console.log(this.apartment);
-
-            this.setValues();
-            this.setExtraServices();
-
-
-
+            this.extraServicesCheck();
+            console.log(this.userId);
         }
     }
 </script>
