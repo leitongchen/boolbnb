@@ -6,8 +6,7 @@
 
     <h1>DETTAGLI APPARTAMENTO (PRIVATO)</h1>
 
-    <h3>{{ $apartment->title }}
-        <h3>
+    <h3>{{ $apartment->title }}<h3>
 
             <ul>
                 <li>{{ $apartment->address_street . ' N° ' . $apartment->street_number . ', ' . $apartment->city . ', ' . $apartment->zip_code . ', ' . $apartment->nation }}</li>

@@ -17,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 //Home public
 Route::get('/', 'HomeController@index')->name("index");
 
-//Apartments public
-Route::get('/apartments', 'ApartmentController@index')->name('apartments.index');
-Route::get('/apartments/{id}', 'ApartmentController@show')->name('apartments.show');
+Route::prefix('apartments')
+    ->name('apartments.')
+    ->group(function () {
+        
+    // Search 
+    Route::get('/search', 'SearchPageController@index')->name('search'); 
+    
+    Route::get('/', 'ApartmentController@index')->name('index');
+    Route::get('/{id}', 'ApartmentController@show')->name('show');
+
+});
 
 Auth::routes();
 
@@ -56,4 +64,3 @@ Route::prefix('admin')
         Route::delete('/messages/{message}/destroy', 'MessageController@destroy')->name('messages.destroy');
 
     });
-

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,9 +18,13 @@ class ApartmentController extends Controller
      */
     public function index()
     {
+
         //trova gli appartamenti dell'utente loggato
+        //Da ordinare!!
         $userId = Auth::id();
         $userApartments = Apartment::all()->where('user_id', '=', $userId);
+        // $incomingData = Apartment::orderBy('updated_at', 'DESC')->get();
+
 
         $data = [
             'apartments' => $userApartments
@@ -38,8 +41,12 @@ class ApartmentController extends Controller
     public function create()
     {
         $extraServices = Extra_service::all();
+        // $userId = Auth::user()->id;
 
-        return view('admin.apartments.create', ['extraServices' => $extraServices]);
+        return view('admin.apartments.create', [
+            'extraServices' => $extraServices,
+            // 'userId' => $userId,
+        ]);
     }
 
     /**
@@ -66,15 +73,23 @@ class ApartmentController extends Controller
             'visible' => 'required'
         ]);
 
+        // dump($request);
+        // dump($request->user());
+        // return; 
+
         $formData = $request->all();
         $newApartment = new Apartment;
         $newApartment->fill($formData);
+        
+        $newApartment->user_id = $formData['user_id'];
 
-        $newApartment->user_id = $request->user()->id;
+        // dump($newApartment);
+        // dump($formData);
+        // return; 
 
-         //carico l'immagine di copertina
+        //carico l'immagine di copertina
         if (key_exists("img_url", $formData)) {
-            $storageResult = Storage::put("img_url", $formData["img_url"]);
+            $storageResult = Storage::put("uploads", $formData["img_url"]);
             $newApartment->img_url = $storageResult;
         }
         
@@ -117,7 +132,8 @@ class ApartmentController extends Controller
 
         $data = [
             'apartment' => $apartment,
-            'extraServices' => $extraServices
+            'extraServices' => $extraServices,
+            'userId' => Auth::user()->id,
         ];
 
         return view('admin.apartments.edit', $data);
@@ -130,8 +146,10 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(Request $request)
     {
+        // $request_all = $request->all(); 
+
         $request->validate([
             'title' => 'required',
             'address_street' => 'required|max:255',
@@ -148,16 +166,23 @@ class ApartmentController extends Controller
         ]);
 
         $formData = $request->all();
+        
+        $apartment = Apartment::findOrFail($formData['apartment_id']);
+       
 
-        if (!key_exists("extra_services", $formData)) {
-            $formData["extra_services"] = [];
+        // dump($request->all());
+        // dd($apartment);  
+        // return; 
+
+        // $apartment->apartment_id = $formData['apartment_id'];
+        if (!key_exists("extraServices", $formData)) {
+            $formData["extraServices"] = [];
         }
 
         $apartment->extra_services()->sync($formData["extraServices"]);
 
-
-
         if (key_exists("img_url", $formData)) {
+            
             if ($apartment->img_url) {
                 Storage::delete($apartment->img_url);
             }
@@ -168,6 +193,8 @@ class ApartmentController extends Controller
         }
 
         $apartment->update($formData);
+        
+        // if($formData['user_id'] == $apartment['user_id']) {}
 
         return redirect()->route('admin.apartments.index');
     }
