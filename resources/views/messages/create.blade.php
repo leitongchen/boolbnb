@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
     
@@ -6,8 +6,6 @@
 
     <form action="{{ route("messages.store")}}" method="post">
     @csrf
-
-    @dump($errors)
 
         <label for="sender_name">nome</label>
         <input type="text" name="sender_name" id="sender_name">
