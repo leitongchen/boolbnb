@@ -126,7 +126,8 @@ class ApartmentController extends Controller
 
         $data = [
             'apartment' => $apartment,
-            'extraServices' => $extraServices
+            'extraServices' => $extraServices,
+            'userId' => Auth::user()->id,
         ];
 
         return view('admin.apartments.edit', $data);
@@ -159,17 +160,17 @@ class ApartmentController extends Controller
         ]);
 
         $formData = $request->all();
-
+        
         $apartment = Apartment::findOrFail($formData['apartment_id']);
+       
 
-        // dump($request);
-        // dump($apartment);        
+        // dump($request->all());
+        // dd($apartment);  
         // return; 
 
-        // $apartment->aparment_id = $formData['apartment_id'];
-
-        if (!key_exists("extra_services", $formData)) {
-            $formData["extra_services"] = [];
+        $apartment->aparment_id = $formData['apartment_id'];
+        if (!key_exists("extraServices", $formData)) {
+            $formData["extraServices"] = [];
         }
 
         $apartment->extra_services()->sync($formData["extraServices"]);
@@ -185,6 +186,8 @@ class ApartmentController extends Controller
         }
 
         $apartment->update($formData);
+        
+        // if($formData['user_id'] == $apartment['user_id']) {}
 
         return redirect()->route('admin.apartments.index');
     }

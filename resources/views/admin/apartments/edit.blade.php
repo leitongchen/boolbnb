@@ -14,11 +14,14 @@
                         :apartment='{{ $apartment }}'
                         :ap-extraservices='@json($apartment->extra_services)'
                         :extra-services='@json($extraServices)'
+                        :user-id='{{ $userId }}'
                         ></edit-form>
 
                 </div>
                 @dump($apartment)
                 @dump($apartment->extra_services)
+                @dump($userId)
+
 
                 {{-- <form action="{{ route('admin.apartments.update', ['apartment' => $apartment->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
