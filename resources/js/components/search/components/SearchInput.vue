@@ -10,7 +10,7 @@
                 <input type="hidden" name="_token" :value="csrf">
                 <input type="hidden" name="latitude" v-model="this.position.lat">
                 <input type="hidden" name="longitude" v-model="this.position.lng">
-
+                <input type="hidden" name="query" v-model="this.userQuery.text">
 
                 <input v-model="userQuery.text" type="search" class="form-control rounded" placeholder="cerca un appartamento" aria-label="Search" aria-describedby="search-addon" />
                 <button @click.prevent="onClick"><i class="fas fa-search"></i></button>
@@ -90,9 +90,6 @@ export default {
         searchPath() {
 
             const formData = new FormData();
-            formData.append("latitude", this.position.lat);
-            formData.append("longitude", this.position.lng);
-            formData.append("query", this.userQuery.text);
 
             axios.post('http://127.0.0.1:8000/api/apartments/search', formData,
             {
