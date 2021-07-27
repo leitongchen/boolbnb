@@ -47,8 +47,8 @@ export default {
                 text: "",
             },
             position: {
-                lat: "",
-                lng: "",
+                lat: null,
+                lng: null,
             }
         }
     },

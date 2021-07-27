@@ -15,19 +15,21 @@ class SearchPageController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $request->all();
-
-        // dd($data);
-        // return; 
+        // $data = $request->all();
 
         $apartments = [];
 
-        if (!$data) {
+        if (!isset($data)) {
+
             $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
         }
 
-        $latitude = 45.49584;
-        $longitude = 12.24411;
+        // dd($data);
+        // dump($request->latitude);
+        // return; 
+
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
 
         // dd($data['latitude']);
         // return; 
@@ -43,7 +45,6 @@ class SearchPageController extends Controller
         // dd($apartments);
         // return; 
     
-
         return view('search.search', ['apartments' => $apartments]);
     }
 }
