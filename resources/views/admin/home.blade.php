@@ -18,6 +18,8 @@
 
                     <a href="{{ route('admin.apartments.index') }}">INDEX APPARTAMENTI PRIVATO</a>
 
+                    {{-- @if (Auth::user()->) --}}
+
                 </div>
             </div>
         </div>
