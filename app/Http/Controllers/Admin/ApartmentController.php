@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,10 +19,12 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $incomingData = Apartment::all();
+        //trova gli appartamenti dell'utente loggato
+        $userId = Auth::id();
+        $userApartments = Apartment::all()->where('user_id', '=', $userId);
 
         $data = [
-            'apartments' => $incomingData
+            'apartments' => $userApartments
         ];
 
         return view('admin.apartments.index', $data);

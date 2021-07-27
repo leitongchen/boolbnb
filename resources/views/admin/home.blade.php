@@ -16,9 +16,9 @@
 
                     {{ __('Benvenuto Admin '. Auth::user()->name . '!') }} <br>
 
-                    <a href="{{ route('admin.apartments.index') }}">INDEX APPARTAMENTI PRIVATO</a>
+                    <a href="{{ route('admin.apartments.index') }}">Vedi tutti i tuoi appartamenti</a> <br>
 
-                    {{-- @if (Auth::user()->) --}}
+                    <a href="{{ route('index') }}">Vai alla pagina iniziale</a>
 
                 </div>
             </div>
