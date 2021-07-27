@@ -77,6 +77,7 @@ class ApartmentController extends Controller
         
         $newApartment->user_id = $formData['user_id'];
 
+
         // dump($newApartment);
         // dump($formData);
         // return; 
