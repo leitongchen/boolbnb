@@ -28,10 +28,8 @@
             </h1>
 
             <div id="app">
-
                 <search-input>
                 </search-input>
-
             </div>
            
 

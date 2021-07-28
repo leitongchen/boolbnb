@@ -148,7 +148,7 @@ function search() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\nikci\Desktop\Boolean\boolbnb\resources\js\maps.js */"./resources/js/maps.js");
+module.exports = __webpack_require__(/*! C:\Users\aless\Desktop\Boolean\PROGETTO FINALE\boolbnb\resources\js\maps.js */"./resources/js/maps.js");
 
 
 /***/ })
