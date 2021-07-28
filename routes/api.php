@@ -38,7 +38,7 @@ Route::match(['PUT', 'PATCH'], '/apartament/edit', 'Admin\ApartmentController@up
 
 // rotta per la ricerca
 Route::post('/apartments/search', 'SearchPageController@index');
-Route::get('/apartments/search/filter', 'SearchPageController@filter'); 
+Route::get('/apartments/search/filter', 'Api\ApartmentController@filter'); 
 
 
 Route::get('/extra-services', 'Api\ExtraServiceController@index');

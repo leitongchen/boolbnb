@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Apartment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Traits\Utilities;
 
 class ApartmentController extends Controller
 {
@@ -89,9 +90,22 @@ class ApartmentController extends Controller
         //
     }
 
+//     SELECT * 
+// FROM `apartments`	 
+// JOIN `apartment_extra_service`
+// 	ON `apartments`.id = `apartment_extra_service`.`apartment_id`
+// WHERE `apartment_extra_service`.`extra_services_id` = 4
+//  AND `beds_number` > 1 
+
     public function filter(Request $request)
     {
-        $filters = $request->only(["rooms_number", "bathrooms_number", "extra_services"]);
+        $filters = $request->only(["query", "position", "radius", "rooms_number", "bathrooms_number", "extra_services"]);
+
+        return response()->json([
+            "success" => true,
+            "filters" => $filters,
+            "request" => $request,
+        ]);
 
         $result = Apartment::with("extra_services");
 
@@ -101,8 +115,8 @@ class ApartmentController extends Controller
                     $value = explode(",", $value);
                 }
 
-                $result->join("apartment_extra_service", "apartments.id", "=", "apartment_extra_service.apartments.id")
-                    ->whereIn("apartment_extra_service.apartments.id", $value);
+                $result->join("apartment_extra_service", "apartments.id", "=", "apartment_extra_service.apartment_id")
+                    ->whereIn("apartment_extra_service.extra_services_id", $value);
             } else {
                 $result->where($filter, "LIKE", "%value%");
             }

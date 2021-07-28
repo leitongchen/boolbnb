@@ -5,9 +5,13 @@
 
     <div class="card mb-3">
       <div class="card-body">
-
+          
           <form ref="form"
-          @submit.prevent="onClick">
+          action="/api/apartments/search/filter"
+          method="get"
+          @submit="onClick">
+            <input type="hidden" name="_token" :value="csrf">
+
             <div class="row">
               <div class="col">
 
@@ -48,7 +52,6 @@
                 ></multi-check-atom>
 
               
-
               </div>
             </div>
 
@@ -102,6 +105,9 @@ export default {
 
       //tomtom token
       api_key: "SznQN02yzAXGOlDubCqT3PTfefEyd5Go",
+
+      // CSRF
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
     };
   },
