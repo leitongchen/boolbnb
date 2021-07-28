@@ -7,6 +7,7 @@
             <form
             ref="form"
             action="/api/apartments/search" method="post">
+
                 <input type="hidden" name="_token" :value="csrf">
                 <input type="hidden" name="latitude" v-model="this.position.lat">
                 <input type="hidden" name="longitude" v-model="this.position.lng">
@@ -82,7 +83,7 @@ export default {
 
         onClick() {
             this.ttApiRequest(this.userQuery.text);   
-            debugger 
+            
         },
 
         searchPath() {
@@ -104,6 +105,7 @@ export default {
             })
             .catch(er => {
                 console.log(er.response.data);
+                alert("Non è stato possibile recuperare gli appartamenti.");
             })
         }
     }
