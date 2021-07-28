@@ -19,7 +19,7 @@ class ApartmentController extends Controller
 
         return response()->json([
             'success' => true,
-            'results' => $apartments, 
+            'results' => $apartments,
         ]);
     }
 
@@ -87,5 +87,37 @@ class ApartmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter(Request $request)
+    {
+        $filters = $request->only(["rooms_number", "bathrooms_number", "extra_services"]);
+
+        $result = Apartment::with("extra_services");
+
+        foreach ($filters as $filter => $value) {
+            if ($filter === "extra_services") {
+                if (!is_array($value)) {
+                    $value = explode(",", $value);
+                }
+
+                $result->join("apartment_extra_service", "apartments.id", "=", "apartment_extra_service.apartments.id")
+                    ->whereIn("apartment_extra_service.apartments.id", $value);
+            } else {
+                $result->where($filter, "LIKE", "%value%");
+            }
+        }
+
+        $apartments = $result->get();
+
+        foreach ($apartments as $apartment) {
+            $apartment->img_url = $apartment->img_url ? asset('storage/' .$apartment->img_url) : "https://www.linga.org/site/photos/Largnewsimages/image-not-found.png";
+        }
+        return response()->json([
+            "success" => true,
+            "filters" => $filters,
+            "query" => $result->getQuery()->toSql(),
+            "results" => $apartments
+          ]);
     }
 }
