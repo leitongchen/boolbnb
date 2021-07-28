@@ -75,6 +75,17 @@ export default {
       return toReturn.join("<br>");
     },
   },
-  mounted() {},
+  mounted() {
+    axios
+      .get("/api/extra_services")
+      .then((resp) => {
+        this.extra_servicesList = resp.data.results;
+      })
+      .catch((er) => {
+        console.error(er);
+
+        alert("Non posso recuperare gli extra service");
+      });
+  },
 };
 </script>
