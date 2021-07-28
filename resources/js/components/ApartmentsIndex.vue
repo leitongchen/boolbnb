@@ -107,6 +107,10 @@ export default {
 
       return toReturn.join("<br>");
     },
+
+    onReset() {
+            this.filtriAttivi = null;
+        },
   },
   mounted() {
     axios
