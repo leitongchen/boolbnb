@@ -26,10 +26,15 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/user')->group( function() {
 
     Route::post('/login', 'Api\LoginController@login');
-    Route::middleware('auth:api')->get('/apartments', 'Api\ApartmentController@index');
+    // Route::middleware('auth:api')->get('/apartments', 'Api\ApartmentController@index');
     // Route::middleware('auth:api')->post('/apartment', 'Admin\ApartmentController@store');
 
 });
 
+Route::get('/apartments', 'Api\ApartmentController@index');
+
 Route::post('/apartment', 'Admin\ApartmentController@store');
 Route::match(['PUT', 'PATCH'], '/apartament/edit', 'Admin\ApartmentController@update'); 
+
+
+Route::post('/apartments/search', 'SearchPageController@index');

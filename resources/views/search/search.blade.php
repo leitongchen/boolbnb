@@ -7,7 +7,14 @@
         <h1>Qui ricerca avanzata e mappa</h1>
 
         <div class='map' id='map' style="height: 300px"></div>
+
+        <div id="app">
+        {{-- <apartments-index></apartments-index> --}}
+        </div>
+        @include('apartments.index')
+    
     </div>
+
     
 @endsection
 
@@ -114,4 +121,5 @@
     });
 
 </script>
+
 
