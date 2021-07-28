@@ -4,10 +4,11 @@
 // Variables
 @import 'partials/variables';
 @import "partials/common";
+@import "partials/components/buttons";
 @import "partials/header";
+@import "partials/map";
 @import "partials/main";
 @import "partials/footer";
-@import "partials/components/buttons";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
