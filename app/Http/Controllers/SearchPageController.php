@@ -13,6 +13,6 @@ class SearchPageController extends Controller
      */
     public function index()
     {
-        return view('layouts.maps');
+        return view('search.search');
     }
 }
