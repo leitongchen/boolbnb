@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    name: "MultiChecInput",
+    name: "MultiCheckAtom",
     props: {
         items: {
             type: Array,
