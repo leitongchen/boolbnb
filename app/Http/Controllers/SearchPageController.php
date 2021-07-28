@@ -35,7 +35,7 @@ class SearchPageController extends Controller
     
             $radius = 100;
     
-            $apartments =  Utilities::radiusSearch($latitude, $longitude, $radius);
+            $apartments =  Utilities::radiusSearch($latitude, $longitude, $radius)->get();
     
             // dd($apartments);
             // return; 
