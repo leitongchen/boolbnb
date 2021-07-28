@@ -23,6 +23,7 @@ Route::prefix('apartments')
     // Advanced Search 
     Route::get('/search', 'SearchPageController@index')->name('search'); 
     
+    // ?? NASCONDERE la rotta /apartments ??
     Route::get('/', 'ApartmentController@index')->name('index');
     Route::get('/{id}', 'ApartmentController@show')->name('show');
 
