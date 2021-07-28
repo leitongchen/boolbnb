@@ -3,7 +3,11 @@
 
 @section('content')
 
-    <h1>questa è la pagina per la ricerca avanzata</h1>
+    <h1>Ricerca avanzata</h1>
+    <div id="app">
+        {{-- <apartments-index></apartments-index> --}}
+    
+    </div>
 
     @include('apartments.index')
 

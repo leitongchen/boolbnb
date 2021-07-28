@@ -2,7 +2,7 @@
 
 <div class="container">
 
-    <h1>TUTTI GLI APPARTAMENTI (PUBBLICO)</h1>
+    {{-- <h1>TUTTI GLI APPARTAMENTI (PUBBLICO)</h1> --}}
 
     @foreach ($apartments as $apartment)
     <h3>{{ $apartment->title }}

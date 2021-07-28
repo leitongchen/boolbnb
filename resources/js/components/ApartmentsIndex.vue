@@ -19,11 +19,11 @@
             </div>
 
             <div class="col">
-              <multi-check-input
+              <multi-check-atom
                 label="Servizi Extra"
                 :items="extra_services"
                 v-model="filters.extra_services"
-              ></multi-check-input>
+              ></multi-check-atom>
             </div>
           </div>
 
@@ -46,7 +46,7 @@
 import InputAtom from "./formInputs/InputAtom.vue";
 export default {
   components: { InputAtom },
-  name: "ApartamentsIndex",
+  name: "ApartmentsIndex",
   props: {},
   data() {
     return {
@@ -54,7 +54,7 @@ export default {
       filters: {
         rooms_number: null,
         bathrooms_number: null,
-        extra_services: null,
+        extra_services: [],
       },
       filtriAttivi: null,
       extra_servicesList: null,

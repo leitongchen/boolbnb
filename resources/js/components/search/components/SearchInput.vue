@@ -13,7 +13,7 @@
                 <input type="hidden" name="query" v-model="this.userQuery.text">
 
                 <input v-model="userQuery.text" type="search" class="form-control rounded" placeholder="cerca un appartamento" aria-label="Search" aria-describedby="search-addon" />
-                <button @click.prevent="onClick"><i class="fas fa-search"></i></button>
+                <button @click.prevent="onClick"><i class="fas fa-search"> CERCA</i></button>
 
             </form>
 
@@ -52,9 +52,6 @@ export default {
             }
         }
     },
-    computed: {
-        
-    },
     methods: {
 
         setLatLng(incomingData) {
@@ -84,7 +81,8 @@ export default {
         },
 
         onClick() {
-            this.ttApiRequest(this.userQuery.text);    
+            this.ttApiRequest(this.userQuery.text);   
+            debugger 
         },
 
         searchPath() {
