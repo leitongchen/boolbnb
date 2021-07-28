@@ -1,10 +1,20 @@
 <template>
   <div>
+    <!-- @reset="onReset" -->
+    <!-- @submit.prevent="filterData" -->
     <div class="card mb-3">
       <div class="card-body">
-        <form @submit.prevent="filterData" @reset="onReset">
+        <form>
           <div class="row">
             <div class="col">
+
+              <input-atom
+                label="Località"
+                v-model="filters.query"
+                inputType="text"
+              ></input-atom>
+
+
               <input-atom
                 label="Locali"
                 v-model="filters.rooms_number"
@@ -19,18 +29,24 @@
             </div>
 
             <div class="col">
+              
+
               <multi-check-atom
                 label="Servizi Extra"
-                :items="extra_services"
+                :items="extra_servicesList"
                 v-model="filters.extra_services"
+                @input="onInput"
               ></multi-check-atom>
+
+            
+
             </div>
           </div>
 
           <button type="submit" class="btn btn-primary">Filtra</button>
-          <button type="reset" class="btn btn-outline-secondary">
+          <!-- <button type="reset" class="btn btn-outline-secondary">
             Annulla filtri
-          </button>
+          </button> -->
         </form>
       </div>
     </div>
@@ -44,14 +60,17 @@
 
 <script>
 import InputAtom from "./formInputs/InputAtom.vue";
+import MultiCheckAtom from "./formInputs/MultiCheckAtom.vue";
+
 export default {
-  components: { InputAtom },
+  components: { InputAtom , MultiCheckAtom},
   name: "ApartmentsIndex",
   props: {},
   data() {
     return {
       apartamentsList: [],
       filters: {
+        query: null,
         rooms_number: null,
         bathrooms_number: null,
         extra_services: [],
@@ -61,6 +80,11 @@ export default {
     };
   },
   methods: {
+
+    onInput() {
+      console.log('ciao')
+    },
+
     printActiveFilters() {
       const toReturn = [];
 
@@ -77,7 +101,7 @@ export default {
   },
   mounted() {
     axios
-      .get("/api/extra_services")
+      .get("/api/extra-services")
       .then((resp) => {
         this.extra_servicesList = resp.data.results;
       })
