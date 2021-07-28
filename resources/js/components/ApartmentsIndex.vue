@@ -5,7 +5,8 @@
     <div class="card mb-3">
       <div class="card-body">
 
-          <form>
+          <form ref="form"
+          @submit.prevent="onClick">
             <div class="row">
               <div class="col">
 
@@ -43,7 +44,6 @@
                   label="Servizi Extra"
                   :items="extra_servicesList"
                   v-model="filters.extra_services"
-                  @input="onInput"
                 ></multi-check-atom>
 
               
@@ -51,17 +51,23 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Filtra</button>
+            <button
+            type="submit" class="btn btn-primary">
+              Filtra
+            </button>
             <!-- <button type="reset" class="btn btn-outline-secondary">
               Annulla filtri
             </button> -->
           </form>
 
+
+
+
       </div>
     </div>
 
-    <div class="alert alert-success mb-5" v-if="filtriAttivi">
-      Sono stati trovati {{ apartamentsList.length }} risulati per il filtro:
+    <div class="alert alert-success mb-5" v-if="activeFilters">
+      Sono stati trovati {{ apartamentsList.length }} risultati per il filtro:
       <div v-html="printActiveFilters()"></div>
     </div>
   </div>
@@ -74,55 +80,125 @@ import MultiCheckAtom from "./formInputs/MultiCheckAtom.vue";
 export default {
   components: { InputAtom , MultiCheckAtom},
   name: "ApartmentsIndex",
-  props: {},
+  props: {
+    apartments: Array,
+  },
   data() {
     return {
       apartamentsList: [],
+      extra_servicesList: null,
+
+      // at first finalList will contain the array of apartments coming from search.blade (props: apartments)
+      // when filters selected, the finalList will contain an array of filtered apartments
+      // finalList must be rendered
+      finalList: this.apartments,
+
       filters: {
         query: null,
+        position: {
+          lat: null,
+          lng: null,
+        },
+        radius: 20,
         rooms_number: null,
         bathrooms_number: null,
         extra_services: [],
       },
-      filtriAttivi: null,
-      extra_servicesList: null,
+      activeFilters: null,
+
+      //tomtom token
+      api_key: "SznQN02yzAXGOlDubCqT3PTfefEyd5Go",
+
     };
   },
   methods: {
 
-    onInput() {
-      console.log('ciao')
+    filterData() {
+      axios
+        .get("/api/apartments/search/filter", {
+            params: this.filters
+        })
+        .then(resp => {
+            this.finalList = resp.data.results;
+            this.activeFilters = resp.data.filters;
+        })
+        .catch(er => {
+            console.error(er);
+            alert("Errore in fase di filtraggio dati.");
+        });
     },
 
     printActiveFilters() {
       const toReturn = [];
 
-      if (Object.keys(this.filtriAttivi).length === 0) {
+      if (Object.keys(this.activeFilters).length === 0) {
         return;
       }
 
-      for (const chiaveFiltro in this.filtriAttivi) {
-        toReturn.push(chiaveFiltro + " = " + this.filtriAttivi[chiaveFiltro]);
+      for (const chiaveFiltro in this.activeFilters) {
+        toReturn.push(chiaveFiltro + " = " + this.activeFilters[chiaveFiltro]);
       }
 
       return toReturn.join("<br>");
     },
 
     onReset() {
-            this.filtriAttivi = null;
-        },
+        this.activeFilters = null;
+    },
+
+    setLatLng(incomingData) {
+        this.filters.position.lat = incomingData.lat;
+        this.filters.position.lng = incomingData.lng;
+    },
+
+    ttApiRequest(query) {
+
+        tt.services.fuzzySearch({
+            key: this.api_key,
+            query: query,
+            // boundingBox: map.getBounds()
+
+        }).go().then(resp => {
+            const position = resp.results[0].position; 
+            this.setLatLng(position);
+
+            this.filterData();
+        })
+        .catch(er => {
+            console.log(er);
+        });
+    },
+
+    onClick() {
+        this.ttApiRequest(this.filters.query);   
+        
+    },
   },
   mounted() {
-    axios
-      .get("/api/extra-services")
-      .then((resp) => {
-        this.extra_servicesList = resp.data.results;
-      })
-      .catch((er) => {
-        console.error(er);
+      console.log(this.apartamentsList)
 
-        alert("Non posso recuperare gli extra service");
+      axios
+        .get("/api/apartments")
+        .then(resp => {
+            this.apartamentsList = resp.data.results;
+            this.activeFilters = resp.data.filters;
+        })
+        .catch(er => {
+            console.error(er);
+            alert("Non è stato possibile recuperare gli appartamenti.");
       });
+
+
+      axios
+        .get("/api/extra-services")
+        .then((resp) => {
+          this.extra_servicesList = resp.data.results;
+        })
+        .catch((er) => {
+          console.error(er);
+
+          alert("Non posso recuperare gli extra service");
+        });
   },
 };
 </script>
