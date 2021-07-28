@@ -1,5 +1,5 @@
 <template>
-<!-- @submit.prevent="createApartment" -->
+
     <div>
         <form @submit="createApartment"
         action="/api/apartament/edit" method="post" enctype="multipart/form-data">
@@ -90,7 +90,6 @@
                     >
                     {{ extraService.name }}
                 </label>
-                <!-- checkedServices.includes(extraService.id) -->
 
             </div>
 
@@ -160,17 +159,6 @@
                 })
 
                 return this.checkedExtraServices = services; 
-            },
-
-            // set extra services on userQuery obj
-            setExtraServices() {
-                let services = [];
-
-                this.apExtraservices.forEach( el => {
-                    services.push(el.id);
-                })
-
-                this.apartment.extra_services = services;
             },
 
             // after user click

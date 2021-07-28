@@ -1,26 +1,33 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Apartment;
+use App\Http\Controllers\Controller;
+use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ApartmentController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    //  Vedi i tutti i messaggi di un appartamento
+    public function index(Apartment $apartment)
     {
-        $incomingData = Apartment::all();
+
+        $messages = $apartment->messages()->get();
 
         $data = [
-            'apartments' => $incomingData
+            'apartment' => $apartment,
+            'messages' => $messages,
         ];
 
-        return view('apartments.index', $data);
+        return view('admin.messages.index', $data);
     }
 
     /**
@@ -50,13 +57,16 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+    //vedi i dettagli di un solo messaggio
+    public function show(Message $message)
     {
-        $data = ['apartment' => Apartment::findOrFail($id)];
+        $data = [
+            'message' => Message::findOrFail($message -> id)
+        ];
 
-        return view('apartments.show', $data);
+        return view('admin.messages.show', $data);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -87,8 +97,15 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    //elimina il messaggio se l'utente è il destinatario
+    //no redirect (lato client)
+    public function destroy(Message $message)
     {
-        //
+        if($message->apartment->user_id = Auth::id()) {
+            $message->delete();
+        }
+
     }
+
 }

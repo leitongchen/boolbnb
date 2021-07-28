@@ -18,10 +18,16 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $incomingData = Apartment::orderBy('updated_at', 'DESC')->get();
+
+        //trova gli appartamenti dell'utente loggato
+        //Da ordinare!!
+        $userId = Auth::id();
+        $userApartments = Apartment::all()->where('user_id', '=', $userId);
+        // $incomingData = Apartment::orderBy('updated_at', 'DESC')->get();
+
 
         $data = [
-            'apartments' => $incomingData
+            'apartments' => $userApartments
         ];
 
         return view('admin.apartments.index', $data);

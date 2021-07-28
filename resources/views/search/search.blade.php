@@ -5,7 +5,7 @@
 
     <h1>Ricerca avanzata</h1>
     <div id="app">
-        {{-- <apartments-index></apartments-index> --}}
+        <apartments-index></apartments-index> 
     
     </div>
 
