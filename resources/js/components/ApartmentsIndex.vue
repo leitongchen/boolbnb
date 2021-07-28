@@ -9,8 +9,8 @@
           <form ref="form"
           action="/api/apartments/search/filter"
           method="get"
-          @submit="onClick">
-            <input type="hidden" name="_token" :value="csrf">
+          @submit.prevent="onClick">
+            <!-- <input type="hidden" name="_token" :value="csrf"> -->
 
             <div class="row">
               <div class="col">
@@ -121,9 +121,12 @@ export default {
         .then(resp => {
             this.finalList = resp.data.results;
             this.activeFilters = resp.data.filters;
+            console.log(resp)
         })
         .catch(er => {
-            console.error(er);
+            if( er.response ){
+                console.log(er.response.data); // => the response payload 
+            }
             alert("Errore in fase di filtraggio dati.");
         });
     },
