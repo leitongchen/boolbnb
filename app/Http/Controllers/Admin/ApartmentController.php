@@ -205,6 +205,8 @@ class ApartmentController extends Controller
         //elimina i messaggi collegati all'appartamento
         $apartment->messages()->delete();
 
+        $apartment->extra_services()->detach();
+
         $apartment->delete();
 
         return redirect()->route('admin.apartments.index');
