@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Apartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Traits\Utilities; 
 
 class SearchPageController extends Controller
 {
@@ -32,13 +33,9 @@ class SearchPageController extends Controller
             // dd($request);
             // return; 
     
-            $km = 100;
+            $radius = 100;
     
-            $apartments = Apartment::select(DB::raw("id, title, address_street, street_number, city, zip_code, province, nation, latitude, longitude, rooms_number, beds_number, bathrooms_number, floor_area, img_url, visible,
-            ( 6371 * acos( cos( radians('$latitude') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians( latitude ) ) ) ) AS distance"))
-                ->havingRaw('distance <' . $km)
-                ->orderBy('distance')
-                ->get();         
+            $apartments =  Utilities::radiusSearch($latitude, $longitude, $radius);
     
             // dd($apartments);
             // return; 
