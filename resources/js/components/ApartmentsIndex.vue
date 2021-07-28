@@ -74,10 +74,14 @@ export default {
 
       return toReturn.join("<br>");
     },
+
+    onReset() {
+            this.filtriAttivi = null;
+        },
   },
   mounted() {
     axios
-      .get("/api/extra_services")
+      .get("/api/extra-services")
       .then((resp) => {
         this.extra_servicesList = resp.data.results;
       })
