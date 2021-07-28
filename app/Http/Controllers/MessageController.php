@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Apartment;
 use Illuminate\Http\Request;
 use App\Message;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
 {
@@ -14,10 +17,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        // prende tutto dal database
-        $messages = Message::all();
-
-        return view("messages.index", ["messages" => $messages]);
+      //
     }
 
     /**
@@ -25,9 +25,9 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Apartment $apartment)
     {
-        return view("messages.create");
+        return view("messages.create", ['apartment'=>$apartment]);
     }
 
     /**
@@ -38,9 +38,15 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'sender_name'=>'required',
+            'sender_surname'=>'required',
+            'sender_mail'=>'required',
+            'content'=>'required',
+       ]);
         // recupera tutti i dati del form
         $newMessageData = $request->all();
-
+       
         $newMessage = new Message();
 
         $newMessage->sender_name = $newMessageData["sender_name"];
@@ -48,6 +54,8 @@ class MessageController extends Controller
         $newMessage->phone_number = $newMessageData["phone_number"];
         $newMessage->sender_mail = $newMessageData["sender_mail"];
         $newMessage->content = $newMessageData["content"];
+        $newMessage->apartment_id = $newMessageData["apartment_id"];
+
 
         // salva i dati all'interno del database
         $newMessage->save();
@@ -64,10 +72,12 @@ class MessageController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $message = Message::find($id);
 
         return view("messages.show", [
-            "messages" => $message
+            "messages" => $message,
+            'user' => $user
         ]);
     }
 
@@ -102,10 +112,6 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::findOrFail($id);
-
-        $message->delete();
-
-        return redirect()->route("messages.index");
+        //
     }
 }

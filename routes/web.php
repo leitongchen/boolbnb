@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//Home public
 Route::get('/', 'HomeController@index')->name("index");
+
 Route::prefix('apartments')
     ->name('apartments.')
     ->group(function () {
@@ -28,23 +29,15 @@ Route::prefix('apartments')
 
 });
 
-
 Auth::routes();
 
 
-// Messages
-Route::get("/messages", "MessageController@index")->name("messages.index");
-
-Route::get("/messages/create", "MessageController@create")->name("messages.create");
-
+// Messages public
+Route::get("/messages/create/{apartment}", "MessageController@create")->name("messages.create");
 Route::get("/messages/{id}", "MessageController@show")->name("messages.show");
-
 Route::post("/messages", "MessageController@store")->name("messages.store");
 
-Route::delete("/messages/{id}", "MessageController@destroy")->name("messages.destroy");
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
+//Rotte admin
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
@@ -64,4 +57,10 @@ Route::prefix('admin')
 
         //visits
         Route::get('/visits/{apartment}', 'VisitController@show')->name('visits.show');
+
+        //messages
+        Route::get('/messages/{apartment}', 'MessageController@index')->name('messages.index');
+        Route::get('/messages/{message}/show', 'MessageController@show')->name('messages.show');
+        Route::delete('/messages/{message}/destroy', 'MessageController@destroy')->name('messages.destroy');
+
     });
