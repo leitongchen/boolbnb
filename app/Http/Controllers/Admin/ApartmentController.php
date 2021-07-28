@@ -83,6 +83,7 @@ class ApartmentController extends Controller
         
         $newApartment->user_id = $formData['user_id'];
 
+
         // dump($newApartment);
         // dump($formData);
         // return; 
@@ -209,6 +210,8 @@ class ApartmentController extends Controller
     {
         //elimina i messaggi collegati all'appartamento
         $apartment->messages()->delete();
+
+        $apartment->extra_services()->detach();
 
         $apartment->delete();
 

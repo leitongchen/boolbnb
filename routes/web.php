@@ -21,7 +21,7 @@ Route::prefix('apartments')
     ->name('apartments.')
     ->group(function () {
         
-    // Search 
+    // Advanced Search 
     Route::get('/search', 'SearchPageController@index')->name('search'); 
     
     Route::get('/', 'ApartmentController@index')->name('index');
