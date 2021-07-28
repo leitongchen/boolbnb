@@ -4,50 +4,59 @@
     <!-- @submit.prevent="filterData" -->
     <div class="card mb-3">
       <div class="card-body">
-        <form>
-          <div class="row">
-            <div class="col">
 
-              <input-atom
-                label="Località"
-                v-model="filters.query"
-                inputType="text"
-              ></input-atom>
+          <form>
+            <div class="row">
+              <div class="col">
+
+                <input-atom
+                  label="Località"
+                  v-model="filters.query"
+                  inputType="text"
+                ></input-atom>
 
 
-              <input-atom
-                label="Locali"
-                v-model="filters.rooms_number"
-                inputType="number"
-              ></input-atom>
+                <input-atom
+                  label="Locali"
+                  v-model="filters.rooms_number"
+                  inputType="number"
+                ></input-atom>
 
-              <input-atom
-                label="Bagni"
-                v-model="filters.bathrooms_number"
-                inputType="number"
-              ></input-atom>
-            </div>
+                <input-atom
+                  label="Bagni"
+                  v-model="filters.bathrooms_number"
+                  inputType="number"
+                ></input-atom>
 
-            <div class="col">
+                <input-atom
+                  label="Cerca nel raggio di"
+                  v-model="filters.radius"
+                  inputType="number"
+                ></input-atom>km
+
+              </div>
+
+              <div class="col">
+                
+
+                <multi-check-atom
+                  label="Servizi Extra"
+                  :items="extra_servicesList"
+                  v-model="filters.extra_services"
+                  @input="onInput"
+                ></multi-check-atom>
+
               
 
-              <multi-check-atom
-                label="Servizi Extra"
-                :items="extra_servicesList"
-                v-model="filters.extra_services"
-                @input="onInput"
-              ></multi-check-atom>
-
-            
-
+              </div>
             </div>
-          </div>
 
-          <button type="submit" class="btn btn-primary">Filtra</button>
-          <!-- <button type="reset" class="btn btn-outline-secondary">
-            Annulla filtri
-          </button> -->
-        </form>
+            <button type="submit" class="btn btn-primary">Filtra</button>
+            <!-- <button type="reset" class="btn btn-outline-secondary">
+              Annulla filtri
+            </button> -->
+          </form>
+
       </div>
     </div>
 
