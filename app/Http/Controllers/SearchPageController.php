@@ -19,7 +19,7 @@ class SearchPageController extends Controller
 
         $apartments = [];
 
-        if (!isset($data)) {
+        if (!isset($request)) {
 
             $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
         }
@@ -31,7 +31,7 @@ class SearchPageController extends Controller
         $latitude = $request->latitude;
         $longitude = $request->longitude;
 
-        // dd($data['latitude']);
+        // dd($request);
         // return; 
 
         $km = 20;
