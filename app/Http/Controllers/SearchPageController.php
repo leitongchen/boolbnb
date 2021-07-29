@@ -16,31 +16,44 @@ class SearchPageController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $request->all();
+        $incomingData = $request->all();
+
+        // dd($request->all());
+        // return;
 
         $apartments = [];
-        // $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
+        $latitude = null;
+        $longitude = null; 
+        // $data = [];
 
-        if (count($data) === 0) {
+        if (count($incomingData) === 0) {
 
+
+            $latitude = 41.8719;
+            $longitude = 12.5674;
             $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
+
+            // dump($latitude);
+            // return;
      
         } else {
 
             $latitude = $request->latitude;
-            $longitude = $request->longitude;
-    
-            // dd($request);
-            // return; 
-    
+            $longitude = $request->longitude;;
             $radius = 20;
-    
-            $apartments =  Utilities::radiusSearch($latitude, $longitude, $radius)->get();
-    
-            // dd($apartments);
-            // return; 
+
+            $apartments =  Apartment::select(DB::raw("id, title, address_street, street_number, city, zip_code, province, nation, latitude, longitude, rooms_number, beds_number, bathrooms_number, floor_area, img_url, visible,
+            ( 6371 * acos( cos( radians('$latitude') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians( latitude ) ) ) ) AS distance"))
+                ->havingRaw('distance <' . $radius)
+                ->orderBy('distance')
+                ->get();   
+
         }
     
-        return view('search.search', ['apartments' => $apartments]);
+        return view('search.search', [
+            "apartments" => $apartments,
+            "latitude" => $latitude,
+            "longitude" => $longitude
+        ]);
     }
 }

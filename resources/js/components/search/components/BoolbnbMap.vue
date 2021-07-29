@@ -7,11 +7,14 @@
     </div>
 </template>
 
-<script>
+<script type="application/javascript">
 export default {
-    // name:'boolbnb-map',
+    name:'BoolbnbMap',
     props: ['lat', 'long', 'apartments'],
     mounted() {
+        console.log(this.lat, this.long)
+        
+
         const tt = window.tt;
         var map = tt.map({
             key: "E8JECf2Pom9XoKTM5Gs0GGdIBDUOYbnS",
@@ -25,7 +28,7 @@ export default {
 
         this.apartments.forEach(function (apartment, index) {
             
-            const location = [apartment.long, apartment.lat];
+            const location = [apartment.lng, apartment.lat];
             const marker = new tt.Marker().setLngLat(location).setPopup(new tt.Popup({
                 offset: 35
             }).setHTML(apartment.name)).addTo(map);

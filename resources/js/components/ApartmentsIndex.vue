@@ -6,11 +6,11 @@
     <div class="card mb-3">
       <div class="card-body">
           
-          <form ref="form"
+        <form ref="form"
           action="/api/apartments/search/filter"
           method="get"
           @submit.prevent="onClick">
-            <!-- <input type="hidden" name="_token" :value="csrf"> -->
+            
 
             <div class="row">
               <div class="col">
@@ -62,7 +62,6 @@
         </form>
 
 
-
       </div>
     </div>
 
@@ -70,19 +69,33 @@
       Sono stati trovati {{ apartamentsList.length }} risultati per il filtro:
       <div v-html="printActiveFilters()"></div>
     </div>
+
+    <div>
+
+      <boolbnb-map
+      :lat="filters.position.lat"
+      :long="filters.position.lng"
+      :apartments="this.finalList">
+      </boolbnb-map>
+
+    </div>
+
   </div>
 </template>
 
-<script>
-import InputAtom from "./formInputs/InputAtom.vue";
-import MultiCheckAtom from "./formInputs/MultiCheckAtom.vue";
+<script type="application/javascript">
+// import InputAtom from "./formInputs/InputAtom.vue";
+// import MultiCheckAtom from "./formInputs/MultiCheckAtom.vue";
 
 export default {
-  components: { InputAtom, MultiCheckAtom },
+  // components: { InputAtom, MultiCheckAtom },
   name: "ApartmentsIndex",
-  props: {
-    apartments: Array,
-  },
+  props: 
+  [
+    'apartments',
+    'latitude', 
+    'longitude'
+  ],
   data() {
     return {
       apartamentsList: [],
@@ -96,8 +109,8 @@ export default {
       filters: {
         query: null,
         position: {
-          lat: null,
-          lng: null,
+          lat: this.latitude,
+          lng: this.longitude,
         },
         radius: 20,
         rooms_number: null,
@@ -155,6 +168,8 @@ export default {
     setLatLng(incomingData) {
         this.filters.position.lat = incomingData.lat;
         this.filters.position.lng = incomingData.lng;
+
+        console.log(incomingData);
     },
 
     ttApiRequest(query) {
@@ -181,7 +196,10 @@ export default {
     },
   },
   mounted() {
-      console.log(this.apartamentsList)
+      console.log(this.filters.position.lat)
+      console.log(this.filters.position.lng)
+
+
 
       axios
         .get("/api/apartments")
