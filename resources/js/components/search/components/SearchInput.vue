@@ -83,7 +83,6 @@ export default {
 
         onClick() {
             this.ttApiRequest(this.userQuery.text);   
-            
         },
 
         searchPath() {
