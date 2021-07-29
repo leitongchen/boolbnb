@@ -4,7 +4,7 @@
 
     <h1>Ricerca avanzata</h1>
     
-    <div id="app">
+    <div id="app-search">
     
         <apartments-index
         :apartments='{{ $apartments }}'
@@ -13,9 +13,6 @@
         
         ></apartments-index> 
         
-        @dump($latitude)
-        @dump($longitude)
-
         {{-- :lat='{{$search_data[0]}}' 
         :long='{{$search_data[1]}}' --}}
 
