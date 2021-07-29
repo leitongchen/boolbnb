@@ -75,7 +75,8 @@
       <boolbnb-map
       :lat="filters.position.lat"
       :long="filters.position.lng"
-      :apartments="this.finalList">
+      :apartments="this.finalList"
+      :key="count">
       </boolbnb-map>
 
     </div>
@@ -119,6 +120,8 @@ export default {
       },
       activeFilters: null,
 
+      count: 0,
+
       //tomtom token
       api_key: "SznQN02yzAXGOlDubCqT3PTfefEyd5Go",
 
@@ -126,6 +129,14 @@ export default {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
     };
+  },
+  computed: {
+    setLat() {
+      return this.filters.position.lat;
+    },
+    setLng() {
+      return this.filters.position.lng;
+    },
   },
   methods: {
 
@@ -184,6 +195,8 @@ export default {
             this.setLatLng(position);
 
             this.filterData();
+            this.count++;
+
         })
         .catch(er => {
             console.log(er);
@@ -192,6 +205,7 @@ export default {
 
     onClick() {
         this.ttApiRequest(this.filters.query);   
+
         
     },
   },
