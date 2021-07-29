@@ -23,6 +23,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('boolbnb-map', require('./components/search/components/BoolbnbMap.vue').default);
 Vue.component('search-input', require('./components/search/components/SearchInput.vue').default);
 Vue.component('create-form', require('./components/apartmentsForm/CreateForm.vue').default);
+Vue.component('edit-form', require('./components/apartmentsForm/EditForm.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
