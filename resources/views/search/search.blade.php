@@ -10,9 +10,11 @@
         :apartments='{{ $apartments }}'
         :latitude="{{$latitude}}"
         :longitude="{{$longitude}}"
-        
+        search-query="{{$query}}"
         ></apartments-index> 
         
+        {{-- @dump($query) --}}
+
         {{-- :lat='{{$search_data[0]}}' 
         :long='{{$search_data[1]}}' --}}
 

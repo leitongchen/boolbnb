@@ -91,11 +91,19 @@
 export default {
   // components: { InputAtom, MultiCheckAtom },
   name: "ApartmentsIndex",
-  props: [
-    'apartments',
-    'latitude', 
-    'longitude'
-  ],
+  props: 
+  {
+    apartments: Array,
+    latitude: Number,
+    longitude: Number,
+    searchQuery: String
+  },
+  // [
+  //   'apartments',
+  //   'latitude', 
+  //   'longitude',
+  //   'query'
+  // ],
   data() {
     return {
       apartamentsList: [],
@@ -107,7 +115,7 @@ export default {
       finalList: [],
 
       filters: {
-        query: null,
+        query: this.searchQuery,
         position: {
           lat: this.latitude,
           lng: this.longitude,

@@ -29,7 +29,7 @@ export default {
                 const location = [apartment.longitude, apartment.latitude];
                 const marker = new tt.Marker().setLngLat(location).setPopup(new tt.Popup({
                     offset: 35
-                }).setHTML(apartment.name)).addTo(map);
+                }).setHTML(apartment.title)).addTo(map);
             });
         },
     }
