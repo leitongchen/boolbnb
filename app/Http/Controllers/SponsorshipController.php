@@ -68,7 +68,7 @@ class SponsorshipController extends Controller
         ]);
         
 
-        $amount = $request->amount;
+        $amount = $request->sponsorship_amount;
         $nonce = $request->payment_method_nonce;
     
         $result = $gateway->transaction()->sale([
@@ -85,14 +85,17 @@ class SponsorshipController extends Controller
             ]
         ]);
 
-        dd($result);
-        return; 
+        // dd($result);
+        // return; 
     
         if ($result->success) {
             $transaction = $result->transaction;
             // header("Location: transaction.php?id=" . $transaction->id);
+
+            // dump($transaction);
+            // return; 
     
-            return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+            return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid '. $transaction->amount . '€' );
         } else {
             $errorString = "";
     

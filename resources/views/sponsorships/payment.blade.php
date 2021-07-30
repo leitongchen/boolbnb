@@ -29,12 +29,12 @@
             <label for="sponsorships">
                 <span class="input-label">Per quanto tempo vuoi sponsorizzare il tuo appartamento?</span>
                 <br>
-                <select name="sponsorships" id="sponsorships">
+                <select name="sponsorship_amount" id="sponsorships">
 
                     @foreach($sponsorships as $type)
 
-                        <option value="{{$type->id}}"> 
-                            {{ $type->promo_hours }} ORE
+                        <option id="amount" name="amount" value="{{$type->price}}"> 
+                            {{ $type->promo_hours }} ORE - €{{ $type->price }}
                         </option>
 
                     @endforeach
@@ -45,12 +45,12 @@
             <br>
             <br>
 
-            <label for="amount">
+            {{-- <label for="amount">
                 <span class="input-label">Amount</span>
                 <div class="input-wrapper amount-wrapper">
                     <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
                 </div>
-            </label>
+            </label> --}}
 
             <div class="bt-drop-in-wrapper">
                 <div id="bt-dropin"></div>
