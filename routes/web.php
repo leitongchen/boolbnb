@@ -22,10 +22,7 @@ Route::prefix('apartments')
     ->group(function () {
         
     // Advanced Search 
-    Route::get('/search', 'SearchPageController@index')->name('search'); 
-    
-    //PAYMENTS
-    Route::get('/sponsorship', 'SponsorshipController@index')->name('sponsorship');
+    Route::get('/search', 'SearchPageController@index')->name('search');     
 
     // ?? NASCONDERE la rotta /apartments ??
     Route::get('/', 'ApartmentController@index')->name('index');
@@ -70,4 +67,6 @@ Route::prefix('admin')
     });
 
 
- 
+ //PAYMENTS
+ Route::get('/sponsorship', 'SponsorshipController@index')->name('sponsorship');
+ Route::post('/sponsorship/checkout', 'SponsorshipController@checkout');

@@ -1,11 +1,50 @@
 
+        
 <div class="content">
 
     <h1>Sponsorizza il tuo appartamento</h1>
 
-    <form method="post" id="payment-form">
+    <form method="post" id="payment-form" action="{{ url('/sponsorship/checkout') }}">
         @csrf
         <section>
+            <label for="apartments">
+                <span class="input-label">Quale appartamento vuoi sponsorizzare?</span>
+                <br>
+                <select name="apartments" id="apartments">
+
+                    @foreach($apartments as $apartment)
+
+                        <option value="{{$apartment->id}}"> 
+                            {{ $apartment->title }} - {{ $apartment->completeAddress }}
+                        </option>
+
+                    @endforeach
+
+                </select>
+            </label>
+
+            <br>
+            <br>
+
+            <label for="sponsorships">
+                <span class="input-label">Per quanto tempo vuoi sponsorizzare il tuo appartamento?</span>
+                <br>
+                <select name="sponsorships" id="sponsorships">
+
+                    @foreach($sponsorships as $type)
+
+                        <option value="{{$type->id}}"> 
+                            {{ $type->promo_hours }} ORE
+                        </option>
+
+                    @endforeach
+
+                </select>
+            </label>
+
+            <br>
+            <br>
+
             <label for="amount">
                 <span class="input-label">Amount</span>
                 <div class="input-wrapper amount-wrapper">
@@ -22,6 +61,23 @@
         <button class="button" type="submit"><span>Test Transaction</span></button>
     </form>
 </div>
+
+@if (session('success_message'))
+    <div class="alert alert-success">
+        {{ session('success_message') }}
+    </div>
+@endif
+
+@if(count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
 <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
 {{-- <script src="{{ asset('js/btpayment.js') }}"></script> --}}
