@@ -24,9 +24,12 @@ Route::prefix('apartments')
     // Advanced Search 
     Route::get('/search', 'SearchPageController@index')->name('search'); 
     
+    //PAYMENTS
+    Route::get('/sponsorship', 'SponsorshipController@index')->name('sponsorship');
+
     // ?? NASCONDERE la rotta /apartments ??
     Route::get('/', 'ApartmentController@index')->name('index');
-    Route::get('/{id}', 'ApartmentController@show')->name('show');
+    Route::get('/{id}', 'ApartmentController@show')->name('show');    
 
 });
 
@@ -65,3 +68,6 @@ Route::prefix('admin')
         Route::delete('/messages/{message}/destroy', 'MessageController@destroy')->name('messages.destroy');
 
     });
+
+
+ 
