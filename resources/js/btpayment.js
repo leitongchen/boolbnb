@@ -1,12 +1,10 @@
 var form = document.querySelector('#payment-form');
-var client_token = "{{ $token }}";
+var client_token = document.getElementById('token').value;
 
 braintree.dropin.create({
   authorization: client_token,
   selector: '#bt-dropin',
-  paypal: {
-    flow: 'vault'
-  }
+
 }, function (createErr, instance) {
   if (createErr) {
     console.log('Create Error', createErr);
