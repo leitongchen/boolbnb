@@ -10,7 +10,7 @@
             <label for="apartments">
                 <span class="input-label">Quale appartamento vuoi sponsorizzare?</span>
                 <br>
-                <select name="apartments" id="apartments">
+                <select name="apartment_id" id="apartments">
 
                     @foreach($apartments as $apartment)
 
@@ -29,11 +29,11 @@
             <label for="sponsorships">
                 <span class="input-label">Per quanto tempo vuoi sponsorizzare il tuo appartamento?</span>
                 <br>
-                <select name="sponsorship_amount" id="sponsorships">
+                <select name="sponsorship_id" id="sponsorships">
 
                     @foreach($sponsorships as $type)
 
-                        <option id="amount" name="amount" value="{{$type->price}}"> 
+                        <option id="amount" name="amount" value="{{$type->id}}"> 
                             {{ $type->promo_hours }} ORE - €{{ $type->price }}
                         </option>
 

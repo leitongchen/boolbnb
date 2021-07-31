@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Apartment;
 use App\Sponsorship;
 use Braintree;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,8 +57,17 @@ class SponsorshipController extends Controller
     public function checkout (Request $request) 
     {
         $user = Auth::user(); 
+        $apartmentId = $request->apartment_id;
+        $apartment = Apartment::where('id', '=', $apartmentId)->get();
 
-        // dd($request);
+        $sponsorshipId = $request->sponsorship_id;
+        $sponsorshipDetail = Sponsorship::where('id', '=', $sponsorshipId)->get();
+
+        // dump($request);
+        // dump($sponsorshipDetail);
+        // dump($sponsorshipDetail[0]->price);
+
+        // dump($apartment[0]->title);
         // return; 
 
         $gateway = new Braintree\Gateway([
@@ -68,7 +78,7 @@ class SponsorshipController extends Controller
         ]);
         
 
-        $amount = $request->sponsorship_amount;
+        $amount = $sponsorshipDetail[0]->price;
         $nonce = $request->payment_method_nonce;
     
         $result = $gateway->transaction()->sale([
@@ -94,6 +104,10 @@ class SponsorshipController extends Controller
 
             // dump($transaction);
             // return; 
+
+            //FARE SYNC DELLA SPONSORIZZAZIONE 
+
+            $apartment[0]->sponsorships()->sync([$sponsorshipDetail[0]->id => ['start_at' => Carbon::now()]]);
     
             return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid '. $transaction->amount . '€' );
         } else {
