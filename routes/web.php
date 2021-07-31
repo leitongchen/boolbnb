@@ -64,9 +64,11 @@ Route::prefix('admin')
         Route::get('/messages/{message}/show', 'MessageController@show')->name('messages.show');
         Route::delete('/messages/{message}/destroy', 'MessageController@destroy')->name('messages.destroy');
 
+        //SPONSORSHIPS
+        Route::get('/sponsorship', 'SponsorshipController@index')->name('sponsorship');
+        Route::post('/sponsorship/checkout', 'SponsorshipController@checkout');
+        
     });
 
 
  //PAYMENTS
- Route::get('/sponsorship', 'SponsorshipController@index')->name('sponsorship');
- Route::post('/sponsorship/checkout', 'SponsorshipController@checkout');

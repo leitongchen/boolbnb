@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Apartment;
+use App\Http\Controllers\Controller;
 use App\Sponsorship;
 use Braintree;
 use Carbon\Carbon;
@@ -18,9 +19,6 @@ class SponsorshipController extends Controller
         $apartments = Apartment::orderBy('updated_at', 'DESC')->where('user_id', '=', $userId)->get();
 
         $sponsorships = Sponsorship::all(); 
-
-        // dump($sponsorships);
-        // return; 
         
         foreach($apartments as $apartment) {
 
@@ -36,7 +34,7 @@ class SponsorshipController extends Controller
 
         // dump($apartments);
 
-
+        
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -59,7 +57,7 @@ class SponsorshipController extends Controller
         $user = Auth::user(); 
         $apartmentId = $request->apartment_id;
         $apartment = Apartment::where('id', '=', $apartmentId)->get();
-
+        
         $sponsorshipId = $request->sponsorship_id;
         $sponsorshipDetail = Sponsorship::where('id', '=', $sponsorshipId)->get();
 

@@ -1,11 +1,10 @@
-
-        
 <div class="content">
 
     <h1>Sponsorizza il tuo appartamento</h1>
 
-    <form method="post" id="payment-form" action="{{ url('/sponsorship/checkout') }}">
+    <form method="post" id="payment-form" action="{{ url('/admin/sponsorship/checkout') }}">
         @csrf
+        <input type="hidden" id="token" name="token" value="{{$token}}">
         <section>
             <label for="apartments">
                 <span class="input-label">Quale appartamento vuoi sponsorizzare?</span>
@@ -45,12 +44,6 @@
             <br>
             <br>
 
-            {{-- <label for="amount">
-                <span class="input-label">Amount</span>
-                <div class="input-wrapper amount-wrapper">
-                    <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
-                </div>
-            </label> --}}
 
             <div class="bt-drop-in-wrapper">
                 <div id="bt-dropin"></div>
@@ -80,9 +73,9 @@
 
 
 <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
-{{-- <script src="{{ asset('js/btpayment.js') }}"></script> --}}
+<script src="{{ asset('js/btpayment.js') }}"></script>
 
-<script>
+{{-- <script>
 
     var form = document.querySelector('#payment-form');
     var client_token = "{{ $token }}";
@@ -114,4 +107,4 @@
     });
     });
 
-</script>
+</script> --}}
