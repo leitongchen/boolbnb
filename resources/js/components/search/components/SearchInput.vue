@@ -97,7 +97,7 @@ export default {
                 }
             })
             .then(resp => {
-                alert('Apartment added')
+                // alert('Apartment added')
                 console.log(resp)
 
                 this.$refs.form.submit()
