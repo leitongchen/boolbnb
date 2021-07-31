@@ -22,7 +22,7 @@ class ApartmentController extends Controller
         //trova gli appartamenti dell'utente loggato
         //Da ordinare!!
         $userId = Auth::id();
-        $userApartments = Apartment::all()->where('user_id', '=', $userId);
+        $userApartments = Apartment::orderBy('updated_at', 'DESC')->where('user_id', '=', $userId)->get();
         // $incomingData = Apartment::orderBy('updated_at', 'DESC')->get();
 
 
