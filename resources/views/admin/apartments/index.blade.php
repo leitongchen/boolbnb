@@ -24,9 +24,10 @@
                     <img src="{{ asset('storage/' . $apartment->img_url) }}">
 
                 </li>
+            
                 <li>{{ $apartment->visible }}</li>
-                <li><a href="{{ route('admin.apartments.show', $apartment->id) }}">Vedi i dettagli</a></li>
-                <li><a href="{{ route('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a></li>
+                <li><a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}">Vedi i dettagli</a></li>
+                <li><a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a></li>
 
 
                 <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">

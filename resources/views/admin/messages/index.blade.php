@@ -27,7 +27,7 @@
                     <td>{{ $message->formattedCreatedAt }}</td>
                     <td>{{ $message->sender_mail }}</td>
                     <td>
-                        <a href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
+                        <a href="{{ URL::signedRoute('admin.messages.show', $message->id) }}">Dettagli</a>
 
                         <form action="{{ route('admin.messages.destroy', $message->id) }}" method="POST">
                         @csrf

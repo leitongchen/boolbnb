@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -59,16 +60,16 @@ class ApartmentController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'address_street' => 'required|max:255',
+            'address_street' => 'required|max:255|min:2',
             'street_number' => 'required|max:10',
-            'city' => 'required|max:100',
+            'city' => 'required|max:100|min:2',
             'zip_code' => 'required|max:10',
-            'province' => 'required|max:100',
-            'nation' => 'required|max:100',
-            'rooms_number' => 'required|integer',
-            'beds_number' => 'required|integer',
-            'bathrooms_number' => 'required|integer',
-            'floor_area' => 'required|numeric',
+            'province' => 'required|max:100|min:2',
+            'nation' => 'required|max:100|min:2',
+            'rooms_number' => 'required|integer|min:1',
+            'beds_number' => 'required|integer|min:1',
+            'bathrooms_number' => 'required|integer|min:1',
+            'floor_area' => 'required|numeric|min:10',
             'img_url' => 'required',
             'visible' => 'required'
         ]);
@@ -79,9 +80,10 @@ class ApartmentController extends Controller
 
         $formData = $request->all();
         $newApartment = new Apartment;
-        $newApartment->fill($formData);
         
         $newApartment->user_id = $formData['user_id'];
+        
+        $newApartment->fill($formData);
 
 
         // dump($newApartment);
@@ -112,11 +114,15 @@ class ApartmentController extends Controller
         $user = Auth::user();
         $userId = Auth::id();
 
-        $data = [
-            'apartment' => Apartment::findOrFail($id),
-            'user' => $user,
-            'userId' => $userId];
+        $apartment = Apartment::findOrFail($id);
 
+        $data = [
+            'apartment' => $apartment,
+            'user' => $user,
+            'userId' => $userId
+        ];
+            
+        
         return view('admin.apartments.show', $data);
     }
 

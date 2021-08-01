@@ -73,6 +73,7 @@ class MessageController extends Controller
     //vedi i dettagli di un solo messaggio
     public function show(Message $message)
     {
+        //formatta la data
         $carbonDate = Carbon::parse($message->created_at)->format("d/m/y h:i:s");
        
         $data = [
