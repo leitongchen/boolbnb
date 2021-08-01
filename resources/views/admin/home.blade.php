@@ -19,7 +19,7 @@
 
                         <br>
 
-                    <a href="{{ route('admin.apartments.index') }}">INDEX APPARTAMENTI PRIVATO</a>
+                    <a href="{{ URL::signedRoute('admin.apartments.index') }}">INDEX APPARTAMENTI PRIVATO</a>
 
                     </div>
                 </div>
