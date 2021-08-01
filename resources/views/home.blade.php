@@ -32,10 +32,17 @@
                 </search-input>
             </div>
            
+            <h1>Sponsored apartments</h1>
+            @dump($sponsored)
+
+            <h1>Last apartments</h1>
+            @dump($apartments)
 
             <div class="links">
                 <a href="{{ route('apartments.index') }}">INDEX APPARTAMENTI PUBBLICO</a>
             </div>
+
+            
 
 
         </div>
