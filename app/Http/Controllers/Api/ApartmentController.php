@@ -34,7 +34,7 @@ class ApartmentController extends Controller
 
     public function filter(Request $request)
     {
-        $filters = $request->only(["rooms_number", "bathrooms_number", "extra_services"]);
+        $filters = $request->only(["rooms_number", "beds_number", "extra_services"]);
         
         $positionData = $request->only(["query", "position", "radius"]);
 
