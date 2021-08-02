@@ -31,6 +31,8 @@
                 <search-input>
                 </search-input>
             </div>
+
+            @include('alerts.payment')
            
             <h1>Sponsored apartments</h1>
             @dump($sponsored)

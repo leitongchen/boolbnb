@@ -100,14 +100,10 @@ class SponsorshipController extends Controller
             $transaction = $result->transaction;
             // header("Location: transaction.php?id=" . $transaction->id);
 
-            // dump($transaction);
-            // return; 
-
             //FARE SYNC DELLA SPONSORIZZAZIONE 
-
             $apartment[0]->sponsorships()->sync([$sponsorshipDetail[0]->id => ['start_at' => Carbon::now()]]);
     
-            return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid '. $transaction->amount . '€' );
+            return redirect()->route('index')->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid € '. $transaction->amount);
         } else {
             $errorString = "";
     
@@ -117,7 +113,7 @@ class SponsorshipController extends Controller
     
             // $_SESSION["errors"] = $errorString;
             // header("Location: index.php");
-            return back()->withErrors('An error occurred with the message: '.$result->message);
+            return redirect()->route('index')->withErrors('An error occurred with the message: '.$result->message);
         }
     }
 }
