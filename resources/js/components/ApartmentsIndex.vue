@@ -75,7 +75,7 @@
       <boolbnb-map
       :lat="filters.position.lat"
       :long="filters.position.lng"
-      :apartments="this.finalList"
+      :apartments="finalList"
       :key="count">
       </boolbnb-map>
 
@@ -92,23 +92,30 @@ export default {
   // components: { InputAtom, MultiCheckAtom },
   name: "ApartmentsIndex",
   props: 
-  [
-    'apartments',
-    'latitude', 
-    'longitude'
-  ],
+  {
+    apartments: Array,
+    latitude: Number,
+    longitude: Number,
+    searchQuery: String
+  },
+  // [
+  //   'apartments',
+  //   'latitude', 
+  //   'longitude',
+  //   'query'
+  // ],
   data() {
     return {
       apartamentsList: [],
-      extra_servicesList: null,
+      extra_servicesList: [],
 
       // at first finalList will contain the array of apartments coming from search.blade (props: apartments)
       // when filters selected, the finalList will contain an array of filtered apartments
       // finalList must be rendered
-      finalList: this.apartments,
+      finalList: [],
 
       filters: {
-        query: null,
+        query: this.searchQuery,
         position: {
           lat: this.latitude,
           lng: this.longitude,
@@ -141,16 +148,15 @@ export default {
   methods: {
 
     filterData() {
-      axios
-        .get("/api/apartments/search/filter", {
+      axios.get("/api/apartments/search/filter", {
             params: this.filters
         })
-        .then(resp => {
+        .then((resp) => {
             this.finalList = resp.data.results;
             this.activeFilters = resp.data.filters;
             console.log(resp)
         })
-        .catch(er => {
+        .catch((er) => {
             if( er.response ){
                 console.log(er.response.data); // => the response payload 
             }
@@ -173,14 +179,14 @@ export default {
     },
 
     onReset() {
-        this.activeFilters = null;
+      this.activeFilters = null;
     },
 
     setLatLng(incomingData) {
-        this.filters.position.lat = incomingData.lat;
-        this.filters.position.lng = incomingData.lng;
+      this.filters.position.lat = incomingData.lat;
+      this.filters.position.lng = incomingData.lng;
 
-        console.log(incomingData);
+      console.log(incomingData);
     },
 
     ttApiRequest(query) {
@@ -190,7 +196,7 @@ export default {
             query: query,
             // boundingBox: map.getBounds()
 
-        }).go().then(resp => {
+        }).go().then((resp) => {
             const position = resp.results[0].position; 
             this.setLatLng(position);
 
@@ -198,7 +204,7 @@ export default {
             this.count++;
 
         })
-        .catch(er => {
+        .catch((er) => {
             console.log(er);
         });
     },
@@ -213,22 +219,20 @@ export default {
       console.log(this.filters.position.lat)
       console.log(this.filters.position.lng)
 
+      this.finalList = this.apartments;
 
-
-      axios
-        .get("/api/apartments")
-        .then(resp => {
+      axios.get("/api/apartments")
+        .then((resp) => {
             this.apartamentsList = resp.data.results;
             this.activeFilters = resp.data.filters;
         })
-        .catch(er => {
+        .catch((er) => {
             console.error(er);
             alert("Non è stato possibile recuperare gli appartamenti.");
-      });
+        });
 
 
-      axios
-        .get("/api/extra-services")
+      axios.get("/api/extra-services")
         .then((resp) => {
           this.extra_servicesList = resp.data.results;
         })
@@ -238,5 +242,5 @@ export default {
           alert("Non posso recuperare gli extra service");
         });
   },
-};
+}
 </script>
