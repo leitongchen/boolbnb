@@ -40,6 +40,16 @@
                 </form>
             </ul>
             @endforeach
+
+            <div class="card text-center" style="width: 18rem;">
+                <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3>{{ $apartment->title }}
+                        <h3>
+                            <p>{{ $apartment->address_street . ' N° ' . $apartment->street_number . ', ' . $apartment->city . ', ' . $apartment->zip_code . ', ' . $apartment->nation }}</p>
+                            <button class="text-center btn btn-secondary"><a href="{{ route('admin.apartments.show', $apartment->id) }}">Vedi i dettagli</a></button>
+                </div>
+            </div>
 </div>
 
 @endsection

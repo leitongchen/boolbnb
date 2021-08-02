@@ -1,5 +1,3 @@
-
-
 <div class="container">
 
     {{-- <h1>TUTTI GLI APPARTAMENTI (PUBBLICO)</h1> --}}
@@ -24,8 +22,5 @@
             </ul>
 
             @endforeach
+
 </div>
-
-
-
-

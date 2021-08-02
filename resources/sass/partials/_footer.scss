@@ -1,0 +1,33 @@
+footer{
+    background-color: #f2f2f3;
+    li{
+        padding-bottom: $spacing;
+        a{
+            color: black;
+            padding-bottom: $spacing *2;
+        }
+        a:hover{
+            color: gray;
+        }
+    }
+    h3{
+        a{
+            color: black;
+        }
+        a:hover{
+            color: gray;
+        }
+    }
+    .p-3{
+        a{
+            color: black;
+        }
+        a:hover{
+            color: gray;
+        }
+    }
+}
+
+.footer_bottom {
+    border-top: 1px solid black;
+}

@@ -1,0 +1,18 @@
+.form-message{
+    form{
+        max-width: 700px;
+        margin: auto;
+        border: 1px solid lightgray;
+        padding: $spacing*2;
+        border-radius: 10px;
+        .d-grid{
+            display: grid;
+            input{
+                background-color: $primary_color;
+                border-color: $primary_color;
+
+            }
+        }
+    }
+   
+}

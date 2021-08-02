@@ -1,0 +1,26 @@
+//Dettaglio appartamento privato
+.details-apartament{
+    section{
+        padding: $spacing *3 0;
+    }
+    .details{
+        h2{
+            padding-bottom: 20px;
+        }
+        h4{
+            border-bottom: 1px solid gray;
+            padding-bottom: 5px;
+        }
+    }
+.service_right{
+    background-color: #ffd8cc;
+    border-radius: 42px;
+}
+
+}
+
+.details{
+    .padx{
+        padding-top: 15px;
+    }
+}
