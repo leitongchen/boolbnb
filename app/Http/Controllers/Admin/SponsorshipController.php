@@ -75,8 +75,12 @@ class SponsorshipController extends Controller
             'privateKey' => config('services.braintree.privateKey')
         ]);
         
+        // dump(Carbon::now());
+        // dump(Carbon::now()->addHours(24));
+        // return; 
 
         $amount = $sponsorshipDetail[0]->price;
+        $hours = $sponsorshipDetail[0]->promo_hours;
         $nonce = $request->payment_method_nonce;
     
         $result = $gateway->transaction()->sale([
@@ -101,7 +105,8 @@ class SponsorshipController extends Controller
             // header("Location: transaction.php?id=" . $transaction->id);
 
             //FARE SYNC DELLA SPONSORIZZAZIONE 
-            $apartment[0]->sponsorships()->sync([$sponsorshipDetail[0]->id => ['start_at' => Carbon::now()]]);
+            // salvare la data di fine della sponsorizzazione in db end_at
+            $apartment[0]->sponsorships()->sync([$sponsorshipDetail[0]->id => ['end_at' => Carbon::now()->addHours($hours)]]);
     
             return redirect()->route('index')->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid € '. $transaction->amount);
         } else {
