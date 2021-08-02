@@ -18,7 +18,7 @@ export default {
                 key: "E8JECf2Pom9XoKTM5Gs0GGdIBDUOYbnS",
                 container: 'map',
                 center: [this.long, this.lat],
-                zoom:9,
+                zoom:13,
                 //style: 'tomtom://vector/1/basic-main', 
             })
             map.addControl(new tt.FullscreenControl()); 
