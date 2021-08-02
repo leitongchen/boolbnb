@@ -3,7 +3,18 @@
         <h1>Qui mappa store locator</h1>
 
         <div class='map' id='map' ref="mapRef"> TomTom map! </div>
-        <p> appartamenti {{ apartments }}</p>
+        <!-- <p> appartamenti {{ apartments }}</p> -->
+
+
+        <div v-for="el in apartments" :key="el.id">
+
+            <apartment-card
+            :apartment="el"
+            ></apartment-card>
+
+        </div>
+        
+
     </div>
 </template>
 
@@ -25,13 +36,16 @@ export default {
             map.addControl(new tt.NavigationControl()); 
 
             this.apartments.forEach(function (apartment, index) {
-                console.log(`apartment ${index}`)
+                // console.log(apartment)
                 const location = [apartment.longitude, apartment.latitude];
                 const marker = new tt.Marker().setLngLat(location).setPopup(new tt.Popup({
                     offset: 35
                 }).setHTML(apartment.title)).addTo(map);
             });
         },
+    }, 
+    mounted() {
+        // console.log(this.apartments)
     }
 }
 

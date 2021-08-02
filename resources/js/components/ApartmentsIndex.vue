@@ -9,7 +9,8 @@
         <form ref="form"
           action="/api/apartments/search/filter"
           method="get"
-          @submit.prevent="onClick">
+          @submit.prevent="onClick"
+          @reset="onReset">
             
 
             <div class="row">
@@ -66,7 +67,7 @@
     </div>
 
     <div class="alert alert-success mb-5" v-if="activeFilters">
-      Sono stati trovati {{ apartamentsList.length }} risultati per il filtro:
+      Sono stati trovati {{ finalList.length }} risultati per il filtro:
       <div v-html="printActiveFilters()"></div>
     </div>
 
@@ -180,6 +181,7 @@ export default {
 
     onReset() {
       this.activeFilters = null;
+      this.finalList = this.apartamentsList;
     },
 
     setLatLng(incomingData) {
