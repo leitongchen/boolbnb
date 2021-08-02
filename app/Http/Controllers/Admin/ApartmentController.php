@@ -27,7 +27,7 @@ class ApartmentController extends Controller
         $userId = Auth::id();
 
         // try {
-        //     $userApartments = Apartment::all()->where('user_id', '=', $userId);
+            $userApartments = Apartment::all()->where('user_id', '=', $userId);
         // } catch (\Exeption $error) {
         //     return view('errors.404');
         // };
