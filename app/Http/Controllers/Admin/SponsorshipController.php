@@ -16,12 +16,22 @@ class SponsorshipController extends Controller
     {
 
         $userId = Auth::user()->id; 
-        $apartments = Apartment::orderBy('updated_at', 'DESC')->where('user_id', '=', $userId)->get();
+        $allApartments = Apartment::orderBy('updated_at', 'DESC')
+            ->where('user_id', '=', $userId)
+            ->with('sponsorships')
+            ->get();
+
+        $now = Carbon::now()->toDateTimeString(); 
+
+        $sponsoredApartments = Apartment::where('user_id', '=', $userId)
+            ->join("apartment_sponsorship", "apartments.id", "=", "apartment_sponsorship.apartment_id")
+            ->where('end_at', '>', $now)
+            ->get();
 
         $sponsorships = Sponsorship::all(); 
-        
-        foreach($apartments as $apartment) {
 
+        //set new temporary column containing a string of the complete address
+        foreach($allApartments as $apartment) {
             $completeAddress = [];
 
             $completeAddress[] = $apartment->address_street;
@@ -31,10 +41,10 @@ class SponsorshipController extends Controller
 
             $apartment->completeAddress = implode(', ', $completeAddress);
         }
-
-        // dump($apartments);
-
         
+        // apartments that have not already sponsorships active
+        $apartments = $allApartments->diff($sponsoredApartments);
+
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
