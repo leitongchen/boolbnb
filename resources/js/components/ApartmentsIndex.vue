@@ -30,8 +30,8 @@
                 ></input-atom>
 
                 <input-atom
-                  label="Bagni"
-                  v-model="filters.bathrooms_number"
+                  label="Ospiti"
+                  v-model="filters.beds_number"
                   inputType="number"
                 ></input-atom>
 
@@ -123,7 +123,7 @@ export default {
         },
         radius: 20,
         rooms_number: null,
-        bathrooms_number: null,
+        beds_number: null,
         extra_services: [],
       },
       activeFilters: null,
