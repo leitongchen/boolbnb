@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
+// use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 
 class ApartmentController extends Controller
 {
@@ -23,9 +25,13 @@ class ApartmentController extends Controller
         //trova gli appartamenti dell'utente loggato
         //Da ordinare!!
         $userId = Auth::id();
-        $userApartments = Apartment::all()->where('user_id', '=', $userId);
-        // $incomingData = Apartment::orderBy('updated_at', 'DESC')->get();
 
+        // try {
+        //     $userApartments = Apartment::all()->where('user_id', '=', $userId);
+        // } catch (\Exeption $error) {
+        //     return view('errors.404');
+        // };
+        // $incomingData = Apartment::orderBy('updated_at', 'DESC')->get();
 
         $data = [
             'apartments' => $userApartments
