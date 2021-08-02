@@ -25,13 +25,6 @@ class ApartmentController extends Controller
         ]);
     }
 
-//     SELECT * 
-// FROM `apartments`	 
-// JOIN `apartment_extra_service`
-// 	ON `apartments`.id = `apartment_extra_service`.`apartment_id`
-// WHERE `apartment_extra_service`.`extra_services_id` = 4
-//  AND `beds_number` > 1 
-
     public function filter(Request $request)
     {
         $filters = $request->only(["rooms_number", "beds_number", "extra_services"]);
