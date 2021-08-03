@@ -8,7 +8,7 @@
             <div class="my-no-msg text-center ">
                 <h1>Non hai messaggi da visualizzare!</h1>
 
-                <div class="my-img-container m-auto">
+                <div class="my-img-container m-auto w-50">
                     <img src="{{ asset('images/undraw_empty_xct9.svg') }}" class="img-fluid" alt="empty box">
                 </div>
             </div>
@@ -53,7 +53,9 @@
     </table>
     @endif
 
-    <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+    <div class="orange_button d-inline-block mb-5">
+        <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+    </div>
 </div>
     
 @endsection
