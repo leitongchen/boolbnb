@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <form @submit="createApartment"
+        <form ref="form"
         action="/api/apartament/edit" method="post" enctype="multipart/form-data">
 
             <input type="hidden" name="_token" :value="csrf">
@@ -13,91 +13,95 @@
             <input-atom
                 label="Titolo riepilogativo"
                 name="title"
-                v-model="apartment.title"
+                v-model="apartmentData.title"
             ></input-atom>
 
             <input-atom
                 label="Indirizzo"
                 name="address_street"
-                v-model="apartment.address_street"
+                v-model="apartmentData.address_street"
             ></input-atom>
 
             <input-atom
                 label="Numero civico"
                 name="street_number"
-                v-model="apartment.street_number"
+                v-model="apartmentData.street_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="CAP"
                 name="zip_code"
-                v-model="apartment.zip_code"
+                v-model="apartmentData.zip_code"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Città"
                 name="city"
-                v-model="apartment.city"
+                v-model="apartmentData.city"
             ></input-atom>
 
             <input-atom
                 label="Provincia"
                 name="province"
-                v-model="apartment.province"
+                v-model="apartmentData.province"
             ></input-atom>  
 
             <input-atom
                 label="Stato"
                 name="nation"
-                v-model="apartment.nation"
+                v-model="apartmentData.nation"
             ></input-atom>
 
             <input-atom
                 label="Locali"
                 name="rooms_number"
-                v-model="apartment.rooms_number"
+                v-model="apartmentData.rooms_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Posti letto"
                 name="beds_number"
-                v-model="apartment.beds_number"
+                v-model="apartmentData.beds_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Bagni"
                 name="bathrooms_number"
-                v-model="apartment.bathrooms_number"
+                v-model="apartmentData.bathrooms_number"
                 inputType="number"
             ></input-atom>
 
             <input-atom
                 label="Superficie"
                 name="floor_area"
-                v-model="apartment.floor_area"
+                v-model="apartmentData.floor_area"
                 inputType="number"
             ></input-atom>
 
             <div v-for="extraService in extraServices" :key="extraService.id">
 
-                <!-- <label>
+                <label>
                     <input name="extraServices[]" type="checkbox" 
                     :value="extraService.id" 
                     v-model="checkedExtraServices"
                     >
                     {{ extraService.name }}
-                </label> -->
+                </label>
 
             </div>
 
             <label for="img_url">Immagine principale</label>
             <input type="file" name="img_url" ref="inputUpload" accept=".jpeg, .jpg, .png"> <br>
             
-            <label for="latitude">
+
+            <input type="hidden" name="latitude" :value="position.lat">
+            <input type="hidden" name="longitude" :value="position.lng">
+
+            <!-- <label for="latitude">
                 <input type="text" id="latitude" name="latitude" v-model="apartment.latitude">
             </label>
 
@@ -105,10 +109,10 @@
                 <input type="text" id="longitude" name="longitude" v-model="apartment.longitude">
             </label>
 
-            <a href="#" @click.prevent="getLatLng" class="btn btn-primary">Genera Latitudine e Longitudine</a>
+            <a href="#" @click.prevent="getLatLng" class="btn btn-primary">Genera Latitudine e Longitudine</a> -->
 
             <div class="form-group">
-                <button>Fatto</button>
+                <button type="submit" @click.prevent="getLatLng()">Fatto</button>
             </div>
         
         </form>
@@ -145,6 +149,11 @@
             
                 apartmentData: this.apartment,
                 checkedExtraServices: [],
+
+                position: {
+                    lat: null,
+                    lng: null, 
+                }
             }
         },
         methods: {
@@ -179,13 +188,6 @@
                 this.ttApiRequest(addressStr);          
             },
 
-            // save lat and lng values to aparmentData(obj)
-            setLatLng(position) {
-
-                this.apartment.latitude = position.lat;
-                this.apartment.longitude = position.lng;
-
-            },
 
             // API reequest to tomtom return lat and lng position values
             ttApiRequest(query) {
@@ -196,7 +198,16 @@
 
                 }).go().then(resp => {
                     const position = resp.results[0].position; 
-                    this.setLatLng(position);
+
+                    this.position.lat = position.lat;
+                    this.position.lng = position.lng;
+
+                    this.createApartment();
+
+                    Vue.nextTick(() => {
+                        this.$refs.form.submit();
+                    });
+
                 })
                 .catch(er => {
                     console.log(er);
@@ -209,12 +220,14 @@
                 const formData = new FormData();
                 formData.append("img_url", imageData);
                 formData.append('_method', 'PUT');
+                formData.append("lat", this.apartmentData.latitude);
+                formData.append("lng", this.apartmentData.longitude);
 
                 // API POST request passing the new apartment object to ApartmentController@store
                 axios.put('http://127.0.0.1:8000/api/apartament/edit', { 
                     formData,
                     ...this.apartmentData,
-                    ...this.checkedExtraServices,
+                    // ...this.checkedExtraServices,
                     }, 
                     {
                     headers: {
@@ -223,8 +236,10 @@
                     }
                 })
                 .then(resp => {
-                    alert('Apartment added')
+                    // alert('Apartment updated')
                     console.log(resp)
+
+
                 })
                 .catch(er => {
                     console.log(er.response.data);
@@ -234,14 +249,16 @@
             clearQuery(addressObj) {
 
                 let valueArr = (Object.values(addressObj)).join(', ');
-
                 return valueArr;
             },
 
         },
         mounted() {
+            console.log('inizial data')
+            console.log(this.apartmentData)
             this.extraServicesCheck();
-            console.log(this.userId);
+
+            // console.log(this.userId);
         }
     }
 </script>

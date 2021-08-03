@@ -196,12 +196,9 @@ class ApartmentController extends Controller
 
         $formData = $request->all();
         
-        $apartment = Apartment::findOrFail($formData['apartment_id']);
-       
+        $apartmentId = (int)$request->apartment_id;
 
-        // dump($request->all());
-        // dd($apartment);  
-        // return; 
+        $apartment = Apartment::findOrFail($apartmentId);
 
         // $apartment->apartment_id = $formData['apartment_id'];
         if (!key_exists("extraServices", $formData)) {
@@ -220,10 +217,7 @@ class ApartmentController extends Controller
 
             $formData["img_url"] = $storageResult;
         }
-
         $apartment->update($formData);
-        
-        // if($formData['user_id'] == $apartment['user_id']) {}
 
         return redirect()->route('admin.apartments.index');
     }
