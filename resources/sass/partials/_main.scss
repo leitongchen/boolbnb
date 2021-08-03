@@ -12,10 +12,10 @@
             padding-bottom: 5px;
         }
     }
-.service_right{
-    background-color: #ffd8cc;
-    border-radius: 42px;
-}
+    .service_right{
+        background-color: #ffd8cc;
+        border-radius: 42px;
+    }
 
 }
 
@@ -24,3 +24,26 @@
         padding-top: 15px;
     }
 }
+
+
+//INDEX MESSAGGI
+h1 {
+    color: $text_colorOne;
+    padding: $spacing*2 0;
+
+}
+
+.my-no-msg {
+
+    h1 {
+        padding: $spacing*3 0;
+    }
+
+    .my-img-container {
+        width: 35vw;
+        padding-bottom: $spacing*2;
+    }
+
+}
+
+

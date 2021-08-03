@@ -3,12 +3,18 @@
 @section('content')
 
 <div class="container">
+    <div class="text-center ">
+        @if (count($messages) == 0)
+            <div class="my-no-msg text-center ">
+                <h1>Non hai messaggi da visualizzare!</h1>
 
-    @if (count($messages) == 0)
-        <h1>Non hai messaggi da visualizzare</h1>
-    @else
-        <h1>Messaggi ricevuti appartamento {{ $apartment->id }}</h1>
-    @endif
+                <div class="my-img-container m-auto">
+                    <img src="{{ asset('images/undraw_empty_xct9.svg') }}" class="img-fluid" alt="empty box">
+                </div>
+            </div>
+        @else
+            <h1>Messaggi ricevuti appartamento {{ $apartment->id }}</h1>
+    </div>
 
     <table class="table">
         <thead>
@@ -45,6 +51,7 @@
         </tbody>
     
     </table>
+    @endif
 
     <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
 </div>
