@@ -4,7 +4,14 @@
         margin: auto;
         border: 1px solid lightgray;
         padding: $spacing*2;
-        border-radius: 10px;
+        // border-radius: 10px;
+        cursor: pointer;
+        border: 1px solid #eaf0f6;
+        background: #fff;
+        box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+        border-radius: 4px;
+        // width: 240px;
+        // padding: 24px 16px 16px;
         .d-grid{
             display: grid;
             input{

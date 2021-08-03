@@ -7,6 +7,7 @@
             :id="label"
             :value="value"
             @input="$emit('input', $event.currentTarget.value)"
+            class="form-control"
         />
     </div>
 

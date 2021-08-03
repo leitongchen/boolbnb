@@ -72,60 +72,10 @@
             </div>
         </section>
 
-        {{-- Quinta section --}}
-        <section class="form-message">
-            <h2 class="text-center">Ti piace questo appartamento?</h2>
-            <form action="{{ route("messages.store")}}" method="post">
-                @csrf
-                <div class="text-center">
-                    <h4>Invia un messaggio a</h4>
-                    <h5 class="text-uppercase"> {{ __(Auth::user()->name) }} {{ __(Auth::user()->surname) }}</h5>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Nome" name="sender_name" id="sender_name">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Cognome" name="sender_surname" id="sender_surname">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Indirizzo mail" name="sender_mail" id="sender_mail" value="{{ Auth::check() ? Auth::user()->email : '' }}">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Cellulare" name="phone_number" id="phone_number">
-                    </div>
-                </div>
-                <br>
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="Il tuo messaggio:" id="floatingTextarea" name="content" id="message"></textarea>
-                </div>
-                <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
-                <br>
-                <div class="gap-2 text-center d-grid">
-                    <input class="btn btn-primary" type="submit" value="Invia">
-                </div>
-
-            </form>
-        </section>
+      
 
         {{-- Sesta section --}}
         <section class="map-apartament">
-            <ul>
-                <li>Latitudine: {{ $apartment->latitude }}</li>
-                <li>Longitudine: {{ $apartment->longitude }}</li>
-                <li>
-                </li>
-                <li>{{ $apartment->visible }}</li>
-                {{-- @if (count($apartment->extra_services > 0)) --}}
-                <li>Servizi inclusi:</li>
-                <ul>
-                </ul>
-                {{-- @endif --}}
-            </ul>
 
             <button class="btn btn-warning"> <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a> <br></button>
             <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
@@ -151,7 +101,6 @@
             <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>
 
         </section>
-
     </div>
     </section>
 </div>

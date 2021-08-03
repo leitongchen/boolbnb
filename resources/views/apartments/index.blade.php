@@ -1,3 +1,8 @@
+@extends('layouts.public')
+
+@section('content')
+
+
 <div class="container">
 
     {{-- <h1>TUTTI GLI APPARTAMENTI (PUBBLICO)</h1> --}}
@@ -24,3 +29,4 @@
             @endforeach
 
 </div>
+@endsection
