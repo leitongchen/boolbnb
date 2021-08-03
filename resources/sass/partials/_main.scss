@@ -1,3 +1,27 @@
+//INDEX APPARTAMENTI PRIVATO
+.apartment-index-container {
+
+    .my-apartment-card {
+
+        box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+        border-radius: 6%;
+
+        // .my-card-img-top {
+        //     height: 45%;
+        // }
+
+        a {
+            color: $brand_orange;
+            font-weight: 500;
+        }
+        
+        .white_button {
+            display: inline-block;
+            text-align: center;
+        }
+    }
+}
+
 //Dettaglio appartamento privato
 .details-apartament{
     section{
