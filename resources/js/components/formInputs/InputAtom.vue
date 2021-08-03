@@ -13,7 +13,7 @@
 
 </template>
 
-<script>
+<script type="application/javascript">
     export default {
         name: "InputAtom",
         props: {

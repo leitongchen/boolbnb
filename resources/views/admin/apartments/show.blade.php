@@ -60,15 +60,15 @@
                     <H4><i class="fas fa-bed"></i> LETTI<i class="fa-solid fa-bed-empty"></i>: {{ $apartment->beds_number }} </H4>
                     <H4><i class="fas fa-bath"></i> BAGNI: {{ $apartment->bathrooms_number }} </H4>
                     <H4><i class="fas fa-chart-area"></i> MQ: {{ $apartment->floor_area}} </H4>
-
-
                 </div>
+                @if ($apartment->extra_services->count() > 0))
                 <div class="padx col-xl-6 col-md-12 col-sm-12 text-center service_right">
                     <H2>SERVIZI</H2>
                     @foreach($apartment->extra_services as $extraService)
                     <li>{{ $extraService->name }}</li>
                     @endforeach
                 </div>
+                @endif
             </div>
         </section>
 
@@ -77,30 +77,35 @@
         {{-- Sesta section --}}
         <section class="map-apartament">
 
-            <button class="btn btn-warning"> <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a> <br></button>
-            <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
-                @csrf
-
-                @method('DELETE')
-
-                <div class="form-group">
-                    <input class="btn btn-danger" type="submit" value="ELIMINA">
-                </div>
-            </form>
-
-            <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
-            <br>
-
-            @if ($userId == $apartment->user_id)
-            <a href="{{ route('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a>
-            <br>
-            <a href="{{ route('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a> <br>
-            @endif
+    <button class="btn btn-warning"> <a href="{{ URL::signedRoute('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a> <br></button>
 
 
-            <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>
 
-        </section>
+
+    <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
+        @csrf
+
+        @method('DELETE')
+
+        <div class="form-group">
+            <input class="btn btn-danger" type="submit" value="ELIMINA">
+        </div>
+    </form>
+
+    @if ($userId == $apartment->user_id)
+    <a href="{{ URL::signedRoute('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a>
+    <br>
+    <a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a> <br>
+    @endif
+
+    <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>
+
+    <div id="app">
+        <apartment-show-map
+        :apartment="{{$apartment}}">
+        </apartment-show-map>
+    </div>
+
     </div>
     </section>
 </div>

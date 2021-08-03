@@ -1,7 +1,7 @@
 <template>
     <div class="mb-3">
         <label class="form-label">{{ label }}</label>
-        <br />
+        <br>
         <div
             class="form-check form-check-inline"
             v-for="item in items"
@@ -13,16 +13,16 @@
                     type="checkbox"
                     :value="item.id"
                     @change="onChange"
-                />
+                >
                 {{ item.name }}
             </label>
         </div>
     </div>
 </template>
 
-<script>
+<script type="application/javascript">
 export default {
-    name: "MultiChecInput",
+    name: "MultiCheckAtom",
     props: {
         items: {
             type: Array,

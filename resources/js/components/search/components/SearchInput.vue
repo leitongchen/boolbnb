@@ -7,12 +7,13 @@
             <form
             ref="form"
             action="/api/apartments/search" method="post">
+
                 <input type="hidden" name="_token" :value="csrf">
                 <input type="hidden" name="latitude" v-model="this.position.lat">
                 <input type="hidden" name="longitude" v-model="this.position.lng">
                 <input type="hidden" name="query" v-model="this.userQuery.text">
 
-                <input v-model="userQuery.text" type="search" class="form-control rounded" placeholder="cerca un appartamento" aria-label="Search" aria-describedby="search-addon" />
+                <input v-model="userQuery.text" type="search" class="form-control rounded" placeholder="cerca un appartamento" aria-label="Search" aria-describedby="search-addon">
                 <button @click.prevent="onClick"><i class="fas fa-search"> CERCA</i></button>
 
             </form>
@@ -24,7 +25,7 @@
 
 </template>
 
-<script>
+<script type="application/javascript">
 
 export default {
     name: "SearchInput",
@@ -82,7 +83,6 @@ export default {
 
         onClick() {
             this.ttApiRequest(this.userQuery.text);   
-            debugger 
         },
 
         searchPath() {
@@ -104,6 +104,7 @@ export default {
             })
             .catch(er => {
                 console.log(er.response.data);
+                alert("Non è stato possibile recuperare gli appartamenti.");
             })
         }
     }

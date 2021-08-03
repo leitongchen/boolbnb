@@ -120,7 +120,7 @@
 
 </template>
 
-<script>
+<script type="application/javascript">
     import InputAtom from '../formInputs/InputAtom.vue';
 
     export default {
