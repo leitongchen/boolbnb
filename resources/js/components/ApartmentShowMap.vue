@@ -4,7 +4,7 @@
         <h1>L'appartamento si trova qui:</h1>
 
         <div class='map' id='map' ref="mapRef"> TomTom map! </div>
-        <p>{{ this.apartment }}</p>
+        <!-- <p>{{ this.apartment }}</p> -->
 
     </div>
 </template>
@@ -27,7 +27,9 @@ export default {
                 container: 'map',
                 center: [this.apartment.longitude, this.apartment.latitude], //dati passano
                 zoom:14
-            })
+            });
+            this.map.addControl(new tt.FullscreenControl()); 
+            this.map.addControl(new tt.NavigationControl());
 
             const location = [this.apartment.longitude, this.apartment.latitude];
             const marker = new tt.Marker()
