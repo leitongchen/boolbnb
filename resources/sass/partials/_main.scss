@@ -70,7 +70,20 @@ h1 {
 }
 
 //DETTAGLI MESSAGGIO
+.show-msg-container {
+    .my-avatar-container {
+        height: 70px;
+        width: 70px;
+        margin-right: $spacing;
+    }
 
+    .my-reply {
+        font-size: $bodyLarge;
+        padding-top: $spacing;
+        padding-bottom: $spacing*3;
+    }
+
+}
 
 
 
