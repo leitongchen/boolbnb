@@ -71,7 +71,6 @@ class ApartmentController extends Controller
             'bathrooms_number' => 'required|integer|min:1',
             'floor_area' => 'required|numeric|min:10',
             'img_url' => 'required',
-            'visible' => 'required'
         ]);
 
         // dump($request);
@@ -171,7 +170,6 @@ class ApartmentController extends Controller
             'beds_number' => 'required|integer',
             'bathrooms_number' => 'required|integer',
             'floor_area' => 'required|numeric',
-            'visible' => 'required'
         ]);
 
         $formData = $request->all();
