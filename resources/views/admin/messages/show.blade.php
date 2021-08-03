@@ -5,7 +5,7 @@
     <div class="container">
     
 
-        <h1>DETTAGLI MESSAGGIO {{ $message->id }}</h1>
+        <h1>Richiesta per la location "{{ $apartment->title }}"</h1>
 
         <ul>
             <li>Mittente: {{ $message->sender_name }} {{ $message->sender_surname }}</li>

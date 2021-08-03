@@ -24,7 +24,7 @@
             <div class="card-body">
                 <h5 class="card-title">Sei stato contattato da: {{ $message->sender_name . ' ' . $message->sender_surname }}</h5>
                 <p class="card-text">{{ Str::limit($message->content, 150) }}</p>
-                <p>Per rispondere al tuo cliente scrivi a: <strong>{{ $message->sender_mail }}</strong>.</p>
+                <p>Per rispondere al tuo cliente scrivi a: <a href="#"><strong>{{ $message->sender_mail }}</strong></a>.</p>
 
                 <div class="msg-buttons">
                     <div class="orange_button d-inline-block">
