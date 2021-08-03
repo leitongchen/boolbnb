@@ -46,9 +46,7 @@
                 </h1>
             </div>
         </div>
-        <div>
-        nero sfumato
-        </div>
+        <div class="sfumatura_nera"></div>
     </section>
     <section id="section-2">
         <div class="search-container col-6 display_flex justify_content_ce">

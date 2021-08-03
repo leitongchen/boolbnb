@@ -28,6 +28,11 @@
   display: inline-block;
 }
 
+.sfumatura_nera {
+  height: 210px;
+  background: linear-gradient(0deg, black, transparent);
+}
+
 .white_button {
   padding: 3px 12px;
   background-color: white;
@@ -90,14 +95,6 @@
 
 .search_button a:hover {
   text-decoration: none;
-}
-
-input,
-button,
-select,
-optgroup,
-textarea {
-  font-family: initial;
 }
 
 #section-1 {
