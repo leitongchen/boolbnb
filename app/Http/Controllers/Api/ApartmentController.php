@@ -25,16 +25,9 @@ class ApartmentController extends Controller
         ]);
     }
 
-//     SELECT * 
-// FROM `apartments`	 
-// JOIN `apartment_extra_service`
-// 	ON `apartments`.id = `apartment_extra_service`.`apartment_id`
-// WHERE `apartment_extra_service`.`extra_services_id` = 4
-//  AND `beds_number` > 1 
-
     public function filter(Request $request)
     {
-        $filters = $request->only(["rooms_number", "bathrooms_number", "extra_services"]);
+        $filters = $request->only(["rooms_number", "beds_number", "extra_services"]);
         
         $positionData = $request->only(["query", "position", "radius"]);
 
@@ -45,17 +38,24 @@ class ApartmentController extends Controller
         $longitude = $position->lng;
         $radius = $positionData['radius'];
 
-        $result = Utilities::radiusSearch($latitude, $longitude, $radius)->with('extra_services');
-        
-        
-        // Apartment::select(DB::raw("id, title, address_street, street_number, city, zip_code, province, nation, latitude, longitude, rooms_number, beds_number, bathrooms_number, floor_area, img_url, visible,
-        // ( 6371 * acos( cos( radians('$latitude') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians( latitude ) ) ) ) AS distance"))
-        //     ->havingRaw('distance <' . $radius)
-        //     ->orderBy('distance')
-        //     ->with('extra_services');   
+        // SELECT `apartments`.id, COUNT(*) as `count_extra_service`,
+        // ( 6371 * acos( cos( radians(45.490278) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(12.2425) ) + sin( radians(45.490278) ) * sin( radians( latitude ) ) ) ) AS `distance` 
+        // FROM `apartments` 
+        // JOIN `apartment_extra_service` 
+        //     ON `apartments`.`id` = `apartment_extra_service`.`apartment_id` 
+        // WHERE `extra_services_id` IN (1,4) 
+        // GROUP BY `apartments`.id
+        //     HAVING `count_extra_service` = 2
+        //     AND `distance` < 50 
+        //     ORDER BY `distance` 
 
-        // Utilities::radiusSearch($latitude, $longitude, $radius);
+        $result = Apartment::select(DB::raw("count(*) as count_extra_service, apartments.id, title, address_street, street_number, city, zip_code, province, nation, latitude, longitude, rooms_number, beds_number, bathrooms_number, floor_area, img_url, visible,
+        ( 6371 * acos( cos( radians('$latitude') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians( latitude ) ) ) ) AS distance"))
+            ->havingRaw('distance <' . $radius)
+            ->orderBy('distance')
+            ->with('extra_services');
 
+    
         foreach ($filters as $filter => $value) {
 
             if ($filter === "extra_services") {
@@ -65,7 +65,9 @@ class ApartmentController extends Controller
                 }
 
                 $result->join("apartment_extra_service", "apartments.id", "=", "apartment_extra_service.apartment_id")
-                    ->whereIn("apartment_extra_service.extra_services_id", $value);
+                    ->whereIn("apartment_extra_service.extra_services_id", $value)
+                    ->groupBy('apartments.id')
+                    ->havingRaw('count_extra_service =' . count($value));
 
             } else {
                 $result->where($filter, ">", $value);
@@ -74,9 +76,6 @@ class ApartmentController extends Controller
 
         $apartments = $result->get();
 
-        // foreach ($apartments as $apartment) {
-        //     $apartment->img_url = $apartment->img_url ? asset('storage/' .$apartment->img_url) : "https://www.linga.org/site/photos/Largnewsimages/image-not-found.png";
-        // }
         return response()->json([
             "success" => true,
             "filters" => $filters,
@@ -85,7 +84,6 @@ class ApartmentController extends Controller
             "latitude" => $latitude,
             "longitude" => $longitude,
             "radius" => $radius,
-
           ]);
     }
 }
