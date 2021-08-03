@@ -46,6 +46,28 @@ h1 {
 
 }
 
+.card {
+
+    box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+    
+    .my-card-header {
+        background-color: $functional_three;
+    }
+}
+
+.msg-buttons {
+    display: flex;
+    justify-content: flex-end;
+    
+    form {
+        .orange_button {
+            margin-left: $spacing;
+            color: white;
+            background-color: #f15730;
+        }
+    }
+    
+}
 
 
 

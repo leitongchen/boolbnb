@@ -58,20 +58,20 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'address_street' => 'required|max:255|min:2',
-            'street_number' => 'required|max:10',
-            'city' => 'required|max:100|min:2',
-            'zip_code' => 'required|max:10',
-            'province' => 'required|max:100|min:2',
-            'nation' => 'required|max:100|min:2',
-            'rooms_number' => 'required|integer|min:1',
-            'beds_number' => 'required|integer|min:1',
-            'bathrooms_number' => 'required|integer|min:1',
-            'floor_area' => 'required|numeric|min:10',
-            'img_url' => 'required',
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'address_street' => 'required|max:255|min:2',
+        //     'street_number' => 'required|max:10',
+        //     'city' => 'required|max:100|min:2',
+        //     'zip_code' => 'required|max:10',
+        //     'province' => 'required|max:100|min:2',
+        //     'nation' => 'required|max:100|min:2',
+        //     'rooms_number' => 'required|integer|min:1',
+        //     'beds_number' => 'required|integer|min:1',
+        //     'bathrooms_number' => 'required|integer|min:1',
+        //     'floor_area' => 'required|numeric|min:10',
+        //     'img_url' => 'required',
+        // ]);
 
         // dump($request);
         // dump($request->user());
