@@ -18,25 +18,27 @@ export default {
         return {
             // location: [],
             map: {},
-            marker: []
         }
     },
     mounted() {
         this.map = tt.map({
             key: "E8JECf2Pom9XoKTM5Gs0GGdIBDUOYbnS",
             container: 'map',
-            center: [11.005780, 45.443520],
+            center: [this.apartment.longitude, this.apartment.latitude], //dati passano
             zoom:14
         })
 
         // var location = [(apartment.longitude, apartment.latitude)];
-        var HQ = { lat: 45.443520, lng: 11.005780 }
+        var location = [45.443520, 11.005780];
 
         console.log(location);
 
-        this.marker = new tt.Marker()
-        .setLngLat(HQ)
+        var marker = new tt.Marker()
+        .setLngLat(location)
         .addTo(map);
+
+        // const marker = new tt.Marker().setLngLat(location).setPopup(new tt.Popup({
+        // offset: 35}).setHTML("location")).addTo(map);
     }
 };
 </script>
