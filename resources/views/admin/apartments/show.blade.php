@@ -60,20 +60,20 @@
                     <H4><i class="fas fa-bed"></i> LETTI<i class="fa-solid fa-bed-empty"></i>: {{ $apartment->beds_number }} </H4>
                     <H4><i class="fas fa-bath"></i> BAGNI: {{ $apartment->bathrooms_number }} </H4>
                     <H4><i class="fas fa-chart-area"></i> MQ: {{ $apartment->floor_area}} </H4>
-
-
                 </div>
+                @if ($apartment->extra_services->count() > 0))
                 <div class="padx col-xl-6 col-md-12 col-sm-12 text-center service_right">
                     <H2>SERVIZI</H2>
                     @foreach($apartment->extra_services as $extraService)
                     <li>{{ $extraService->name }}</li>
                     @endforeach
                 </div>
+                @endif
             </div>
         </section>
 
         {{-- Quinta section --}}
-        <section class="form-message">
+        {{-- <section class="form-message">
             <h2 class="text-center">Ti piace questo appartamento?</h2>
             <form action="{{ route("messages.store")}}" method="post">
                 @csrf
@@ -110,9 +110,9 @@
                 </div>
 
             </form>
-        </section>
+        </section> --}}
 
-    <ul>
+    {{-- <ul>
         <li>{{ $apartment->address_street . ' N° ' . $apartment->street_number . ', ' . $apartment->city . ', ' . $apartment->zip_code . ', ' . $apartment->nation }}</li>
         <li>Latitudine: {{ $apartment->latitude }}</li>
         <li>Longitudine: {{ $apartment->longitude }}</li>
@@ -137,7 +137,7 @@
             </ul>
         </li>
         @endif
-    </ul>
+    </ul> --}}
 
     <button class="btn btn-warning"> <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a> <br></button>
 
@@ -169,7 +169,6 @@
         <apartment-show-map
         :apartment="{{$apartment}}">
         </apartment-show-map>
-
     </div>
 
     </div>
