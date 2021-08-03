@@ -28,21 +28,29 @@
             </h1>
 
             <div id="app">
-
                 <search-input>
                 </search-input>
-
             </div>
+
+            @include('alerts.payment')
            
+            <h1>Sponsored apartments</h1>
+            @dump($sponsored)
+
+            <h1>Last apartments</h1>
+            @dump($apartments)
 
             <div class="links">
                 <a href="{{ route('apartments.index') }}">INDEX APPARTAMENTI PUBBLICO</a>
             </div>
 
+            
+
 
         </div>
     </div>
-
+    
+    @include('layouts.partials.footer')
     @include('partials.scripts')
 </body>
 </html>

@@ -9,6 +9,7 @@
             <input type="hidden" name="apartment_id" :value="this.apartment.id">
             <input type="hidden" name="user_id" :value="this.userId">
 
+
             <input-atom
                 label="Titolo riepilogativo"
                 name="title"
@@ -16,7 +17,7 @@
             ></input-atom>
 
             <input-atom
-                label="Via"
+                label="Indirizzo"
                 name="address_street"
                 v-model="apartment.address_street"
             ></input-atom>
@@ -83,13 +84,13 @@
 
             <div v-for="extraService in extraServices" :key="extraService.id">
 
-                <label>
+                <!-- <label>
                     <input name="extraServices[]" type="checkbox" 
                     :value="extraService.id" 
                     v-model="checkedExtraServices"
                     >
                     {{ extraService.name }}
-                </label>
+                </label> -->
 
             </div>
 
@@ -119,7 +120,7 @@
 
 </template>
 
-<script>
+<script type="application/javascript">
     import InputAtom from '../formInputs/InputAtom.vue';
 
     export default {

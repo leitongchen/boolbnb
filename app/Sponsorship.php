@@ -8,6 +8,6 @@ class Sponsorship extends Model
 {
     public function apartments()
     {
-        return $this->belongsToMany('App\Apartment');
+        return $this->belongsToMany('App\Apartment')->withTimestamps();
     }
 }

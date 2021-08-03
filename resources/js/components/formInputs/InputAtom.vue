@@ -7,12 +7,13 @@
             :id="label"
             :value="value"
             @input="$emit('input', $event.currentTarget.value)"
+            class="form-control"
         />
     </div>
 
 </template>
 
-<script>
+<script type="application/javascript">
     export default {
         name: "InputAtom",
         props: {

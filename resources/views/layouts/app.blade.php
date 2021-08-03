@@ -23,12 +23,13 @@
             </li>
         </ul>
     </nav>
-    
+
     <main role="main">
         @yield('content')
     </main>
+    @include('layouts.partials.footer')
 
-    
     @include('partials.scripts')
+    @yield('scripts')
 </body>
 </html>
