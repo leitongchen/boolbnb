@@ -94,9 +94,6 @@
 
             </div>
 
-            <label for="visible">Rendi visibile l'appartamento</label>
-            <input type="checkbox" name="visible" id="visible" v-model="apartment.visible"> <br>
-
             <label for="img_url">Immagine principale</label>
             <input type="file" name="img_url" ref="inputUpload" accept=".jpeg, .jpg, .png"> <br>
             

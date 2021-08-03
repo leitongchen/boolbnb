@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
+use Dotenv\Exception\ValidationException;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -58,7 +60,30 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $formData = $request->all();
+
+        // dump($formData);
+        // dump($formData['title']);
+        // dump($formData['address_street']);
+
+        // return; 
+
+        $dataArr = new Request([
+            'title' => $request->title,
+            'address_street' => $request->address_street,
+            'street_number' => $request->street_number,
+            'city' => $request->city,
+            'zip_code' => $request->zip_code,
+            'province' => $request->province,
+            'nation' => $request->nation,
+            'rooms_number' => $request->rooms_number,
+            'beds_number' => $request->beds_number,
+            'bathrooms_number' => $request->bathrooms_number,
+            'floor_area' => $request->floor_area,
+            'img_url' => $request->img_url,
+        ]);
+
+        $dataArr->validate([
             'title' => 'required',
             'address_street' => 'required|max:255|min:2',
             'street_number' => 'required|max:10',
@@ -72,15 +97,14 @@ class ApartmentController extends Controller
             'floor_area' => 'required|numeric|min:10',
             'img_url' => 'required',
         ]);
-
+  
+        // dump($request->all());
         // dump($request);
-        // dump($request->user());
         // return; 
 
-        $formData = $request->all();
         $newApartment = new Apartment;
         
-        $newApartment->user_id = $formData['user_id'];
+        $newApartment->user_id = $request->user_id;
         
         $newApartment->fill($formData);
 
