@@ -4,36 +4,37 @@
 
 <div class="container">
     <div class="apartment-index-container">
-        <h1>I tuoi appartamenti</h1>
-
-        <button class="btn btn-secondary"><a href="{{ route('admin.apartments.create') }}">Aggiungi un nuovo appartamento</a></button>
-
+        <h1 class="text-center">I tuoi appartamenti</h1>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 card-group">
             @foreach ($apartments as $apartment)
-            <div class="col">
+            <div class="col mb-3">
                 <div class="card my-apartment-card overflow-hidden h-100">
-                    <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top my-card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $apartment->title }}</h5>
+                    <div class="my-card-img-container">
+                        <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top my-card-img-top img-fluid" alt="...">
+                    </div>
+                    <div class="card-body my-card-body d-flex align-content-around flex-column">
+ 
+                        <h5 class="card-title my-card-title">{{ $apartment->title }}</h5>
+                        <p>
+                            @if ($apartment->rooms_number = 1) 
+                                <span>{{ $apartment->rooms_number }} stanza - </span>
+                            @else 
+                                <span>{{ $apartment->rooms_number }} stanze - </span>
+                            @endif
 
-                        @if ($apartment->rooms_number = 1) 
-                            <span>{{ $apartment->rooms_number }} stanza - </span>
-                        @else 
-                            <span>{{ $apartment->rooms_number }} stanze - </span>
-                        @endif
+                            @if ($apartment->beds_number = 1) 
+                                <span>{{ $apartment->beds_number }} letto - </span>
+                            @else 
+                                <span>{{ $apartment->beds_number }} letti - </span>
+                            @endif
 
-                        @if ($apartment->beds_number = 1) 
-                            <span>{{ $apartment->beds_number }} letto - </span>
-                        @else 
-                            <span>{{ $apartment->beds_number }} letti - </span>
-                        @endif
-
-                        @if ($apartment->bathrooms_number = 1) 
-                            <span>{{ $apartment->bathrooms_number }} bagno</span>
-                        @else 
-                            <span>{{ $apartment->bathrooms_number }} bagni</span>
-                        @endif
+                            @if ($apartment->bathrooms_number = 1) 
+                                <span>{{ $apartment->bathrooms_number }} bagno</span>
+                            @else 
+                                <span>{{ $apartment->bathrooms_number }} bagni</span>
+                            @endif
+                        </p>
 
                         @if ($apartment->extra_services->count() > 0)
                         <p class="card-text">
@@ -47,30 +48,30 @@
                         </p>
                         @endif
 
-                        <a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}" class="white_button">Vedi i dettagli</a>
+                        <div class="m-auto my-btn-container">
+                            <a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}" class="white_button">Vedi i dettagli</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            @endforeach
+        </div>
+        <div class="d-flex justify-content-center pt-5 pb-5">
+            <button class="my-btn-container"><a href="{{ route('admin.apartments.create') }}">Aggiungi un nuovo appartamento</a></button>
+        </div>
+    </div>
+</div>
 
-            {{-- <h3>{{ $apartment->title }}
-            <h3>
-                <ul>
+@endsection
+
+         {{--  DATI CHE NON HO INSERITO NELLA CARD       
                     <li>{{ $apartment->address_street . ' N° ' . $apartment->street_number . ', ' . $apartment->city . ', ' . $apartment->zip_code . ', ' . $apartment->nation }}</li>
                     <li>Latitudine: {{ $apartment->latitude }}</li>
                     <li>Longitudine: {{ $apartment->longitude }}</li>
-                    <li>Locali: {{ $apartment->rooms_number }}</li>
-                    <li>Posti letto: {{ $apartment->beds_number }}</li>
-                    <li>Bagni: {{ $apartment->bathrooms_number }}</li>
                     <li>Metratura: {{ $apartment->floor_area . ' mq' }}</li>
-                    <li>
-                        <img src="{{ asset('storage/' . $apartment->img_url) }}">
-
-                    </li>
                 
-                    <li>{{ $apartment->visible }}</li>
                     <li><a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}">Vedi i dettagli</a></li>
                     <li><a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a></li>
-
 
                     <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
                         @csrf
@@ -80,12 +81,4 @@
                             <input class="btn btn-danger" type="submit" value="ELIMINA">
                         </div>
 
-                    </form>
-                </ul>--}}
-                @endforeach
-        </div>
-
-    </div>
-</div>
-
-@endsection
+                    </form> --}}
