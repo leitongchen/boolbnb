@@ -23,19 +23,19 @@
  
                         <h5 class="card-title my-card-title">{{ $apartment->title }}</h5>
                         <p>
-                            @if ($apartment->rooms_number = 1) 
+                            @if ($apartment->rooms_number === 1) 
                                 <span>{{ $apartment->rooms_number }} stanza - </span>
                             @else 
                                 <span>{{ $apartment->rooms_number }} stanze - </span>
                             @endif
 
-                            @if ($apartment->beds_number = 1) 
+                            @if ($apartment->beds_number === 1) 
                                 <span>{{ $apartment->beds_number }} letto - </span>
                             @else 
                                 <span>{{ $apartment->beds_number }} letti - </span>
                             @endif
 
-                            @if ($apartment->bathrooms_number = 1) 
+                            @if ($apartment->bathrooms_number === 1) 
                                 <span>{{ $apartment->bathrooms_number }} bagno</span>
                             @else 
                                 <span>{{ $apartment->bathrooms_number }} bagni</span>

@@ -5,7 +5,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -53,7 +53,9 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
+
+        @include('partials.nav')
 
         <main role="main">
             @yield('content')
@@ -63,6 +65,6 @@
 
     </div>
 
-    @include('partials.scripts')
+     @include('partials.scripts')
 </body>
 </html>

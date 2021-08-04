@@ -1,7 +1,69 @@
+//DASHBOARD
+.my-dashboard-container {
+
+    .my-card {
+        margin-bottom: 12%;
+        margin-top: 12%;
+        border-radius: 20px;
+        overflow: hidden;
+
+        .my-user-name {
+            font-size: 12px;
+        }
+    }
+
+    
+    .my-user-pic-container {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        .my-img-fluid {
+            position: relative;
+            right: 75%;
+            top: 11%;
+            max-width: 227%;
+        }
+    }
+
+    .my-dashboard-list {
+        ul {
+            li {
+                list-style-type: none;
+
+                i {
+                    padding: 0 $spacing/2;
+                }
+
+                a {
+                    color: $text_colorOne;
+                }
+            }
+        }
+    }
+
+    .my-col {
+        background-color: $background_three;
+    }
+
+    .my-card-body {
+
+        .my-apartments-info {
+            padding: $spacing;
+            border: 1px solid $text_colorThree;
+            background-color: white;
+            border-radius: 13%;
+        }
+    }
+}
+
 //INDEX APPARTAMENTI PRIVATO
 .apartment-index-container {
     h1 {
         font-weight: bolder;
+        color: $text_colorOne;
+        padding: $spacing*2 0;
     }
 
     a {
@@ -10,6 +72,12 @@
     }
 
     @include apartment-card;
+}
+
+.description{
+    h5{
+        color: $brand_orange;
+    }
 }
 
 //Dettaglio appartamento privato
@@ -39,6 +107,18 @@
     }
 }
 
+.form-apartment{
+    margin: $spacing 0;
+    padding: $spacing*3 0;
+    .extra-service {
+        height: 100px;
+        overflow: auto;
+}
+input{
+    text-align: center;
+}
+
+}
 
 //INDEX MESSAGGI
 .my-msg-h1 {
@@ -110,4 +190,140 @@
 }
 
 
+.map-detail{
+    padding-bottom: 50px;
+    h1{
+        text-align: center;
+    }
+.map{
+    margin: auto;
+}
+}
 
+
+
+//Dettaglio appartamento
+.info-apartment{
+    margin-bottom: $spacing;
+    margin-top: $spacing*3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    i{
+        color: $brand_orange;
+    }
+    a{
+        color: white;
+    }
+    a:hover{
+        color: white;
+        text-decoration: none;
+    }
+    .row{
+        align-items: center;
+    }
+}
+
+
+// RICERCA AVANZATA
+
+.search_box {
+
+    .search_page {
+        display: flex;
+        flex-flow: nowrap;
+
+        position: relative;
+
+        .left_side {
+            height: 100vh;
+            overflow: auto;
+
+            padding: $spacing;
+
+            .apartments_container {
+                padding: $spacing*2 0;
+
+                .my_col {
+                    padding-bottom: 15px;
+                    padding-top: 15px;
+                }
+
+                .my-apartment-card {
+                    margin: 0; 
+                    min-height: 420px;
+
+                    img {
+                        max-height: 200px;
+                        object-fit: cover;
+                    }
+
+                    .apartment_details_card {
+                        >span {
+                            font-size: .75rem;
+                        }
+                    }
+                    .service_details_card {
+                        font-size: .75rem;
+                        
+                    }
+                }
+            }
+        }
+
+        .right_side {
+            position: relative;
+            right: 0;
+            bottom: 0;
+
+        }
+    }
+
+    .search_form {
+
+        background-color: white;
+        box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+
+        padding: $spacing 0;
+
+        form {
+            margin-top: $spacing;
+
+            .input_container label, .label {
+                font-size: .75rem;
+                font-weight: 600;
+                color: $brand_orange;
+                margin-bottom: 0;
+            }
+        }
+
+        .extra-service {
+            height: 100px;
+            overflow: auto;
+        }
+
+        .btns_container {
+            margin: $spacing 0;
+        }
+    
+        .btn_box {
+            padding: 0 $spacing/4; 
+        }
+    }
+
+    
+    
+    
+}
+
+//404
+.my-404-container {
+
+    h2 {
+        padding: $spacing 0;
+    }
+
+    .my-404-img {
+        height: 55vh;
+    }
+}

@@ -34,7 +34,9 @@ class SearchPageController extends Controller
             $latitude = 41.8719;
             $longitude = 12.5674;
             $query = "";
-            $apartments = Apartment::orderBy('updated_at', 'DESC')->get();
+            $apartments = Apartment::orderBy('updated_at', 'DESC')
+                ->with('extra_services')
+                ->get();
 
 
             // dump($latitude);
@@ -51,6 +53,7 @@ class SearchPageController extends Controller
             ( 6371 * acos( cos( radians('$latitude') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians( latitude ) ) ) ) AS distance"))
                 ->havingRaw('distance <' . $radius)
                 ->orderBy('distance')
+                ->with('extra_services')
                 ->get();   
 
 

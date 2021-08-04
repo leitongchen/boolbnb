@@ -1,7 +1,7 @@
 <template>
   <!-- @submit.prevent="createApartment" -->
 
-  <section class="form-message text-center">
+  <section class="form-message form-apartment">
     <form
       ref="form"
       action="/api/apartment"
@@ -13,94 +13,133 @@
       <input type="hidden" name="_token" :value="csrf" />
       <input type="hidden" name="user_id" :value="this.userId" />
 
-     <div class="row">
-       <div class="col">
-         <input-atom
-           label="Breve descrizione dell'alloggio"
-           name="title"
-           v-model="userQuery.title"
-         ></input-atom>
+      <div class="row">
+        <div class="col text-center">
+          <input-atom
+            label="Breve descrizione dell'alloggio"
+            name="title"
+            v-model="userQuery.title"
+          ></input-atom>
         </div>
       </div>
 
-      <input-atom
-        label="Indirizzo"
-        name="address_street"
-        v-model="userQuery.address_street"
-      ></input-atom>
+      <br />
 
-      <input-atom
-        label="Numero civico"
-        name="street_number"
-        v-model="userQuery.street_number"
-        inputType="number"
-      ></input-atom>
-
-      <input-atom
-        label="CAP"
-        name="zip_code"
-        v-model="userQuery.zip_code"
-        inputType="number"
-      ></input-atom>
-
-      <input-atom
-        label="Città"
-        name="city"
-        v-model="userQuery.city"
-      ></input-atom>
-
-      <input-atom
-        label="Provincia"
-        name="province"
-        v-model="userQuery.province"
-      ></input-atom>
-
-      <input-atom
-        label="Stato"
-        name="nation"
-        v-model="userQuery.nation"
-      ></input-atom>
-
-      <input-atom
-        label="Locali"
-        name="rooms_number"
-        v-model="userQuery.rooms_number"
-        inputType="number"
-      ></input-atom>
-
-      <input-atom
-        label="Posti letto"
-        name="beds_number"
-        v-model="userQuery.beds_number"
-        inputType="number"
-      ></input-atom>
-
-      <input-atom
-        label="Bagni"
-        name="bathrooms_number"
-        v-model="userQuery.bathrooms_number"
-        inputType="number"
-      ></input-atom>
-
-      <input-atom
-        label="Superficie"
-        name="floor_area"
-        v-model="userQuery.floor_area"
-        inputType="number"
-      ></input-atom>
-
-      <div v-for="extraService in extraServices" :key="extraService.id">
-        <label>
-          <input
-            name="extraServices[]"
-            type="checkbox"
-            :value="extraService.id"
-            v-model="userQuery.extra_services"
-          />
-          {{ extraService.name }}
-        </label>
+      <div class="row">
+        <div class="col-9 text-center">
+          <input-atom
+            label="Indirizzo"
+            name="address_street"
+            v-model="userQuery.address_street"
+          ></input-atom>
+        </div>
+        <div class="col-3 text-center">
+          <input-atom
+            label="Numero civico"
+            name="street_number"
+            v-model="userQuery.street_number"
+            inputType="number"
+          ></input-atom>
+        </div>
       </div>
 
+      <br />
+
+      <div class="row">
+        <div class="col-3 text-center">
+          <input-atom
+            label="CAP"
+            name="zip_code"
+            v-model="userQuery.zip_code"
+            inputType="number"
+          ></input-atom>
+        </div>
+        <div class="col-9 text-center">
+          <input-atom
+            label="Città"
+            name="city"
+            v-model="userQuery.city"
+          ></input-atom>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col text-center">
+          <input-atom
+            label="Provincia"
+            name="province"
+            v-model="userQuery.province"
+          ></input-atom>
+        </div>
+        <div class="col text-center">
+          <input-atom
+            label="Stato"
+            name="nation"
+            v-model="userQuery.nation"
+          ></input-atom>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col-3 text-center">
+          <input-atom
+            label="Locali"
+            name="rooms_number"
+            v-model="userQuery.rooms_number"
+            inputType="number"
+          ></input-atom>
+        </div>
+        <div class="col-3 text-center">
+          <input-atom
+            label="Posti letto"
+            name="beds_number"
+            v-model="userQuery.beds_number"
+            inputType="number"
+          ></input-atom>
+        </div>
+        <div class="col-3 text-center">
+          <input-atom
+            label="Bagni"
+            name="bathrooms_number"
+            v-model="userQuery.bathrooms_number"
+            inputType="number"
+          ></input-atom>
+        </div>
+        <div class="col-3 text-center">
+          <input-atom
+            label="Superficie"
+            name="floor_area"
+            v-model="userQuery.floor_area"
+            inputType="number"
+          ></input-atom>
+        </div>
+      </div>
+
+      <br />
+      <span>Aggiungi servizi extra</span>
+      <br />
+      <br>
+      <div class="row extra-service">
+        <div class="col d-flex justify-content-between flex-wrap px-2 flex-column">
+          <div v-for="extraService in extraServices" :key="extraService.id">
+            <label>
+              <input
+                name="extraServices[]"
+                type="checkbox"
+                :value="extraService.id"
+                v-model="userQuery.extra_services"
+              />
+              {{ extraService.name }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
       <!-- @foreach($extraServices as $extraService)
             <label>
                 <input name="extraServices[]" type="checkbox" value="{{ $extraService->id }}">
@@ -125,7 +164,7 @@
         accept=".jpeg, .jpg, .png"
       />
       <br />
-
+      <br>
 
       <input type="hidden" name="latitude" :value="this.userQuery.latitude"/>
       <input type="hidden" name="longitude" :value="this.userQuery.longitude"/>
@@ -151,8 +190,8 @@
         Genera Latitudine e Longitudine
       </a> -->
 
-      <div class="form-group">
-        <button @click.prevent="getLatLng()">Crea appartamento</button>
+      <div class="form-group text-center">
+        <button class="button_create" @click.prevent="getLatLng()">Crea appartamento</button>
       </div>
     </form>
   </section>
