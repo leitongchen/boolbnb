@@ -4,6 +4,8 @@
     .my-card {
         margin-bottom: 12%;
         margin-top: 12%;
+        border-radius: 20px;
+        overflow: hidden;
 
         .my-user-name {
             font-size: 12px;
@@ -312,4 +314,16 @@ input{
     
     
     
+}
+
+//404
+.my-404-container {
+
+    h2 {
+        padding: $spacing 0;
+    }
+
+    .my-404-img {
+        height: 55vh;
+    }
 }
