@@ -4,7 +4,7 @@
         {{-- LOGO BOOLBNB --}}
         <div class="logo_container">
             <a href="{{ route('index') }}">
-                <img src="images/BoolBnb_logo.png" alt="">
+                <img src="{{ asset('images/BoolBnb_logo.png') }}" alt="">
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
                                 <span></span>
                                 <span></span>
                             </div> --}}
-                            <img src="images/undraw_male_avatar_323b.svg" alt="">
+                            <img src="{{ asset('images/undraw_male_avatar_323b.svg') }}" alt="">
                         </a>
                     </div>
                     @else
