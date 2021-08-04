@@ -4,9 +4,8 @@
 
         <div class="container">
 
-                {{$errors}}
+                {{-- {{$errors}} --}}
 
-                <h1>Modifica un appartamento</h1>
 
                 <div id="app">
 
