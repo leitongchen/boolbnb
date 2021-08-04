@@ -97,14 +97,14 @@ export default {
                 }
             })
             .then(resp => {
-                alert('Apartment added')
+                // alert('Apartment added')
                 console.log(resp)
 
                 this.$refs.form.submit()
             })
             .catch(er => {
                 console.log(er.response.data);
-                alert("Non è stato possibile recuperare gli appartamenti.");
+                // alert("Non è stato possibile recuperare gli appartamenti.");
             })
         }
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
+use Dotenv\Exception\ValidationException;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -74,16 +76,35 @@ class ApartmentController extends Controller
         // ]);
 
         // dump($request);
-        // dump($request->user());
+        // dump($request->title);
+        // dump($request->address_street);
+        // dump($dataArr);
         // return; 
 
-        $formData = $request->all();
+        // $request->validate([
+        //     'title' => 'required',
+        //     'address_street' => 'required|max:255|min:2',
+        //     'street_number' => 'required|max:10',
+        //     'city' => 'required|max:100|min:2',
+        //     'zip_code' => 'required|max:10',
+        //     'province' => 'required|max:100|min:2',
+        //     'nation' => 'required|max:100|min:2',
+        //     'rooms_number' => 'required|integer|min:1',
+        //     'beds_number' => 'required|integer|min:1',
+        //     'bathrooms_number' => 'required|integer|min:1',
+        //     'floor_area' => 'required|numeric|min:10',
+        //     'img_url' => 'required',
+        // ]);
+  
+        // dump($request->all());
+        // dump($request->user_id);
+        // return; 
+        $formData = $request->all(); 
+
         $newApartment = new Apartment;
         
-        $newApartment->user_id = $formData['user_id'];
-        
         $newApartment->fill($formData);
-
+        $newApartment->user_id = $request->user_id;
 
         // dump($newApartment);
         // dump($formData);
@@ -174,12 +195,9 @@ class ApartmentController extends Controller
 
         $formData = $request->all();
         
-        $apartment = Apartment::findOrFail($formData['apartment_id']);
-       
+        $apartmentId = (int)$request->apartment_id;
 
-        // dump($request->all());
-        // dd($apartment);  
-        // return; 
+        $apartment = Apartment::findOrFail($apartmentId);
 
         // $apartment->apartment_id = $formData['apartment_id'];
         if (!key_exists("extraServices", $formData)) {
@@ -198,10 +216,7 @@ class ApartmentController extends Controller
 
             $formData["img_url"] = $storageResult;
         }
-
         $apartment->update($formData);
-        
-        // if($formData['user_id'] == $apartment['user_id']) {}
 
         return redirect()->route('admin.apartments.index');
     }

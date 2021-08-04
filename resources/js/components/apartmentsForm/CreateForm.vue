@@ -3,7 +3,7 @@
 
   <section class="form-message text-center">
     <form
-      @submit="createApartment"
+      ref="form"
       action="/api/apartment"
       method="post"
       enctype="multipart/form-data"
@@ -126,7 +126,11 @@
       />
       <br />
 
-      <label for="latitude">
+
+      <input type="hidden" name="latitude" :value="this.userQuery.latitude"/>
+      <input type="hidden" name="longitude" :value="this.userQuery.longitude"/>
+
+      <!-- <label for="latitude">
         <input
           type="text"
           id="latitude"
@@ -143,12 +147,12 @@
         />
       </label>
 
-      <a href="#" @click.prevent="getLatLng" class="btn btn-primary"
-        >Genera Latitudine e Longitudine</a
-      >
+      <a href="#" @click.prevent="getLatLng" class="btn btn-primary">
+        Genera Latitudine e Longitudine
+      </a> -->
 
       <div class="form-group">
-        <button>Crea appartamento</button>
+        <button @click.prevent="getLatLng()">Crea appartamento</button>
       </div>
     </form>
   </section>
@@ -169,6 +173,7 @@
         data() {
             return {
                 // querySearch: "",
+                apartmentData: null,
 
                 userQuery: {
                     latitude:"",
@@ -204,21 +209,15 @@
 
             clearQuery(addressObj) {
 
-                let valueArr = (Object.values(addressObj)).join(', ');
+                let value = (Object.values(addressObj)).join(', ');
 
-                return valueArr;
+                return value;
             },
 
             getLatLng() {
                 
                 const el = this.userQuery;
                 this.apartmentData = this.userQuery;
-
-                // const el = this.allApartmentsData[2];
-                // this.apartmentData = this.allApartmentsData[2];
-
-                console.log(this.apartmentData);
-                console.log('ciao');
 
                 let completeAddress = {
                     address_street: el.address_street,
@@ -237,7 +236,6 @@
 
                 this.apartmentData.latitude = position.lat;
                 this.apartmentData.longitude = position.lng;
-
             },
 
             ttApiRequest(query) {
@@ -250,6 +248,12 @@
                 }).go().then(resp => {
                     const position = resp.results[0].position; 
                     this.setLatLng(position);
+
+                    this.createApartment(); 
+
+                    Vue.nextTick(() => {
+                        this.$refs.form.submit();
+                    });
                 })
                 .catch(er => {
                     console.log(er);
@@ -267,7 +271,6 @@
                 axios.post('http://127.0.0.1:8000/api/apartment', { 
                     formData,
                     ...this.apartmentData, 
-                    // user_id = this.userId
                     }, 
                     {
                     headers: {
@@ -278,6 +281,9 @@
                 .then(resp => {
                     alert('Apartment added')
                     console.log(resp)
+
+                    // this.$refs.form.submit()
+
                 })
                 .catch(er => {
                     console.log(er.response.data);
