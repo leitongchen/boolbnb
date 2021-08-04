@@ -43,10 +43,6 @@
             <div class="links">
                 <a href="{{ route('apartments.index') }}">INDEX APPARTAMENTI PUBBLICO</a>
             </div>
-
-            
-
-
         </div>
     </div>
     

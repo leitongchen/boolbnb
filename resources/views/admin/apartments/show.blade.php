@@ -61,7 +61,7 @@
                     <H4><i class="fas fa-bath"></i> BAGNI: {{ $apartment->bathrooms_number }} </H4>
                     <H4><i class="fas fa-chart-area"></i> MQ: {{ $apartment->floor_area}} </H4>
                 </div>
-                @if ($apartment->extra_services->count() > 0))
+                @if ($apartment->extra_services->count() > 0)
                 <div class="padx col-xl-6 col-md-12 col-sm-12 text-center service_right">
                     <H2>SERVIZI</H2>
                     @foreach($apartment->extra_services as $extraService)
