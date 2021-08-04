@@ -33,7 +33,7 @@
         
             <h2 class="text-center text_color_two">In evidenza</h2>
             <div class="row card-group">
-                @foreach ($apartments as $apartment)
+                @foreach ($sponsored as $apartment)
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
                     <div class="card my-apartment-card overflow-hidden h-100">
                         <div class="my-card-img-container">
@@ -75,7 +75,7 @@
                             @endif
 
                             <div class="m-auto my-btn-container">
-                                <a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}" class="white_button">Vedi i dettagli</a>
+                                <a href="{{ route('apartments.show', $apartment->id) }}" class="btn_bool btn_outline">Vedi i dettagli</a>
                             </div>
                         </div>
                     </div>
