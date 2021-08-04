@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="input-group rounded justify_content_ce text-center">
-      <form ref="form" action="/api/apartments/search" method="post">
+      <form ref="form" action="/api/apartments/search" method="post" class="w-100x">
         <input type="hidden" name="_token" :value="csrf" />
         <input type="hidden" name="latitude" v-model="this.position.lat" />
         <input type="hidden" name="longitude" v-model="this.position.lng" />
