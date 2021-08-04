@@ -34,7 +34,37 @@
     </div>
 
     <div class="container">
-
+        <div class="info-apartment">
+            <div class="row">
+                <i class="fas fa-pencil-alt"></i>
+                <span> Modifica il tuo appartamento</span>
+                <a class="btn btn-primary" href="{{ URL::signedRoute('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a>
+            </div>
+            <br>
+            <div class="row">
+                <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div>
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Elimina il tuo appartamento</span>
+                        <input class="btn btn-danger" type="submit" value="ELIMINA">
+                    </div>
+                </form>
+                @if ($userId == $apartment->user_id)
+            </div>
+            <br>
+            <div class="row">
+                {{-- <a href="{{ URL::signedRoute('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a> --}}
+                <i class="fas fa-envelope"></i>
+                <span> Leggi i messaggi ricevuti </span>
+                <button class="btn btn-warning">
+                    <a class="text-uppercase" href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Messaggi</a>
+                </button>
+                @endif
+                {{-- <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a> --}}
+            </div>
+        </div>
         {{-- Seconda section --}}
         <section class="description">
             <div class="row">
@@ -72,8 +102,6 @@
             </div>
         </section>
 
-
-
         {{-- Sesta section --}}
         <section class="map-apartament">
 
@@ -81,26 +109,8 @@
                 <apartment-show-map :apartment="{{$apartment}}">
                 </apartment-show-map>
             </div>
-
-            <br>
-            <br>
+            <p class="text-center">{{ $apartment->address_street . ' N° ' . $apartment->street_number . ', ' . $apartment->city . ', ' . $apartment->zip_code . ', ' . $apartment->nation }}</p>
         </section>
-        <div class="info-apartment">
-
-            <button class="btn btn-warning"><a href="{{ URL::signedRoute('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a></button>
-            <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <div class="form-group">
-                    <input class="btn btn-danger" type="submit" value="ELIMINA">
-                </div>
-            </form>
-            @if ($userId == $apartment->user_id)
-            {{-- <a href="{{ URL::signedRoute('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a> --}}
-            <a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a> <br>
-            @endif
-            <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>
-        </div>
     </div>
 
 

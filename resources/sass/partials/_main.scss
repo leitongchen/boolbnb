@@ -12,6 +12,12 @@
     @include apartment-card;
 }
 
+.description{
+    h5{
+        color: $brand_orange;
+    }
+}
+
 //Dettaglio appartamento privato
 .details-apartament{
     section{
@@ -121,10 +127,27 @@ h1 {
 }
 }
 
+
+//Dettaglio appartamento
 .info-apartment{
-    display: flex;
-    justify-content: space-between;
     margin-bottom: $spacing;
+    margin-top: $spacing*3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    i{
+        color: $brand_orange;
+    }
+    a{
+        color: white;
+    }
+    a:hover{
+        color: white;
+        text-decoration: none;
+    }
+    .row{
+        align-items: center;
+    }
 }
 
 
