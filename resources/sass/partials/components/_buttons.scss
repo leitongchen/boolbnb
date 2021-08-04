@@ -103,3 +103,16 @@
 .link_bool {
     cursor: pointer;
 }
+
+
+// LINKS
+
+a.my_link {
+    color: $text_colorTwo;
+    text-decoration: none;
+
+    &:hover {
+        color: $brand_orange;
+        text-decoration: underline;
+    }
+}

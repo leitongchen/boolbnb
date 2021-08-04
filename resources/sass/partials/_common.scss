@@ -52,3 +52,17 @@ input, button, select, optgroup, textarea {
     font-family: initial;
 }
 
+
+
+// TYPOGRAPHY
+
+h3, h6 {
+    color: $brand_orange;
+    font-weight: 700;
+}
+
+p {
+    color: $text_colorOne;
+}
+
+

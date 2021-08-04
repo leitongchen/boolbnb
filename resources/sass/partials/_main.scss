@@ -308,8 +308,15 @@ input{
             padding: 0 $spacing/4; 
         }
     }
+}
 
-    
-    
+// SPONSORIZZAZIONI 
+.sponsorship_form {
+
+    .cta_form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     
 }
