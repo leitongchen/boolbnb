@@ -39,6 +39,17 @@
     }
 }
 
+.form-apartment{
+    margin: $spacing 0;
+    .extra-service {
+        height: 93px;
+        overflow: auto;
+}
+input{
+    text-align: center;
+}
+
+}
 
 //INDEX MESSAGGI
 h1 {
@@ -97,6 +108,23 @@ h1 {
         padding-bottom: $spacing*3;
     }
 
+}
+
+.map-detail{
+    background-color: #ffd8cc;
+    padding-bottom: 50px;
+    h1{
+        text-align: center;
+    }
+.map{
+    margin: auto;
+}
+}
+
+.info-apartment{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing;
 }
 
 
