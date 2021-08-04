@@ -81,52 +81,34 @@ export default {
         });
     },
 
-    ttApiRequest(query) {
-      tt.services
-        .fuzzySearch({
-          key: this.api_key,
-          query: query,
-          // boundingBox: map.getBounds()
-        })
-        .go()
-        .then((resp) => {
-          const position = resp.results[0].position;
-          this.setLatLng(position);
-
-          if (this.position.lat && this.position.lng) {
-            this.searchPath();
-          }
-        })
-        .catch((er) => {
-          console.log(er);
-        });
-    },
 
     onClick() {
-      this.ttApiRequest(this.userQuery.text);
+        this.ttApiRequest(this.userQuery.text);   
     },
 
     searchPath() {
-      const formData = new FormData();
 
-      axios
-        .post("http://127.0.0.1:8000/api/apartments/search", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            // 'Authorization': `Bearer ${this.auth_token}`
-          },
-        })
-        .then((resp) => {
-          // alert('Apartment added')
-          console.log(resp);
+        const formData = new FormData();
 
-          this.$refs.form.submit();
+        axios.post('http://127.0.0.1:8000/api/apartments/search', formData,
+        {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                // 'Authorization': `Bearer ${this.auth_token}`
+            }
         })
-        .catch((er) => {
-          console.log(er.response.data);
-          // alert("Non è stato possibile recuperare gli appartamenti.");
-        });
-    },
-  },
-};
+        .then(resp => {
+            // alert('Apartment added')
+            console.log(resp)
+
+            this.$refs.form.submit()
+        })
+        .catch(er => {
+            console.log(er.response.data);
+            // alert("Non è stato possibile recuperare gli appartamenti.");
+        })
+    }
+  }
+}
+
 </script>

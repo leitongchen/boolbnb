@@ -1,18 +1,12 @@
 <template>
     <div>
-        <h1>Qui mappa store locator</h1>
+        
 
         <div class='map' id='map' ref="mapRef"> TomTom map! </div>
         <!-- <p> appartamenti {{ apartments }}</p> -->
 
 
-        <div v-for="el in apartments" :key="el.id">
-
-            <apartment-card
-            :apartment="el"
-            ></apartment-card>
-
-        </div>
+        
         
 
     </div>
@@ -53,7 +47,7 @@ export default {
 
 <style> 
 #map { 
-    height: 50vh; 
+    height: 100vh; 
     width: 50vw; 
 } 
 </style> 

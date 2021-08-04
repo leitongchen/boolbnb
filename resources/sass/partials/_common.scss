@@ -5,6 +5,9 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+body {
+    background-color: white;
+}
 
 .search-container{
     height: 190px;
@@ -17,6 +20,10 @@
         border: solid 2px $brand_orange;
     }
 
+}
+
+input, button, select, optgroup, textarea {
+    font-family: initial;
 }
 
 .text_align_center{
