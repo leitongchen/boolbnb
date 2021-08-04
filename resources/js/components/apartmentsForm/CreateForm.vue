@@ -1,127 +1,164 @@
 <template>
-<!-- @submit.prevent="createApartment" -->
-    <div>
-        <form @submit="createApartment"
-        action="/api/apartment" method="post" enctype="multipart/form-data">
+  <!-- @submit.prevent="createApartment" -->
 
-            <input type="hidden" name="_token" :value="csrf">
-            <input type="hidden" name="user_id" :value="this.userId">
+  <section class="form-message text-center">
+    <form
+      ref="form"
+      action="/api/apartment"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <h1 class="text-center">Crea un nuovo appartamento</h1>
 
-            <input-atom
-                label="Breve descrizione dell'alloggio"
-                name="title"
-                v-model="userQuery.title"
-            ></input-atom>
+      <input type="hidden" name="_token" :value="csrf" />
+      <input type="hidden" name="user_id" :value="this.userId" />
 
-            <input-atom
-                label="Via"
-                name="address_street"
-                v-model="userQuery.address_street"
-            ></input-atom>
+     <div class="row">
+       <div class="col">
+         <input-atom
+           label="Breve descrizione dell'alloggio"
+           name="title"
+           v-model="userQuery.title"
+         ></input-atom>
+        </div>
+      </div>
 
-            <input-atom
-                label="Numero civico"
-                name="street_number"
-                v-model="userQuery.street_number"
-                inputType="number"
-            ></input-atom>
+      <input-atom
+        label="Indirizzo"
+        name="address_street"
+        v-model="userQuery.address_street"
+      ></input-atom>
 
-            <input-atom
-                label="CAP"
-                name="zip_code"
-                v-model="userQuery.zip_code"
-                inputType="number"
-            ></input-atom>
+      <input-atom
+        label="Numero civico"
+        name="street_number"
+        v-model="userQuery.street_number"
+        inputType="number"
+      ></input-atom>
 
-            <input-atom
-                label="Città"
-                name="city"
-                v-model="userQuery.city"
-            ></input-atom>
+      <input-atom
+        label="CAP"
+        name="zip_code"
+        v-model="userQuery.zip_code"
+        inputType="number"
+      ></input-atom>
 
-            <input-atom
-                label="Provincia"
-                name="province"
-                v-model="userQuery.province"
-            ></input-atom>  
+      <input-atom
+        label="Città"
+        name="city"
+        v-model="userQuery.city"
+      ></input-atom>
 
-            <input-atom
-                label="Stato"
-                name="nation"
-                v-model="userQuery.nation"
-            ></input-atom>
+      <input-atom
+        label="Provincia"
+        name="province"
+        v-model="userQuery.province"
+      ></input-atom>
 
-            <input-atom
-                label="Locali"
-                name="rooms_number"
-                v-model="userQuery.rooms_number"
-                inputType="number"
-            ></input-atom>
+      <input-atom
+        label="Stato"
+        name="nation"
+        v-model="userQuery.nation"
+      ></input-atom>
 
-            <input-atom
-                label="Posti letto"
-                name="beds_number"
-                v-model="userQuery.beds_number"
-                inputType="number"
-            ></input-atom>
+      <input-atom
+        label="Locali"
+        name="rooms_number"
+        v-model="userQuery.rooms_number"
+        inputType="number"
+      ></input-atom>
 
-            <input-atom
-                label="Bagni"
-                name="bathrooms_number"
-                v-model="userQuery.bathrooms_number"
-                inputType="number"
-            ></input-atom>
+      <input-atom
+        label="Posti letto"
+        name="beds_number"
+        v-model="userQuery.beds_number"
+        inputType="number"
+      ></input-atom>
 
-            <input-atom
-                label="Superficie"
-                name="floor_area"
-                v-model="userQuery.floor_area"
-                inputType="number"
-            ></input-atom>
+      <input-atom
+        label="Bagni"
+        name="bathrooms_number"
+        v-model="userQuery.bathrooms_number"
+        inputType="number"
+      ></input-atom>
 
-            <div v-for="extraService in extraServices" :key="extraService.id">
+      <input-atom
+        label="Superficie"
+        name="floor_area"
+        v-model="userQuery.floor_area"
+        inputType="number"
+      ></input-atom>
 
-                <label>
-                    <input name="extraServices[]" type="checkbox" :value="extraService.id"
-                    v-model="userQuery.extra_services">
-                    {{ extraService.name }}
-                </label>
+      <div v-for="extraService in extraServices" :key="extraService.id">
+        <label>
+          <input
+            name="extraServices[]"
+            type="checkbox"
+            :value="extraService.id"
+            v-model="userQuery.extra_services"
+          />
+          {{ extraService.name }}
+        </label>
+      </div>
 
-            </div>
-
-            <!-- @foreach($extraServices as $extraService)
+      <!-- @foreach($extraServices as $extraService)
             <label>
                 <input name="extraServices[]" type="checkbox" value="{{ $extraService->id }}">
             {{ $extraService->name }}
             </label> <br>
             @endforeach -->
 
-            <label for="visible">Rendi visibile l'appartamento</label>
-            <input type="checkbox" name="visible" id="visible" v-model="userQuery.visible" checked>
+      <!-- <label for="visible">Rendi visibile l'appartamento</label>
+      <input
+        type="checkbox"
+        name="visible"
+        id="visible"
+        v-model="userQuery.visible"
+        checked
+      /> -->
 
-            <label for="img_url">Immagine principale</label>
-            <input type="file" name="img_url" ref="inputUpload" accept=".jpeg, .jpg, .png"> <br>
-            
-            <label for="latitude">
-                <input type="text" id="latitude" name="latitude" v-model="userQuery.latitude">
-            </label>
-            <label for="longitude">
-                <input type="text" id="longitude" name="longitude" v-model="userQuery.longitude">
-            </label>
+      <label for="img_url">Immagine principale</label>
+      <input
+        type="file"
+        name="img_url"
+        ref="inputUpload"
+        accept=".jpeg, .jpg, .png"
+      />
+      <br />
 
-            <a href="#" @click.prevent="getLatLng" class="btn btn-primary">Genera Latitudine e Longitudine</a>
 
-            <div class="form-group">
-                <button>Crea appartamento</button>
-            </div>
-        
-        </form>
-    
-    </div>
+      <input type="hidden" name="latitude" :value="this.userQuery.latitude"/>
+      <input type="hidden" name="longitude" :value="this.userQuery.longitude"/>
 
+      <!-- <label for="latitude">
+        <input
+          type="text"
+          id="latitude"
+          name="latitude"
+          v-model="userQuery.latitude"
+        />
+      </label>
+      <label for="longitude">
+        <input
+          type="text"
+          id="longitude"
+          name="longitude"
+          v-model="userQuery.longitude"
+        />
+      </label>
+
+      <a href="#" @click.prevent="getLatLng" class="btn btn-primary">
+        Genera Latitudine e Longitudine
+      </a> -->
+
+      <div class="form-group">
+        <button @click.prevent="getLatLng()">Crea appartamento</button>
+      </div>
+    </form>
+  </section>
 </template>
 
-<script>
+<script type="application/javascript">
     import InputAtom from '../formInputs/InputAtom.vue';
 
     export default {
@@ -136,6 +173,7 @@
         data() {
             return {
                 // querySearch: "",
+                apartmentData: null,
 
                 userQuery: {
                     latitude:"",
@@ -171,21 +209,15 @@
 
             clearQuery(addressObj) {
 
-                let valueArr = (Object.values(addressObj)).join(', ');
+                let value = (Object.values(addressObj)).join(', ');
 
-                return valueArr;
+                return value;
             },
 
             getLatLng() {
                 
                 const el = this.userQuery;
                 this.apartmentData = this.userQuery;
-
-                // const el = this.allApartmentsData[2];
-                // this.apartmentData = this.allApartmentsData[2];
-
-                console.log(this.apartmentData);
-                console.log('ciao');
 
                 let completeAddress = {
                     address_street: el.address_street,
@@ -204,7 +236,6 @@
 
                 this.apartmentData.latitude = position.lat;
                 this.apartmentData.longitude = position.lng;
-
             },
 
             ttApiRequest(query) {
@@ -217,6 +248,12 @@
                 }).go().then(resp => {
                     const position = resp.results[0].position; 
                     this.setLatLng(position);
+
+                    this.createApartment(); 
+
+                    Vue.nextTick(() => {
+                        this.$refs.form.submit();
+                    });
                 })
                 .catch(er => {
                     console.log(er);
@@ -234,7 +271,6 @@
                 axios.post('http://127.0.0.1:8000/api/apartment', { 
                     formData,
                     ...this.apartmentData, 
-                    // user_id = this.userId
                     }, 
                     {
                     headers: {
@@ -245,6 +281,9 @@
                 .then(resp => {
                     alert('Apartment added')
                     console.log(resp)
+
+                    // this.$refs.form.submit()
+
                 })
                 .catch(er => {
                     console.log(er.response.data);

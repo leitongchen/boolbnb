@@ -1,0 +1,113 @@
+//INDEX APPARTAMENTI PRIVATO
+.apartment-index-container {
+    h1 {
+        font-weight: bolder;
+    }
+
+    a {
+        font-weight: 500;
+        color:white;
+    }
+
+    @include apartment-card;
+}
+
+//Dettaglio appartamento privato
+.details-apartament{
+    section{
+        padding: $spacing *3 0;
+    }
+    .details{
+        h2{
+            padding-bottom: 20px;
+        }
+        h4{
+            border-bottom: 1px solid gray;
+            padding-bottom: 5px;
+        }
+    }
+    .service_right{
+        background-color: #ffd8cc;
+        border-radius: 42px;
+    }
+
+}
+
+.details{
+    .padx{
+        padding-top: 15px;
+    }
+}
+
+
+//INDEX MESSAGGI
+.my-msg-h1 {
+
+    h1 {
+        color: $text_colorOne;
+        padding: $spacing*2 0;
+        
+    }
+    
+    .my-no-msg {
+        
+        h1 {
+            padding: $spacing*3 0;
+        }
+        
+        .my-img-container {
+            // width: 35vw;
+            padding-bottom: $spacing*2;
+        }
+        
+    }
+}
+
+.card {
+
+    box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+    
+    .my-card-header {
+        background-color: $functional_three;
+    }
+}
+
+.msg-buttons {
+    display: flex;
+    justify-content: flex-end;
+    
+    form {
+        .orange_button {
+            margin-left: $spacing;
+            color: white;
+            background-color: #f15730;
+        }
+    }
+    
+}
+
+//DETTAGLI MESSAGGIO
+.show-msg-container {
+
+    h1 {
+        color: $text_colorOne;
+        padding: $spacing*2 0;
+        
+    }
+    
+    .my-avatar-container {
+        height: 70px;
+        width: 70px;
+        margin-right: $spacing;
+    }
+
+    .my-reply {
+        font-size: $bodyLarge;
+        padding-top: $spacing;
+        padding-bottom: $spacing*3;
+    }
+
+}
+
+
+

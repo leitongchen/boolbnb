@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Apartment;
 use App\Extra_service;
 use App\Http\Controllers\Controller;
+use Dotenv\Exception\ValidationException;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -22,7 +25,7 @@ class ApartmentController extends Controller
         //trova gli appartamenti dell'utente loggato
         //Da ordinare!!
         $userId = Auth::id();
-        $userApartments = Apartment::all()->where('user_id', '=', $userId);
+        $userApartments = Apartment::orderBy('updated_at', 'DESC')->where('user_id', '=', $userId)->get();
         // $incomingData = Apartment::orderBy('updated_at', 'DESC')->get();
 
 
@@ -57,32 +60,51 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'address_street' => 'required|max:255',
-            'street_number' => 'required|max:10',
-            'city' => 'required|max:100',
-            'zip_code' => 'required|max:10',
-            'province' => 'required|max:100',
-            'nation' => 'required|max:100',
-            'rooms_number' => 'required|integer',
-            'beds_number' => 'required|integer',
-            'bathrooms_number' => 'required|integer',
-            'floor_area' => 'required|numeric',
-            'img_url' => 'required',
-            'visible' => 'required'
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'address_street' => 'required|max:255|min:2',
+        //     'street_number' => 'required|max:10',
+        //     'city' => 'required|max:100|min:2',
+        //     'zip_code' => 'required|max:10',
+        //     'province' => 'required|max:100|min:2',
+        //     'nation' => 'required|max:100|min:2',
+        //     'rooms_number' => 'required|integer|min:1',
+        //     'beds_number' => 'required|integer|min:1',
+        //     'bathrooms_number' => 'required|integer|min:1',
+        //     'floor_area' => 'required|numeric|min:10',
+        //     'img_url' => 'required',
+        // ]);
 
         // dump($request);
-        // dump($request->user());
+        // dump($request->title);
+        // dump($request->address_street);
+        // dump($dataArr);
         // return; 
 
-        $formData = $request->all();
-        $newApartment = new Apartment;
-        $newApartment->fill($formData);
-        
-        $newApartment->user_id = $formData['user_id'];
+        // $request->validate([
+        //     'title' => 'required',
+        //     'address_street' => 'required|max:255|min:2',
+        //     'street_number' => 'required|max:10',
+        //     'city' => 'required|max:100|min:2',
+        //     'zip_code' => 'required|max:10',
+        //     'province' => 'required|max:100|min:2',
+        //     'nation' => 'required|max:100|min:2',
+        //     'rooms_number' => 'required|integer|min:1',
+        //     'beds_number' => 'required|integer|min:1',
+        //     'bathrooms_number' => 'required|integer|min:1',
+        //     'floor_area' => 'required|numeric|min:10',
+        //     'img_url' => 'required',
+        // ]);
+  
+        // dump($request->all());
+        // dump($request->user_id);
+        // return; 
+        $formData = $request->all(); 
 
+        $newApartment = new Apartment;
+        
+        $newApartment->fill($formData);
+        $newApartment->user_id = $request->user_id;
 
         // dump($newApartment);
         // dump($formData);
@@ -96,7 +118,9 @@ class ApartmentController extends Controller
         
         $newApartment->save();
 
-        $newApartment->extra_services()->sync($formData["extraServices"]);
+        if (isset($formData["extraServices"])) {
+            $newApartment->extra_services()->sync($formData["extraServices"]);
+        }
         
         return redirect()->route('admin.apartments.index');
     }
@@ -112,11 +136,15 @@ class ApartmentController extends Controller
         $user = Auth::user();
         $userId = Auth::id();
 
-        $data = [
-            'apartment' => Apartment::findOrFail($id),
-            'user' => $user,
-            'userId' => $userId];
+        $apartment = Apartment::findOrFail($id);
 
+        $data = [
+            'apartment' => $apartment,
+            'user' => $user,
+            'userId' => $userId
+        ];
+            
+        
         return view('admin.apartments.show', $data);
     }
 
@@ -163,17 +191,13 @@ class ApartmentController extends Controller
             'beds_number' => 'required|integer',
             'bathrooms_number' => 'required|integer',
             'floor_area' => 'required|numeric',
-            'visible' => 'required'
         ]);
 
         $formData = $request->all();
         
-        $apartment = Apartment::findOrFail($formData['apartment_id']);
-       
+        $apartmentId = (int)$request->apartment_id;
 
-        // dump($request->all());
-        // dd($apartment);  
-        // return; 
+        $apartment = Apartment::findOrFail($apartmentId);
 
         // $apartment->apartment_id = $formData['apartment_id'];
         if (!key_exists("extraServices", $formData)) {
@@ -192,10 +216,7 @@ class ApartmentController extends Controller
 
             $formData["img_url"] = $storageResult;
         }
-
         $apartment->update($formData);
-        
-        // if($formData['user_id'] == $apartment['user_id']) {}
 
         return redirect()->route('admin.apartments.index');
     }

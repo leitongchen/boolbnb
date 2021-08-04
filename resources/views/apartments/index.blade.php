@@ -1,3 +1,6 @@
+@extends('layouts.public')
+
+@section('content')
 
 
 <div class="container">
@@ -24,8 +27,6 @@
             </ul>
 
             @endforeach
+
 </div>
-
-
-
-
+@endsection

@@ -4,16 +4,22 @@
 // Variables
 @import 'partials/variables';
 @import "partials/common";
+@import "partials/mixin";
 @import "partials/header";
 @import "partials/main";
 @import "partials/footer";
 @import "partials/components/buttons";
+
+@import "partials/components/form_message";
+@import "partials/components/slider";
+
 @import "partials/sections";
 @import "partials/bgColor";
 @import "partials/flexProperties";
 @import "partials/textColor";
 @import "partials/padding";
 @import "partials/margin";
+
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';

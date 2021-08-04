@@ -126,5 +126,6 @@
         </div>
     </section>
     @include('partials.scripts')
+    @include('layouts.partials.footer')
 </body>
 </html>

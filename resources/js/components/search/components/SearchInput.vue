@@ -1,22 +1,28 @@
 <template>
   <div>
-    <div class="input-group rounded justify_content_ce text-center">
-      <form ref="form" action="/api/apartments/search" method="post" class="w-100x">
+    <div class="input-group rounded">
+      <form ref="form" action="/api/apartments/search" method="post">
         <input type="hidden" name="_token" :value="csrf" />
         <input type="hidden" name="latitude" v-model="this.position.lat" />
         <input type="hidden" name="longitude" v-model="this.position.lng" />
         <input type="hidden" name="query" v-model="this.userQuery.text" />
-
-        <input v-model="userQuery.text" type="search" class="form-control search_bar margin_t_5" placeholder="cerca un appartamento" aria-label="Search" aria-describedby="search-addon"/>
-        <button @click.prevent="onClick" class="search_button text_color_w margin_t_10">
-          <span>Cerca</span>
+        <input
+          v-model="userQuery.text"
+          type="search"
+          class="form-control rounded"
+          placeholder="cerca un appartamento"
+          aria-label="Search"
+          aria-describedby="search-addon"
+        />
+        <button @click.prevent="onClick">
+          <i class="fas fa-search"> CERCA</i>
         </button>
       </form>
     </div>
   </div>
 </template>
 
-<script>
+<script type="application/javascript">
 export default {
   name: "SearchInput",
   props: {},
@@ -70,9 +76,29 @@ export default {
         });
     },
 
+    ttApiRequest(query) {
+      tt.services
+        .fuzzySearch({
+          key: this.api_key,
+          query: query,
+          // boundingBox: map.getBounds()
+        })
+        .go()
+        .then((resp) => {
+          const position = resp.results[0].position;
+          this.setLatLng(position);
+
+          if (this.position.lat && this.position.lng) {
+            this.searchPath();
+          }
+        })
+        .catch((er) => {
+          console.log(er);
+        });
+    },
+
     onClick() {
       this.ttApiRequest(this.userQuery.text);
-      debugger;
     },
 
     searchPath() {
@@ -86,13 +112,14 @@ export default {
           },
         })
         .then((resp) => {
-          alert("Apartment added");
+          // alert('Apartment added')
           console.log(resp);
 
           this.$refs.form.submit();
         })
         .catch((er) => {
           console.log(er.response.data);
+          // alert("Non è stato possibile recuperare gli appartamenti.");
         });
     },
   },

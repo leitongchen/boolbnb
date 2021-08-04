@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Apartment;
 use App\Http\Controllers\Controller;
 use App\Message;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,17 @@ class MessageController extends Controller
             'apartment' => $apartment,
             'messages' => $messages,
         ];
+
+        //formatta la data
+        foreach ($data['messages'] as $message) {
+            $date = $message->created_at;
+
+            $carbonDate = Carbon::parse($date);
+
+            $formattedDate = $carbonDate->format("d/m/y h:i:s");
+
+            $message->formattedCreatedAt = $formattedDate;
+        }
 
         return view('admin.messages.index', $data);
     }
@@ -59,10 +71,16 @@ class MessageController extends Controller
      */
 
     //vedi i dettagli di un solo messaggio
-    public function show(Message $message)
+    public function show(Message $message, Apartment $apartment)
     {
+        $apartment = Apartment::where('id', '=', $message->apartment_id)->get()->first();
+        //formatta la data
+        $carbonDate = Carbon::parse($message->created_at)->format("d/m/y h:i:s");
+       
         $data = [
-            'message' => Message::findOrFail($message -> id)
+            'message' => Message::findOrFail($message -> id),
+            'carbonDate' => $carbonDate,
+            'apartment' => $apartment
         ];
 
         return view('admin.messages.show', $data);

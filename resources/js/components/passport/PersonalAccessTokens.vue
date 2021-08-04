@@ -154,7 +154,7 @@
     </div>
 </template>
 
-<script>
+<script type="application/javascript">
     export default {
         /*
          * The component's data.
