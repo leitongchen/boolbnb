@@ -6,6 +6,8 @@ use App\Apartment;
 use Illuminate\Http\Request;
 use App\Message;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
@@ -70,16 +72,21 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Apartment $apartment)
     {
         $user = Auth::user();
         $message = Message::find($id);
+        $apartment = Apartment::where('id', '=', $message->apartment_id)->get()->first();
+        $carbonDate = Carbon::parse($message->created_at)->format("d/m/y h:i:s");
 
         return view("messages.show", [
             "messages" => $message,
-            'user' => $user
+            'user' => $user,
+            'carbonDate' => $carbonDate,
+            'apartment' => $apartment
         ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
