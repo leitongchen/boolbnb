@@ -1,5 +1,15 @@
 //DASHBOARD
 .my-dashboard-container {
+
+    .my-card {
+        margin-bottom: 12%;
+        margin-top: 21%;
+
+        .my-user-name {
+            font-size: 12px;
+        }
+    }
+
     
     .my-user-pic-container {
         height: 100px;
@@ -31,10 +41,12 @@
         }
     }
 
+    .my-col {
+        background-color: $background_three;
+    }
+
     .my-card-body {
 
-        background-color: $background_three;
-        
         .my-apartments-info {
             padding: $spacing;
             border: 1px solid $text_colorThree;

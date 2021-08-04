@@ -4,7 +4,7 @@
 
     <div class="container my-dashboard-container">
 
-        <div class="card mb-3 mt-3" style="max-width: 100%;">
+        <div class="card my-card" style="max-width: 100%;">
             <div class="row g-0">
                 <div class="col-md-4">
                     <div class="my-user-pic-container m-auto">
@@ -16,15 +16,17 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                        <span><strong>{{ __('Benvenuto '. Auth::user()->name . '!') }} </strong></span>
+                        <span class="my-user-name"><strong>{{ __('Benvenuto '. Auth::user()->name . '!') }} </strong></span>
                     </div>
                     <div class="my-dashboard-list">
                         <ul>
                             <li><a href="{{ URL::signedRoute('admin.apartments.index') }}"><i class="fas fa-concierge-bell"></i>I tuoi appartamenti</a></li>
+                            <li><a href="{{ URL::signedRoute('admin.sponsorship') }}"><i class="fas fa-star"></i>Fatti trovare più facilmente!</a></li>
+
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 my-col">
                     <div class="card-body d-flex justify-content-center my-card-body">
 
                         <div class="my-apartments-info text-center">
@@ -35,10 +37,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
 
         {{-- <div class="row justify-content-center">
             <div class="col-md-8">
@@ -63,5 +61,6 @@
             </div>
         </div> --}}
     </div>
+
 
 @endsection
