@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="input-group rounded">
-      <form ref="form" action="/api/apartments/search" method="post">
+      <form
+        ref="form"
+        action="/api/apartments/search"
+        method="post"
+        class="w-100x display_flex flex_wrap justify_content_ce"
+      >
         <input type="hidden" name="_token" :value="csrf" />
         <input type="hidden" name="latitude" v-model="this.position.lat" />
         <input type="hidden" name="longitude" v-model="this.position.lng" />
@@ -9,13 +14,13 @@
         <input
           v-model="userQuery.text"
           type="search"
-          class="form-control rounded"
+          class="form-control search_bar margin_t_5"
           placeholder="cerca un appartamento"
-          aria-label="Search"
+          aria-label="Search"      
           aria-describedby="search-addon"
         />
-        <button @click.prevent="onClick">
-          <i class="fas fa-search"> CERCA</i>
+        <button @click.prevent="onClick" class="search_button text_color_w margin_t_5">
+          Cerca
         </button>
       </form>
     </div>
