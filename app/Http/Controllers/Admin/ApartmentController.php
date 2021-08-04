@@ -60,21 +60,6 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $formData = $request->all();
-
-        // $dataArr = new Request([
-        //     'title' => $request->title,
-        //     'address_street' => $request->address_street,
-        //     'street_number' => $request->street_number,
-        //     'city' => $request->city,
-        //     'zip_code' => $request->zip_code,
-        //     'province' => $request->province,
-        //     'nation' => $request->nation,
-        //     'rooms_number' => $request->rooms_number,
-        //     'beds_number' => $request->beds_number,
-        //     'bathrooms_number' => $request->bathrooms_number,
-        //     'floor_area' => $request->floor_area,
-        //     'img_url' => $request->img_url,
         // $request->validate([
         //     'title' => 'required',
         //     'address_street' => 'required|max:255|min:2',

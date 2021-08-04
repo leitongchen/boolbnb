@@ -1,96 +1,144 @@
 <template>
-  <div>
-    <!-- @reset="onReset" -->
-    <!-- @submit.prevent="filterData" -->
+  <div>   
 
-    <div class="card mb-3">
-      <div class="card-body">
-          
-        <form ref="form"
-          action="/api/apartments/search/filter"
-          method="get"
-          @submit.prevent="onClick"
-          @reset="onReset">
-            
+    <div class="search_page">
+      
+      <div class="left_side container-fluid">
 
-            <div class="row">
-              <div class="col">
+        <div class="search_form">
+          <div class="container">
 
-                <input-atom
-                  label="Località"
-                  v-model="filters.query"
-                  inputType="text"
-                ></input-atom>
+            <h3 class="text-center">Cerca un alloggio</h3>
 
-
-                <input-atom
-                  label="Locali"
-                  v-model="filters.rooms_number"
-                  inputType="number"
-                ></input-atom>
-
-                <input-atom
-                  label="Ospiti"
-                  v-model="filters.beds_number"
-                  inputType="number"
-                ></input-atom>
-
-                <input-atom
-                  label="Cerca nel raggio di"
-                  v-model="filters.radius"
-                  inputType="number"
-                ></input-atom>km
-
-              </div>
-
-              <div class="col">
+            <form ref="form"
+              action="/api/apartments/search/filter"
+              method="get"
+              @submit.prevent="onClick"
+              @reset="onReset">
                 
 
-                <multi-check-atom
-                  label="Servizi Extra"
-                  :items="extra_servicesList"
-                  v-model="filters.extra_services"
-                ></multi-check-atom>
+              <div class="row">
+                <div class="col">
+                  
+                  <div class="row">
+                    <div class="col">
 
-              
+                      <input-atom
+                      label="Località"
+                      v-model="filters.query"
+                      inputType="text"
+                      ></input-atom>
+
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col">
+                      <input-atom
+                        label="Locali"
+                        v-model="filters.rooms_number"
+                        inputType="number"
+                      ></input-atom>
+                    </div>
+
+                    <div class="col">
+                      <input-atom
+                        label="Ospiti"
+                        v-model="filters.beds_number"
+                        inputType="number"
+                      ></input-atom>
+                    </div>
+
+                    <div class="col">
+                      <input-atom
+                        label="Raggio di"
+                        v-model="filters.radius"
+                        inputType="number"
+                      ></input-atom>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  
+                  <span class="label">Filtra per servizi</span>
+
+                  <div class="extra-service">
+
+                    <multi-check-atom
+                      label=""
+                      :items="extra_servicesList"
+                      v-model="filters.extra_services"
+                    ></multi-check-atom>
+
+                  </div>
+
+                
+                </div>
               </div>
-            </div>
 
-          <button type="submit" class="btn btn-primary">Filtra</button>
-          <button type="reset" class="btn btn-outline-secondary">
-            Annulla filtri
-          </button>
-        </form>
+              <div class="row">
+                <div class="col">
 
+                  <div class="btns_container d-flex justify-content-center">
+
+                    <div class="btn_box">
+                      <button type="submit" class="btn_bool btn_primary">Filtra</button>
+                    </div>
+
+                    <div class="btn_box">
+                      <button type="reset" class="btn_bool btn_outline">
+                        Annulla
+                      </button>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+        <div class="apartments_container row">
+          
+          <div v-for="el in finalList" :key="el.id" 
+          class="col-md-12 col-lg-6 my_col">
+            
+            <apartment-card
+            :apartment="el"
+            ></apartment-card>
+              
+             
+          </div>
+        </div>
 
       </div>
-    </div>
 
-    <div class="alert alert-success mb-5" v-if="activeFilters">
-      Sono stati trovati {{ finalList.length }} risultati per il filtro:
-      <div v-html="printActiveFilters()"></div>
-    </div>
+      <div class="right_side">
 
-    <div>
+        <div class="map_container">
 
-      <boolbnb-map
-      :lat="filters.position.lat"
-      :long="filters.position.lng"
-      :apartments="finalList"
-      :key="count">
-      </boolbnb-map>
+          <boolbnb-map
+          :lat="filters.position.lat"
+          :long="filters.position.lng"
+          :apartments="finalList"
+          :key="count">
+          </boolbnb-map>
 
-    </div>
+        </div>
+
+      </div>
+
+    </div>     
 
   </div>
 </template>
 
 <script type="application/javascript">
-// import InputAtom from "./formInputs/InputAtom.vue";
-// import MultiCheckAtom from "./formInputs/MultiCheckAtom.vue";
 
 export default {
-  // components: { InputAtom, MultiCheckAtom },
   name: "ApartmentsIndex",
   props: 
   {
@@ -218,8 +266,7 @@ export default {
     },
   },
   mounted() {
-      console.log(this.filters.position.lat)
-      console.log(this.filters.position.lng)
+      console.log(this.apartments)
 
       this.finalList = this.apartments;
 

@@ -2,16 +2,41 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: white;
 }
 
 .search-container{
-    height: 150px;
+    height: 170px;
     background-color: white;
-    border-radius: 10px;
-    position: absolute;
+    border-radius: 20px;
+    transform: translate(50%, -85px);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+    .search_bar{
+        border-radius: 15px;
+        border: solid 2px $brand_orange;
+    }
+
 }
 
 input, button, select, optgroup, textarea {
     font-family: initial;
 }
+
+.text_align_center{
+    text-align: center;
+}
+
+.d_inline_b{
+    display: inline-block;
+}
+
+.sfumatura_nera{
+    height: 210px;
+    background: linear-gradient(0deg, black, transparent);
+}
+
 
