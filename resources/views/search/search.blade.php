@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <div class="container">
-        <h1>Cerca un alloggio</h1>
+    <div class="search_box">
     
         <apartments-index
         :apartments='{{ $apartments }}'

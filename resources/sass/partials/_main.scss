@@ -43,7 +43,7 @@
     margin: $spacing 0;
     padding: $spacing*3 0;
     .extra-service {
-        height: 93px;
+        height: 100px;
         overflow: auto;
 }
 input{
@@ -128,4 +128,30 @@ h1 {
 }
 
 
+// RICERCA AVANZATA
 
+.search_box {
+
+    .search_form {
+
+        background-color: white;
+        box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+
+        .extra-service {
+            height: 100px;
+            overflow: auto;
+        }
+
+        .btns_container {
+            margin: $spacing 0;
+        }
+    
+        .btn_box {
+            padding: 0 $spacing/4; 
+        }
+    }
+
+    
+    
+    
+}
