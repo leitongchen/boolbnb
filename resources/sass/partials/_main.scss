@@ -92,6 +92,19 @@
 
 //INDEX APPARTAMENTI PRIVATO
 .apartment-index-container {
+    .my-no-msg {
+        
+        h1 {
+            padding: $spacing*3 0;
+        }
+        
+        .my-img-container {
+            // width: 35vw;
+            padding-bottom: $spacing*2;
+        }
+        
+    }
+    
     h1 {
         font-weight: bolder;
         color: $text_colorOne;
@@ -343,8 +356,15 @@ input{
         }
     }
 
-    
-    
+
+}
+
+.login-card{
+    margin: $spacing*5 0;
+    .form-control:focus{
+        border-color: #FF9E80;
+        box-shadow: 0 0 0 0.2rem #ff89644d;
+    }
     
 }
 
@@ -357,5 +377,6 @@ input{
 
     .my-404-img {
         height: 55vh;
+
     }
 }
