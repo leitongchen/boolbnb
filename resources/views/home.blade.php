@@ -29,16 +29,17 @@
             </div>
         </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid sponsored_section">
         
             <h2 class="text-center text_color_two">In evidenza</h2>
             <div class="row card-group">
                 @foreach ($sponsored as $apartment)
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
-                    <div class="card my-apartment-card overflow-hidden h-100">
+                    <div class="card my-apartment-card overflow-hidden">
                         <div class="my-card-img-container">
-                            <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top my-card-img-top img-fluid" alt="...">
+                            <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top" alt="...">
                         </div>
+                        
                         <div class="card-body my-card-body d-flex align-content-around flex-column">
     
                             <h5 class="card-title my-card-title">{{ $apartment->title }}</h5>
@@ -85,11 +86,62 @@
 
         </div>
 
-        <h2 class="text-center text_color_two">Più Recenti</h2>
+        <div class="container-fluid recents_section">
+        
+            <h2 class="text-center text_color_two">Novità</h2>
+            <div class="row card-group">
+                @foreach ($apartments as $apartment)
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
+                    <div class="card my-apartment-card overflow-hidden">
+                        <div class="my-card-img-container">
+                            <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body my-card-body d-flex align-content-around flex-column">
+    
+                            <h5 class="card-title my-card-title">{{ $apartment->title }}</h5>
+                            <p>
+                                @if ($apartment->rooms_number = 1) 
+                                    <span>{{ $apartment->rooms_number }} stanza - </span>
+                                @else 
+                                    <span>{{ $apartment->rooms_number }} stanze - </span>
+                                @endif
 
-        <div class="links">
-            {{-- <a href="{{ route('apartments.index') }}">INDEX APPARTAMENTI PUBBLICO</a> --}}
+                                @if ($apartment->beds_number = 1) 
+                                    <span>{{ $apartment->beds_number }} letto - </span>
+                                @else 
+                                    <span>{{ $apartment->beds_number }} letti - </span>
+                                @endif
+
+                                @if ($apartment->bathrooms_number = 1) 
+                                    <span>{{ $apartment->bathrooms_number }} bagno</span>
+                                @else 
+                                    <span>{{ $apartment->bathrooms_number }} bagni</span>
+                                @endif
+                            </p>
+
+                            @if ($apartment->extra_services->count() > 0)
+                            <p class="card-text">
+                                @foreach($apartment->extra_services as $extraService)
+                                <span>{{ $extraService->name }}
+                                    @if(!$loop->last)
+                                    -
+                                    @endif
+                                </span>
+                                @endforeach
+                            </p>
+                            @endif
+
+                            <div class="m-auto my-btn-container">
+                                <a href="{{ route('apartments.show', $apartment->id) }}" class="btn_bool btn_outline">Vedi i dettagli</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
         </div>
+       
     </section>
     <section id="section-3">
         <div class="container text-center col-sm-">
