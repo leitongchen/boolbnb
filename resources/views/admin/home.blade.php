@@ -20,8 +20,9 @@
                     </div>
                     <div class="my-dashboard-list">
                         <ul>
-                            <li><a href="{{ URL::signedRoute('admin.apartments.index') }}"><i class="fas fa-concierge-bell"></i>I tuoi appartamenti</a></li>
-                            <li><a href="{{ URL::signedRoute('admin.sponsorship') }}"><i class="fas fa-star"></i>Fatti trovare più facilmente!</a></li>
+                            <li><a href="{{ URL::signedRoute('admin.apartments.index') }}"><i class="fas fa-concierge-bell pb-2"></i>I tuoi appartamenti</a></li>
+                            <li><a href="{{ URL::signedRoute('admin.apartments.create') }}"><i class="fas fa-plus pb-2"></i>Hai una nuova stanza da affittare?</a></li>
+                            <li><a href="{{ URL::signedRoute('admin.sponsorship') }}"><i class="fas fa-star pb-2"></i>Fatti trovare più facilmente!</a></li>
 
                         </ul>
                     </div>
