@@ -41,17 +41,20 @@
              </div>
          </div>
      </div>
-     <section class="p-3 pt-0 container footer_bottom">
-         <div class="row d-flex align-items-center  justify-content-center">
-             <div class="text-center">
-                 <div class="p-3">
-                     © 2021 Boolbnb. Team 7 -
-                     <a class=" mb-0 text-decoration-none" href="#"> Privacy - </a>
-                     <a class=" mb-0 text-decoration-none" href="#"> Termini - </a>
-                     <a class=" mb-0 text-decoration-none" href="#"> Mappa del sito - </a>
-                     <a class=" mb-0 text-decoration-none" href="#"> Dettagli dell'azienda</a>
+     
+     <div class="for-line-only">
+        <section class="p-3 pt-0 container footer_bottom">
+            <div class="row d-flex align-items-center  justify-content-center">
+                <div class="text-center">
+                    <div class="p-3">
+                        © 2021 Boolbnb. Team 7 -
+                        <a class=" mb-0 text-decoration-none" href="#"> Privacy - </a>
+                        <a class=" mb-0 text-decoration-none" href="#"> Termini - </a>
+                        <a class=" mb-0 text-decoration-none" href="#"> Mappa del sito - </a>
+                        <a class=" mb-0 text-decoration-none" href="#"> Dettagli dell'azienda</a>
 
-                 </div>
-             </div>
-     </section>
+                    </div>
+                </div>
+        </section>
+     </div>
  </footer>
