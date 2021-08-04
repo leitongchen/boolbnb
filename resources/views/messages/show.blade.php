@@ -21,20 +21,15 @@
         </div>
     </div>
 
-    <ul>
-        <li>nome:{{$messages->sender_name}}</li>
-        <li>cognome:{{ $messages->sender_surname}}</li>
-        <li>numero:{{$messages->phone_number}}</li>
-        <li>email:{{$messages->sender_mail}}</li>
-        <li>messaggio:{{$messages->content}}</li>
-    </ul>
+    <div class="my-text-container mt-5 mb-5">
+        <p>{{ $messages->content }}</p>
+    </div>
 
-    @if ($user)
-    <a href="{{route("admin.apartments.index")}}">Torna alla lista di appartamenti admin</a>
-    @else
-    <a href="{{route("apartments.index")}}">Torna alla lista di appartamenti</a>
-    @endif
-
+    <div>
+        <p class="my-reply">L'host che hai contattato ha ricevuto i seguenti dati da te forniti: <br>
+        indirizzo email: <strong><a href="#"> {{ $messages->sender_mail }} </a></strong>; <br>
+        numero di telefono <strong> {{ $messages->phone_number }}. </strong></p>
+    </div>
 
 </div>
 @endsection
