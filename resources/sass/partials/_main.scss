@@ -53,23 +53,26 @@ input{
 }
 
 //INDEX MESSAGGI
-h1 {
-    color: $text_colorOne;
-    padding: $spacing*2 0;
-
-}
-
-.my-no-msg {
+.my-msg-h1 {
 
     h1 {
-        padding: $spacing*3 0;
+        color: $text_colorOne;
+        padding: $spacing*2 0;
+        
     }
-
-    .my-img-container {
-        // width: 35vw;
-        padding-bottom: $spacing*2;
+    
+    .my-no-msg {
+        
+        h1 {
+            padding: $spacing*3 0;
+        }
+        
+        .my-img-container {
+            // width: 35vw;
+            padding-bottom: $spacing*2;
+        }
+        
     }
-
 }
 
 .card {
@@ -97,6 +100,13 @@ h1 {
 
 //DETTAGLI MESSAGGIO
 .show-msg-container {
+
+    h1 {
+        color: $text_colorOne;
+        padding: $spacing*2 0;
+        
+    }
+    
     .my-avatar-container {
         height: 70px;
         width: 70px;
