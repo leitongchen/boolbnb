@@ -1,116 +1,137 @@
 <template>
-  <div>        
-    <div class="search_form">
-      <div class="container">
+  <div>   
 
-        <h1>Cerca un alloggio</h1>
+    <div class="search_page">
+      
+      <div class="left_side container-fluid">
 
-        <form ref="form"
-          action="/api/apartments/search/filter"
-          method="get"
-          @submit.prevent="onClick"
-          @reset="onReset">
-            
+        <div class="search_form">
+          <div class="container">
 
-          <div class="row">
-            <div class="col">
-              
+            <h3 class="text-center">Cerca un alloggio</h3>
+
+            <form ref="form"
+              action="/api/apartments/search/filter"
+              method="get"
+              @submit.prevent="onClick"
+              @reset="onReset">
+                
+
+              <div class="row">
+                <div class="col">
+                  
+                  <div class="row">
+                    <div class="col">
+
+                      <input-atom
+                      label="Località"
+                      v-model="filters.query"
+                      inputType="text"
+                      ></input-atom>
+
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col">
+                      <input-atom
+                        label="Locali"
+                        v-model="filters.rooms_number"
+                        inputType="number"
+                      ></input-atom>
+                    </div>
+
+                    <div class="col">
+                      <input-atom
+                        label="Ospiti"
+                        v-model="filters.beds_number"
+                        inputType="number"
+                      ></input-atom>
+                    </div>
+
+                    <div class="col">
+                      <input-atom
+                        label="Raggio di"
+                        v-model="filters.radius"
+                        inputType="number"
+                      ></input-atom>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  
+                  <span class="label">Filtra per servizi</span>
+
+                  <div class="extra-service">
+
+                    <multi-check-atom
+                      label=""
+                      :items="extra_servicesList"
+                      v-model="filters.extra_services"
+                    ></multi-check-atom>
+
+                  </div>
+
+                
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col">
 
-                  <input-atom
-                  label="Località"
-                  v-model="filters.query"
-                  inputType="text"
-                  ></input-atom>
+                  <div class="btns_container d-flex justify-content-center">
+
+                    <div class="btn_box">
+                      <button type="submit" class="btn_bool btn_primary">Filtra</button>
+                    </div>
+
+                    <div class="btn_box">
+                      <button type="reset" class="btn_bool btn_outline">
+                        Annulla
+                      </button>
+                    </div>
+
+                  </div>
 
                 </div>
               </div>
-              
-              <div class="row">
-                <div class="col">
-                  <input-atom
-                    label="Locali"
-                    v-model="filters.rooms_number"
-                    inputType="number"
-                  ></input-atom>
-                </div>
+            </form>
 
-                <div class="col">
-                  <input-atom
-                    label="Ospiti"
-                    v-model="filters.beds_number"
-                    inputType="number"
-                  ></input-atom>
-                </div>
+          </div>
+        </div>
 
-                <div class="col">
-                  <input-atom
-                    label="Nel raggio di km"
-                    v-model="filters.radius"
-                    inputType="number"
-                  ></input-atom>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              
-              <span>Filtra per servizi</span>
-
-              <div class="extra-service">
-
-                <multi-check-atom
-                  label=""
-                  :items="extra_servicesList"
-                  v-model="filters.extra_services"
-                ></multi-check-atom>
-
-              </div>
-
+        <div class="apartments_container row">
+          
+          <div v-for="el in finalList" :key="el.id" 
+          class="col-md-12 col-lg-6 my_col">
             
-            </div>
+            <apartment-card
+            :apartment="el"
+            ></apartment-card>
+              
+             
           </div>
-
-          <div class="row">
-            <div class="col">
-
-              <div class="btns_container d-flex justify-content-center">
-
-                <div class="btn_box">
-                  <button type="submit" class="btn_bool btn_primary">Filtra</button>
-                </div>
-
-                <div class="btn_box">
-                  <button type="reset" class="btn_bool btn_outline">
-                    Annulla
-                  </button>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </form>
+        </div>
 
       </div>
-    </div>
 
-    <div class="alert alert-success mb-5" v-if="activeFilters">
-      Sono stati trovati {{ finalList.length }} risultati per il filtro:
-      <div v-html="printActiveFilters()"></div>
-    </div>
+      <div class="right_side">
 
-    <div>
+        <div class="map_container">
 
-      <boolbnb-map
-      :lat="filters.position.lat"
-      :long="filters.position.lng"
-      :apartments="finalList"
-      :key="count">
-      </boolbnb-map>
+          <boolbnb-map
+          :lat="filters.position.lat"
+          :long="filters.position.lng"
+          :apartments="finalList"
+          :key="count">
+          </boolbnb-map>
 
-    </div>
+        </div>
+
+      </div>
+
+    </div>     
 
   </div>
 </template>
@@ -245,8 +266,7 @@ export default {
     },
   },
   mounted() {
-      console.log(this.filters.position.lat)
-      console.log(this.filters.position.lng)
+      console.log(this.apartments)
 
       this.finalList = this.apartments;
 

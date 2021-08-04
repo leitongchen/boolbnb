@@ -132,10 +132,73 @@ h1 {
 
 .search_box {
 
+    .search_page {
+        display: flex;
+        flex-flow: nowrap;
+
+        position: relative;
+
+        .left_side {
+            height: 100vh;
+            overflow: auto;
+
+            padding: $spacing;
+
+            .apartments_container {
+                padding: $spacing*2 0;
+
+                .my_col {
+                    padding-bottom: 15px;
+                    padding-top: 15px;
+                }
+
+                .my-apartment-card {
+                    margin: 0; 
+                    min-height: 420px;
+
+                    img {
+                        max-height: 200px;
+                        object-fit: cover;
+                    }
+
+                    .apartment_details_card {
+                        >span {
+                            font-size: .75rem;
+                        }
+                    }
+                    .service_details_card {
+                        font-size: .75rem;
+                        
+                    }
+                }
+            }
+        }
+
+        .right_side {
+            position: relative;
+            right: 0;
+            bottom: 0;
+
+        }
+    }
+
     .search_form {
 
         background-color: white;
         box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+
+        padding: $spacing 0;
+
+        form {
+            margin-top: $spacing;
+
+            .input_container label, .label {
+                font-size: .75rem;
+                font-weight: 600;
+                color: $brand_orange;
+                margin-bottom: 0;
+            }
+        }
 
         .extra-service {
             height: 100px;
