@@ -101,6 +101,16 @@
             @endif
             <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>
         </div>
+    </form>
+
+    @if ($userId == $apartment->user_id)
+       <a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a> <br>
+    @endif
+
+    <div id="app">
+        <apartment-show-map
+        :apartment="{{$apartment}}">
+        </apartment-show-map>
     </div>
 
 

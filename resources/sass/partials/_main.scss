@@ -1,7 +1,67 @@
+//DASHBOARD
+.my-dashboard-container {
+
+    .my-card {
+        margin-bottom: 12%;
+        margin-top: 12%;
+
+        .my-user-name {
+            font-size: 12px;
+        }
+    }
+
+    
+    .my-user-pic-container {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        .my-img-fluid {
+            position: relative;
+            right: 75%;
+            top: 11%;
+            max-width: 227%;
+        }
+    }
+
+    .my-dashboard-list {
+        ul {
+            li {
+                list-style-type: none;
+
+                i {
+                    padding: 0 $spacing/2;
+                }
+
+                a {
+                    color: $text_colorOne;
+                }
+            }
+        }
+    }
+
+    .my-col {
+        background-color: $background_three;
+    }
+
+    .my-card-body {
+
+        .my-apartments-info {
+            padding: $spacing;
+            border: 1px solid $text_colorThree;
+            background-color: white;
+            border-radius: 13%;
+        }
+    }
+}
+
 //INDEX APPARTAMENTI PRIVATO
 .apartment-index-container {
     h1 {
         font-weight: bolder;
+        color: $text_colorOne;
+        padding: $spacing*2 0;
     }
 
     a {
@@ -53,23 +113,26 @@ input{
 }
 
 //INDEX MESSAGGI
-h1 {
-    color: $text_colorOne;
-    padding: $spacing*2 0;
-
-}
-
-.my-no-msg {
+.my-msg-h1 {
 
     h1 {
-        padding: $spacing*3 0;
+        color: $text_colorOne;
+        padding: $spacing*2 0;
+        
     }
-
-    .my-img-container {
-        // width: 35vw;
-        padding-bottom: $spacing*2;
+    
+    .my-no-msg {
+        
+        h1 {
+            padding: $spacing*3 0;
+        }
+        
+        .my-img-container {
+            // width: 35vw;
+            padding-bottom: $spacing*2;
+        }
+        
     }
-
 }
 
 .card {
@@ -97,6 +160,13 @@ h1 {
 
 //DETTAGLI MESSAGGIO
 .show-msg-container {
+
+    h1 {
+        color: $text_colorOne;
+        padding: $spacing*2 0;
+        
+    }
+    
     .my-avatar-container {
         height: 70px;
         width: 70px;

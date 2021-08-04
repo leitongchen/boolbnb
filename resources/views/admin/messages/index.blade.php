@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <div class="text-center ">
+    <div class="text-center my-msg-h1">
         @if (count($messages) == 0)
             <div class="my-no-msg text-center ">
                 <h1>Non hai messaggi da visualizzare!</h1>
