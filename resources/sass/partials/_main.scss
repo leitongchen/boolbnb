@@ -60,6 +60,19 @@
 
 //INDEX APPARTAMENTI PRIVATO
 .apartment-index-container {
+    .my-no-msg {
+        
+        h1 {
+            padding: $spacing*3 0;
+        }
+        
+        .my-img-container {
+            // width: 35vw;
+            padding-bottom: $spacing*2;
+        }
+        
+    }
+    
     h1 {
         font-weight: bolder;
         color: $text_colorOne;
