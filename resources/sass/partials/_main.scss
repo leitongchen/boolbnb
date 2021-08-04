@@ -313,3 +313,15 @@ input{
     
     
 }
+
+//404
+.my-404-container {
+
+    h2 {
+        padding: $spacing 0;
+    }
+
+    .my-404-img {
+        height: 55vh;
+    }
+}
