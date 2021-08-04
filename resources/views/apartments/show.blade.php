@@ -45,7 +45,7 @@
                 <div class="col-xl-6 col-md-12 col-sm-12 text-center">
                     <h4>Host</h4>
                     <h5 class="text-uppercase">
-                      {{$apartment->user->name . ' ' . $apartment->user->surname}}
+                        {{$apartment->user->name . ' ' . $apartment->user->surname}}
                     </h5>
                 </div>
             </div>
@@ -72,6 +72,15 @@
             </div>
         </section>
 
+        <section class="map-apartament">
+
+            <div class="map-detail" id="app">
+                <apartment-show-map :apartment="{{$apartment}}">
+                </apartment-show-map>
+            </div>
+            <p class="text-center">{{ $apartment->address_street . ' N° ' . $apartment->street_number . ', ' . $apartment->city . ', ' . $apartment->zip_code . ', ' . $apartment->nation }}</p>
+        </section>
+
         {{-- Form per inviare un messaggio --}}
         <section class="form-message">
             <h2 class="text-center">Ti piace questo appartamento?</h2>
@@ -80,8 +89,8 @@
                 <div class="text-center">
                     <h4>Invia un messaggio a</h4>
                     <h5 class="text-uppercase">
-                      {{$apartment->user->name . ' ' . $apartment->user->surname}}
-                     </h5> 
+                        {{$apartment->user->name . ' ' . $apartment->user->surname}}
+                    </h5>
                 </div>
                 <br>
                 <div class="row">
