@@ -4,6 +4,8 @@
     .my-card {
         margin-bottom: 12%;
         margin-top: 12%;
+        border-radius: 20px;
+        overflow: hidden;
 
         .my-user-name {
             font-size: 12px;
@@ -58,6 +60,19 @@
 
 //INDEX APPARTAMENTI PRIVATO
 .apartment-index-container {
+    .my-no-msg {
+        
+        h1 {
+            padding: $spacing*3 0;
+        }
+        
+        .my-img-container {
+            // width: 35vw;
+            padding-bottom: $spacing*2;
+        }
+        
+    }
+    
     h1 {
         font-weight: bolder;
         color: $text_colorOne;
@@ -309,6 +324,7 @@ input{
         }
     }
 
+
 }
 
 .login-card{
@@ -316,5 +332,19 @@ input{
     .form-control:focus{
         border-color: #FF9E80;
         box-shadow: 0 0 0 0.2rem #ff89644d;
+    }
+    
+}
+
+//404
+.my-404-container {
+
+    h2 {
+        padding: $spacing 0;
+    }
+
+    .my-404-img {
+        height: 55vh;
+
     }
 }

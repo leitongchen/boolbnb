@@ -118,10 +118,38 @@ class MessageController extends Controller
 
     //elimina il messaggio se l'utente è il destinatario
     //no redirect (lato client)
-    public function destroy(Message $message)
+    public function destroy(Message $message, Apartment $apartment)
     {
-        if($message->apartment->user_id = Auth::id()) {
+        $userId = Auth::id();
+
+        if($message->apartment->user_id = $userId) {
             $message->delete();
+        }
+
+        $apartment = Apartment::where('id', '=', $message->apartment_id)->get()->first();
+
+        $messages = $apartment->messages()->get();
+
+        $data = [
+            'apartment' => $apartment,
+            'messages' => $messages,
+        ];
+
+        //formatta la data
+        foreach ($data['messages'] as $message) {
+            $date = $message->created_at;
+
+            $carbonDate = Carbon::parse($date);
+
+            $formattedDate = $carbonDate->format("d/m/y h:i:s");
+
+            $message->formattedCreatedAt = $formattedDate;
+        }
+
+        if ($apartment->user_id == $userId) {
+            return redirect()->route('admin.messages.index', $data);
+        }else{
+            return redirect()->route('index');
         }
 
     }

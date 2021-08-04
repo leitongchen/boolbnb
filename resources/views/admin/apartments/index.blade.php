@@ -12,6 +12,15 @@
             </div>
         </div>
 
+        @if (count($apartments) == 0)
+        <div class="my-no-msg text-center ">
+            <p>Non c'è nulla qui</p>
+
+            <div class="my-img-container m-auto w-50">
+                <img src="{{ asset('images/undraw_empty_xct9.svg') }}" class="img-fluid" alt="empty box">
+            </div>
+        </div>
+        @else
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 card-group">
             @foreach ($apartments as $apartment)
             <div class="col mb-3">
@@ -23,19 +32,19 @@
  
                         <h5 class="card-title my-card-title">{{ $apartment->title }}</h5>
                         <p>
-                            @if ($apartment->rooms_number = 1) 
+                            @if ($apartment->rooms_number === 1) 
                                 <span>{{ $apartment->rooms_number }} stanza - </span>
                             @else 
                                 <span>{{ $apartment->rooms_number }} stanze - </span>
                             @endif
 
-                            @if ($apartment->beds_number = 1) 
+                            @if ($apartment->beds_number === 1) 
                                 <span>{{ $apartment->beds_number }} letto - </span>
                             @else 
                                 <span>{{ $apartment->beds_number }} letti - </span>
                             @endif
 
-                            @if ($apartment->bathrooms_number = 1) 
+                            @if ($apartment->bathrooms_number === 1) 
                                 <span>{{ $apartment->bathrooms_number }} bagno</span>
                             @else 
                                 <span>{{ $apartment->bathrooms_number }} bagni</span>
@@ -62,6 +71,7 @@
             </div>
             @endforeach
         </div>
+        @endif
     </div>
 </div>
 
