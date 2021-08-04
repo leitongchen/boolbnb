@@ -118,7 +118,9 @@
       </div>
 
       <br />
-
+      <span>Aggiungi servizi extra</span>
+      <br />
+      <br />
       <div class="row extra-service">
         <div
           class="col d-flex justify-content-between flex-wrap px-2 flex-column"
@@ -152,8 +154,8 @@
         accept=".jpeg, .jpg, .png"
       />
       <br />
-
-      <label for="latitude">
+<br>
+      <!-- <label for="latitude">
         <input
           type="text"
           id="latitude"
@@ -173,10 +175,10 @@
 
       <a href="#" @click.prevent="getLatLng" class="btn btn-primary"
         >Genera Latitudine e Longitudine</a
-      >
+      > -->
 
       <div class="form-group text-center">
-        <button>Fatto</button>
+        <button class="orange_button">Fatto</button>
       </div>
     </form>
   </section>

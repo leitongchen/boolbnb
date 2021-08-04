@@ -120,7 +120,9 @@
       </div>
 
       <br />
-
+      <span>Aggiungi servizi extra</span>
+      <br />
+      <br>
       <div class="row extra-service">
         <div
           class="col d-flex justify-content-between flex-wrap px-2 flex-column"
@@ -138,6 +140,8 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
       <!-- @foreach($extraServices as $extraService)
             <label>
                 <input name="extraServices[]" type="checkbox" value="{{ $extraService->id }}">
@@ -162,8 +166,9 @@
         accept=".jpeg, .jpg, .png"
       />
       <br />
+      <br>
 
-      <label for="latitude">
+      <!-- <label for="latitude">
         <input
           type="text"
           id="latitude"
@@ -178,14 +183,14 @@
           name="longitude"
           v-model="userQuery.longitude"
         />
-      </label>
-
+      </label> -->
+<!-- 
       <a href="#" @click.prevent="getLatLng" class="btn btn-primary"
         >Genera Latitudine e Longitudine</a
-      >
+      > -->
 
       <div class="form-group text-center">
-        <button>Crea appartamento</button>
+        <button class="orange_button">Crea appartamento</button>
       </div>
     </form>
   </section>
@@ -196,33 +201,34 @@ import InputAtom from "../formInputs/InputAtom.vue";
 
 export default {
   components: {
-    InputAtom
+    InputAtom,
   },
   name: "CreateForm",
   props: {
     extraServices: Array,
-    userId: Number
+    userId: Number,
   },
   data() {
     return {
       // querySearch: "",
 
       userQuery: {
-        latitude:"",
-        longitude:"",
-        extra_services: []
+        latitude: "",
+        longitude: "",
+        extra_services: [],
       },
 
       // CSRF
       csrf: document
-        .querySelector('meta[name="csrf-token"]').getAttribute("content"),
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content"),
 
       //TOMTOM APIKEY
       api_key: "SznQN02yzAXGOlDubCqT3PTfefEyd5Go",
 
       auth_token:
         "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmE4NDU3OTc0MDUyMDViNzZhMzhmMzFlZTcwYzVjODliNmUzMDMyYmRkODJjOGJjOTM3ZDg1ZjUzMjQyY2M0Y2ViZDgxNjQxYmQ5MTc4YTYiLCJpYXQiOjE2MjcxOTgxMTQuNTk0NTkyLCJuYmYiOjE2MjcxOTgxMTQuNTk0NjA3LCJleHAiOjE2NTg3MzQxMTQuNTcxNDYyLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.p-RjR6BmklJGosGbYy1B3zDF3eDnMOddKNalJSw5Xfrxo3maqQFK9SUVL60-RaMt1Gcjcl4XOTA7ta29lYkASN3yZrmo7EG_Vn_BvyZZu7rp3gofegeQBgvB1JcMZTeSYVxGjyq2WL0Q3nV-PENfL1OcDSClLCR0_M_cOc4HorgBnvk3D5uRZZlbg6j602cmOWhDCa4axB4Sa-X_1DsBHc6ejKeYCEKdsGps7jNt2uKidSA9Hdo38-NscChCuh60jNghkeyDqwasGXQVPGVqE8-vQRImd4faqyx0t0imosnewQ5KKbmGp4WObuj-qWeVh9xipVjLffxs9Yruy8xHT_VrxJLCOrjSiXnJlR0_tqnbs1SuvXITfL_40xSNf8-BYzsWMPZJsstnDNpP5HKyZRxWrXpNt-koqZ-A8GDS1ZivXGo-tQQjtqXb8vktPF1t4fwwvDZdyaGG0UTO8Mt4b1PClo0JxdGvZq5qSk4Bgwa7cFbsXJ_fim5I-leX7u1p2adJJC18Nj1bpAK8KjOmwZYYPLMYgtATZ241NaO2lpHwZILAqWKZU765yg4B760rg8VpwEy40IYwJzDiZuU1XY_F6BPWAeuTegZR0Lm5aJMfvPUi-u_8Tn-HOA5HTi50rHydeg9t3-X588YLRhEifp7JWzXolHUgnl48vUPWHD0",
-    }
+    };
   },
   methods: {
     // When creating a new apartment
@@ -240,8 +246,7 @@ export default {
     // Fourth: the data needs to be sent to backend in order to be stored
 
     clearQuery(addressObj) {
-
-      let valueArr = (Object.values(addressObj)).join(', ');
+      let valueArr = Object.values(addressObj).join(", ");
 
       return valueArr;
     },
@@ -263,7 +268,7 @@ export default {
         zip_code: el.zip_code,
         province: el.province,
         nation: el.nation,
-      }
+      };
 
       let addressStr = this.clearQuery(completeAddress);
       this.ttApiRequest(addressStr);
@@ -275,15 +280,18 @@ export default {
     },
 
     ttApiRequest(query) {
-         tt.services.fuzzySearch({
+      tt.services
+        .fuzzySearch({
           key: this.api_key,
           query: query,
           // boundingBox: map.getBounds()
-        }).go().then(resp => {
+        })
+        .go()
+        .then((resp) => {
           const position = resp.results[0].position;
           this.setLatLng(position);
         })
-        .catch(er => {
+        .catch((er) => {
           console.log(er);
         });
     },
@@ -294,7 +302,10 @@ export default {
       formData.append("img_url", imageData);
 
       // API POST request passing the new apartment object to ApartmentController@store
-      axios.post("http://127.0.0.1:8000/api/apartment", {
+      axios
+        .post(
+          "http://127.0.0.1:8000/api/apartment",
+          {
             formData,
             ...this.apartmentData,
             // user_id = this.userId
@@ -303,20 +314,20 @@ export default {
             headers: {
               "Content-Type": "multipart/form-data",
               // 'Authorization': `Bearer ${this.auth_token}`
-            }
+            },
           }
         )
-        .then(resp => {
+        .then((resp) => {
           alert("Apartment added");
-          console.log(resp)
+          console.log(resp);
         })
-        .catch(er => {
+        .catch((er) => {
           console.log(er.response.data);
-        })
-    }
+        });
+    },
   },
   mounted() {
-    console.log(this.userId)
+    console.log(this.userId);
 
     //API GET request to get all the apartments saved in db
     // axios.get('http://127.0.0.1:8000/api/user/apartments', {
@@ -331,6 +342,6 @@ export default {
     // .catch(er => {
     //     console.log(er);
     // })
-  }
-}
+  },
+};
 </script>

@@ -96,5 +96,22 @@ h1 {
 
 }
 
+.map-detail{
+    background-color: #ffd8cc;
+    padding-bottom: 50px;
+    h1{
+        text-align: center;
+    }
+.map{
+    margin: auto;
+}
+}
+
+.info-apartment{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing;
+}
+
 
 
