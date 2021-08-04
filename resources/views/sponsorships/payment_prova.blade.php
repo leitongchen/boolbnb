@@ -66,33 +66,10 @@
 
                     <div class="row">
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="name_on_card" class="form-label">Nome e cognome</label>
-                                <input type="text" class="form-control" id="name_on_card" name="name_on_card" placeholder="Mario Rossi">
-                            </div>
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="cc_number" class="form-label">Numero della carta di credito</label>
-                                <div class="form-control" id="card-number"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="expiry" class="form-label">Data di scadenza</label>
-                                <div class="form-control" id="expiration-date"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="cvv" class="form-label">CVV</label>
-                                <div class="form-control" id="cvv"></div>
-                            </div>
-                        </div>
                     </div>
 
                 </section>
@@ -137,9 +114,9 @@
 
 @section('scripts')
     <script src="https://js.braintreegateway.com/web/3.38.1/js/client.min.js"></script>
-    <script src="https://js.braintreegateway.com/web/3.38.1/js/hosted-fields.min.js"></script>
+    {{-- <script src="https://js.braintreegateway.com/web/3.38.1/js/hosted-fields.min.js"></script> --}}
 
-    {{-- <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script> --}}
-    <script src="{{ asset('js/btpayment.js') }}"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+    <script src="{{ asset('js/btpayment_dropin.js') }}"></script>
 @endsection
 

@@ -92,6 +92,10 @@ class SponsorshipController extends Controller
         $amount = $sponsorshipDetail[0]->price;
         $hours = $sponsorshipDetail[0]->promo_hours;
         $nonce = $request->payment_method_nonce;
+
+        // dump($nonce);
+        // dump($request);
+        // return; 
     
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
@@ -118,7 +122,9 @@ class SponsorshipController extends Controller
             // salvare la data di fine della sponsorizzazione in db end_at
             $apartment[0]->sponsorships()->sync([$sponsorshipDetail[0]->id => ['end_at' => Carbon::now()->addHours($hours)]]);
     
-            return redirect()->route('index')->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid € '. $transaction->amount);
+            // return redirect()->route('index')->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid € '. $transaction->amount);
+
+            return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id . '. You paid € '. $transaction->amount);
         } else {
             $errorString = "";
     
@@ -128,7 +134,9 @@ class SponsorshipController extends Controller
     
             // $_SESSION["errors"] = $errorString;
             // header("Location: index.php");
-            return redirect()->route('index')->withErrors('An error occurred with the message: '.$result->message);
+            // return redirect()->route('index')->withErrors('An error occurred with the message: '.$result->message);
+            return back()->withErrors('An error occurred with the message: '.$result->message);
+
         }
     }
 }
