@@ -58,7 +58,7 @@
 
 .button_create{
     background-color: $brand_orange;
-    padding: 12px 8px;
+    padding: 12px 18px;
     border-radius: 10px;
     color: white;
     border-style: none;
@@ -66,5 +66,35 @@
 
 .button_create:hover{
     color: black;
+}
+
+
+// BUTTONS <button>
+.btn_bool {
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
+.btn_primary {
+    padding: 8px 20px;
+    background-color: $brand_orange;
+    color: white;
+    border: 0; 
+
+    &:hover {
+        background-color: $background_one;
+
+    }
+}
+
+.btn_outline {
+    border: 1px solid $brand_orange;
+    color: $brand_orange;
+    background-color: white;
+
+    &:hover {
+        background-color: $background_one;
+        color: white;
+    }
 }
 
