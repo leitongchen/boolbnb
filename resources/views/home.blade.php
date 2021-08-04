@@ -28,56 +28,61 @@
                 </search-input>
             </div>
         </div>
-        <h2 class="text-center text_color_two">In evidenza</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 card-group">
-            @foreach ($apartments as $apartment)
-            <div class="col mb-3">
-                <div class="card my-apartment-card overflow-hidden h-100">
-                    <div class="my-card-img-container">
-                        <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top my-card-img-top img-fluid" alt="...">
-                    </div>
-                    <div class="card-body my-card-body d-flex align-content-around flex-column">
- 
-                        <h5 class="card-title my-card-title">{{ $apartment->title }}</h5>
-                        <p>
-                            @if ($apartment->rooms_number = 1) 
-                                <span>{{ $apartment->rooms_number }} stanza - </span>
-                            @else 
-                                <span>{{ $apartment->rooms_number }} stanze - </span>
-                            @endif
 
-                            @if ($apartment->beds_number = 1) 
-                                <span>{{ $apartment->beds_number }} letto - </span>
-                            @else 
-                                <span>{{ $apartment->beds_number }} letti - </span>
-                            @endif
-
-                            @if ($apartment->bathrooms_number = 1) 
-                                <span>{{ $apartment->bathrooms_number }} bagno</span>
-                            @else 
-                                <span>{{ $apartment->bathrooms_number }} bagni</span>
-                            @endif
-                        </p>
-
-                        @if ($apartment->extra_services->count() > 0)
-                        <p class="card-text">
-                            @foreach($apartment->extra_services as $extraService)
-                            <span>{{ $extraService->name }}
-                                @if(!$loop->last)
-                                -
+        <div class="container-fluid">
+        
+            <h2 class="text-center text_color_two">In evidenza</h2>
+            <div class="row card-group">
+                @foreach ($apartments as $apartment)
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
+                    <div class="card my-apartment-card overflow-hidden h-100">
+                        <div class="my-card-img-container">
+                            <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top my-card-img-top img-fluid" alt="...">
+                        </div>
+                        <div class="card-body my-card-body d-flex align-content-around flex-column">
+    
+                            <h5 class="card-title my-card-title">{{ $apartment->title }}</h5>
+                            <p>
+                                @if ($apartment->rooms_number = 1) 
+                                    <span>{{ $apartment->rooms_number }} stanza - </span>
+                                @else 
+                                    <span>{{ $apartment->rooms_number }} stanze - </span>
                                 @endif
-                            </span>
-                            @endforeach
-                        </p>
-                        @endif
 
-                        <div class="m-auto my-btn-container">
-                            <a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}" class="white_button">Vedi i dettagli</a>
+                                @if ($apartment->beds_number = 1) 
+                                    <span>{{ $apartment->beds_number }} letto - </span>
+                                @else 
+                                    <span>{{ $apartment->beds_number }} letti - </span>
+                                @endif
+
+                                @if ($apartment->bathrooms_number = 1) 
+                                    <span>{{ $apartment->bathrooms_number }} bagno</span>
+                                @else 
+                                    <span>{{ $apartment->bathrooms_number }} bagni</span>
+                                @endif
+                            </p>
+
+                            @if ($apartment->extra_services->count() > 0)
+                            <p class="card-text">
+                                @foreach($apartment->extra_services as $extraService)
+                                <span>{{ $extraService->name }}
+                                    @if(!$loop->last)
+                                    -
+                                    @endif
+                                </span>
+                                @endforeach
+                            </p>
+                            @endif
+
+                            <div class="m-auto my-btn-container">
+                                <a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}" class="white_button">Vedi i dettagli</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+
         </div>
 
         <h2 class="text-center text_color_two">Più Recenti</h2>
