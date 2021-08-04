@@ -1,3 +1,17 @@
+//INDEX APPARTAMENTI PRIVATO
+.apartment-index-container {
+    h1 {
+        font-weight: bolder;
+    }
+
+    a {
+        font-weight: 500;
+        color:white;
+    }
+
+    @include apartment-card;
+}
+
 //Dettaglio appartamento privato
 .details-apartament{
     section{

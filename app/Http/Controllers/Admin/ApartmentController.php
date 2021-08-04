@@ -75,6 +75,19 @@ class ApartmentController extends Controller
         //     'bathrooms_number' => $request->bathrooms_number,
         //     'floor_area' => $request->floor_area,
         //     'img_url' => $request->img_url,
+        // $request->validate([
+        //     'title' => 'required',
+        //     'address_street' => 'required|max:255|min:2',
+        //     'street_number' => 'required|max:10',
+        //     'city' => 'required|max:100|min:2',
+        //     'zip_code' => 'required|max:10',
+        //     'province' => 'required|max:100|min:2',
+        //     'nation' => 'required|max:100|min:2',
+        //     'rooms_number' => 'required|integer|min:1',
+        //     'beds_number' => 'required|integer|min:1',
+        //     'bathrooms_number' => 'required|integer|min:1',
+        //     'floor_area' => 'required|numeric|min:10',
+        //     'img_url' => 'required',
         // ]);
 
         // dump($request);
@@ -101,6 +114,7 @@ class ApartmentController extends Controller
         // dump($request->all());
         // dump($request->user_id);
         // return; 
+        $formData = $request->all(); 
 
         $newApartment = new Apartment;
         
