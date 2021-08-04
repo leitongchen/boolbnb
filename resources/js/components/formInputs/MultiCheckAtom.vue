@@ -1,21 +1,23 @@
 <template>
     <div class="mb-3">
-        <label class="form-label">{{ label }}</label>
-        <br>
-        <div
-            class="form-check form-check-inline"
+        <div>
+            <div
+            class="form-check"
             v-for="item in items"
-            :key="item.id"
-        >
-            <label class="form-check-label">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    :value="item.id"
-                    @change="onChange"
-                >
-                {{ item.name }}
-            </label>
+            :key="item.id">
+
+
+                <label class="form-check-label">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        :value="item.id"
+                        @change="onChange"
+                    >
+                    {{ item.name }}
+                </label>
+            
+            </div>
         </div>
     </div>
 </template>

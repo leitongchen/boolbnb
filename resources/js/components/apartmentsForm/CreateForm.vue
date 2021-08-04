@@ -124,9 +124,7 @@
       <br />
       <br>
       <div class="row extra-service">
-        <div
-          class="col d-flex justify-content-between flex-wrap px-2 flex-column"
-        >
+        <div class="col d-flex justify-content-between flex-wrap px-2 flex-column">
           <div v-for="extraService in extraServices" :key="extraService.id">
             <label>
               <input
