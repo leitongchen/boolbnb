@@ -41,6 +41,7 @@
 
 .form-apartment{
     margin: $spacing 0;
+    padding: $spacing*3 0;
     .extra-service {
         height: 93px;
         overflow: auto;
@@ -111,7 +112,6 @@ h1 {
 }
 
 .map-detail{
-    background-color: #ffd8cc;
     padding-bottom: 50px;
     h1{
         text-align: center;

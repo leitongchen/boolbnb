@@ -192,8 +192,8 @@
         Genera Latitudine e Longitudine
       </a> -->
 
-      <div class="form-group">
-        <button @click.prevent="getLatLng()">Crea appartamento</button>
+      <div class="form-group text-center">
+        <button class="button_create" @click.prevent="getLatLng()">Crea appartamento</button>
       </div>
     </form>
   </section>
