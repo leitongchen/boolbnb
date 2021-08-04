@@ -219,9 +219,6 @@
                 const el = this.userQuery;
                 this.apartmentData = this.userQuery;
 
-                console.log(this.apartmentData);
-                console.log('ciao');
-
                 let completeAddress = {
                     address_street: el.address_street,
                     street_number: el.street_number,
@@ -252,9 +249,11 @@
                     const position = resp.results[0].position; 
                     this.setLatLng(position);
 
-                    console.log('Uva proprio te cercavo')
-                    console.log(this.apartmentData)
                     this.createApartment(); 
+
+                    Vue.nextTick(() => {
+                        this.$refs.form.submit();
+                    });
                 })
                 .catch(er => {
                     console.log(er);
@@ -267,11 +266,6 @@
                 const imageData = this.$refs.inputUpload.files[0];
                 const formData = new FormData();
                 formData.append("img_url", imageData);
-
-                console.log(this.apartmentData)
-                console.log(formData)
-
-                debugger
 
                 // API POST request passing the new apartment object to ApartmentController@store
                 axios.post('http://127.0.0.1:8000/api/apartment', { 
@@ -288,7 +282,7 @@
                     alert('Apartment added')
                     console.log(resp)
 
-                    this.$refs.form.submit()
+                    // this.$refs.form.submit()
 
                 })
                 .catch(er => {
