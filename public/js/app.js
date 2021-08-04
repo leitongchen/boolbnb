@@ -42195,6 +42195,7 @@ var render = function() {
           "form",
           {
             ref: "form",
+            staticClass: "w-100x",
             attrs: { action: "/api/apartments/search", method: "post" }
           },
           [

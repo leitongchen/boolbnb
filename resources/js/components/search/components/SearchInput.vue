@@ -1,15 +1,26 @@
 <template>
   <div>
-    <div class="input-group rounded justify_content_ce text-center">
-      <form ref="form" action="/api/apartments/search" method="post">
+    <div class="input-group rounded">
+      <form
+        ref="form"
+        action="/api/apartments/search"
+        method="post"
+        class="w-100x display_flex flex_wrap justify_content_ce"
+      >
         <input type="hidden" name="_token" :value="csrf" />
         <input type="hidden" name="latitude" v-model="this.position.lat" />
         <input type="hidden" name="longitude" v-model="this.position.lng" />
         <input type="hidden" name="query" v-model="this.userQuery.text" />
-
-        <input v-model="userQuery.text" type="search" class="form-control search_bar margin_t_5" placeholder="cerca un appartamento" aria-label="Search" aria-describedby="search-addon"/>
-        <button @click.prevent="onClick" class="search_button text_color_w margin_t_10">
-          <span>Cerca</span>
+        <input
+          v-model="userQuery.text"
+          type="search"
+          class="form-control search_bar margin_t_5"
+          placeholder="cerca un appartamento"
+          aria-label="Search"      
+          aria-describedby="search-addon"
+        />
+        <button @click.prevent="onClick" class="search_button text_color_w margin_t_5">
+          Cerca
         </button>
       </form>
     </div>
@@ -17,7 +28,6 @@
 </template>
 
 <script type="application/javascript">
-
 export default {
   name: "SearchInput",
   props: {},

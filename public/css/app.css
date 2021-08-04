@@ -8,10 +8,10 @@
 }
 
 .search-container {
-  height: 170px;
+  height: 190px;
   background-color: white;
   border-radius: 20px;
-  transform: translate(50%, -85px);
+  transform: translate(50%, -95px);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,7 +30,178 @@
 
 .sfumatura_nera {
   height: 210px;
-  background: linear-gradient(0deg, black, transparent);
+  background-color: black;
+}
+
+.w-100x {
+  width: 100%;
+}
+
+.w-80x {
+  width: 80%;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  font-family: initial;
+}
+
+.apartment-index-container h1 {
+  font-weight: bolder;
+}
+
+.apartment-index-container a {
+  font-weight: 500;
+  color: white;
+}
+
+.apartment-index-container .my-apartment-card {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 6%;
+}
+
+.apartment-index-container .my-apartment-card .my-card-body {
+  position: relative;
+  color: #5C5B62;
+}
+
+.apartment-index-container .my-apartment-card .my-card-body .my-card-title {
+  font-weight: bolder;
+}
+
+.apartment-index-container .my-apartment-card .my-card-img-container {
+  overflow: hidden;
+  height: 55%;
+}
+
+.apartment-index-container .my-apartment-card .my-card-img-container .my-card-img-top {
+  height: 100%;
+}
+
+.apartment-index-container .my-apartment-card a {
+  color: #FF8964;
+}
+
+.apartment-index-container .my-apartment-card .my-btn-container {
+  position: absolute;
+  bottom: 25px;
+  left: 30%;
+}
+
+.apartment-index-container .my-apartment-card .my-btn-container .white_button {
+  display: inline-block;
+  text-align: center;
+}
+
+.details-apartament section {
+  padding: 60px 0;
+}
+
+.details-apartament .details h2 {
+  padding-bottom: 20px;
+}
+
+.details-apartament .details h4 {
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
+}
+
+.details-apartament .service_right {
+  background-color: #ffd8cc;
+  border-radius: 42px;
+}
+
+.details .padx {
+  padding-top: 15px;
+}
+
+.my-msg-h1 h1 {
+  color: #5C5B62;
+  padding: 40px 0;
+}
+
+.my-msg-h1 .my-no-msg h1 {
+  padding: 60px 0;
+}
+
+.my-msg-h1 .my-no-msg .my-img-container {
+  padding-bottom: 40px;
+}
+
+.card {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card .my-card-header {
+  background-color: #FFD8CC;
+}
+
+.msg-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.msg-buttons form .orange_button {
+  margin-left: 20px;
+  color: white;
+  background-color: #f15730;
+}
+
+.show-msg-container h1 {
+  color: #5C5B62;
+  padding: 40px 0;
+}
+
+.show-msg-container .my-avatar-container {
+  height: 70px;
+  width: 70px;
+  margin-right: 20px;
+}
+
+.show-msg-container .my-reply {
+  font-size: 16px;
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+footer {
+  background-color: #f2f2f3;
+}
+
+footer li {
+  padding-bottom: 20px;
+}
+
+footer li a {
+  color: black;
+  padding-bottom: 40px;
+}
+
+footer li a:hover {
+  color: gray;
+}
+
+footer h3 a {
+  color: black;
+}
+
+footer h3 a:hover {
+  color: gray;
+}
+
+footer .p-3 a {
+  color: black;
+}
+
+footer .p-3 a:hover {
+  color: gray;
+}
+
+.footer_bottom {
+  border-top: 1px solid black;
 }
 
 .white_button {
@@ -95,6 +266,161 @@
 
 .search_button a:hover {
   text-decoration: none;
+}
+
+.form-message form {
+  max-width: 700px;
+  margin: auto;
+  border: 1px solid lightgray;
+  padding: 40px;
+  cursor: pointer;
+  border: 1px solid #eaf0f6;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.form-message form .d-grid {
+  display: grid;
+}
+
+.form-message form .d-grid input {
+  background-color: #FF9E80;
+  border-color: #FF9E80;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.mySlides {
+  display: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* Slideshow container */
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+/* Position the "next button" to the right */
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* On smaller screens, decrease text size */
+
+@media only screen and (max-width: 300px) {
+  .prev,
+  .next,
+  .text {
+    font-size: 11px;
+  }
 }
 
 #section-1 {
@@ -231,7 +557,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-sans-serif: "Montserrat", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -263,7 +589,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -6604,7 +6930,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -6729,7 +7055,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;

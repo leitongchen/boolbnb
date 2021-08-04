@@ -10,10 +10,10 @@ body {
 }
 
 .search-container{
-    height: 170px;
+    height: 190px;
     background-color: white;
     border-radius: 20px;
-    transform: translate(50%, -85px);
+    transform: translate(50%, -95px);
     box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
     .search_bar{
         border-radius: 15px;
@@ -36,7 +36,19 @@ input, button, select, optgroup, textarea {
 
 .sfumatura_nera{
     height: 210px;
-    background: linear-gradient(0deg, black, transparent);
+    // background: linear-gradient(0deg, black, transparent);
+    background-color: black;
 }
 
+.w-100x{
+    width: 100%;
+}
+
+.w-80x{
+    width: 80%;
+}
+
+input, button, select, optgroup, textarea {
+    font-family: initial;
+}
 
