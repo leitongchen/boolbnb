@@ -216,17 +216,33 @@ input{
 
 
 //Dettaglio appartamento
+
+.my-cover-container {
+    overflow: hidden;
+
+    img {
+        border-radius: 4%;
+    }
+}
+
 .info-apartment{
     margin-bottom: $spacing;
     margin-top: $spacing*3;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
+
+    button {
+        i {
+            color: white;
+        }
+    }
     i{
         color: $brand_orange;
     }
     a{
-        color: white;
+        color: $text_colorOne;
     }
     a:hover{
         color: white;

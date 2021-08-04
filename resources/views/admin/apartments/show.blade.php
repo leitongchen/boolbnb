@@ -4,67 +4,12 @@
 
 <div class="details-apartament">
     {{-- Prima section --}}
-    <div class="slider">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('storage/' . $apartment->img_url) }}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('storage/' . $apartment->img_url) }}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('storage/' . $apartment->img_url) }}" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
 
     <div class="container">
-        <div class="info-apartment">
-            <div class="row">
-                <i class="fas fa-pencil-alt"></i>
-                <span> Modifica il tuo appartamento</span>
-                <a class="btn btn-primary" href="{{ URL::signedRoute('admin.apartments.edit', ['apartment' => $apartment->id]) }}">MODIFICA</a>
-            </div>
-            <br>
-            <div class="row">
-                <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div>
-                        <i class="fas fa-trash-alt"></i>
-                        <span>Elimina il tuo appartamento</span>
-                        <input class="btn btn-danger" type="submit" value="ELIMINA">
-                    </div>
-                </form>
-                @if ($userId == $apartment->user_id)
-            </div>
-            <br>
-            <div class="row">
-                {{-- <a href="{{ URL::signedRoute('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a> --}}
-                <i class="fas fa-envelope"></i>
-                <span> Leggi i messaggi ricevuti </span>
-                <button class="btn btn-warning">
-                    <a class="text-uppercase" href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Messaggi</a>
-                </button>
-                @endif
-                {{-- <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a> --}}
-            </div>
+        <div class="my-cover-container mt-2">
+            <img src="{{ asset('storage/' . $apartment->img_url) }}" class="img-fluid" alt="">
         </div>
+     
         {{-- Seconda section --}}
         <section class="description">
             <div class="row">
@@ -102,6 +47,40 @@
             </div>
         </section>
 
+        <div class="info-apartment d-flex">
+
+            <div>
+                <a href="{{ URL::signedRoute('admin.sponsorship') }}"><i class="fas fa-star pb-2"></i>Fatti trovare più facilmente!</a>
+            </div>
+            
+            <div>
+                <i class="fas fa-pencil-alt"></i>
+                {{-- <span> Modifica il tuo appartamento</span> --}}
+                <a href="{{ URL::signedRoute('admin.apartments.edit', ['apartment' => $apartment->id]) }}">Modifica il tuo appartamento</a>
+            </div>
+
+
+            <div>
+                @if ($userId == $apartment->user_id)
+                {{-- <a href="{{ URL::signedRoute('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a> --}}
+                <i class="fas fa-envelope"></i>
+                {{-- <span> Leggi i messaggi ricevuti </span> --}}
+                <a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a>
+                @endif
+                {{-- <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a> --}}
+            </div>
+
+            <div>
+                <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="orange_button d-inline-block">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
         {{-- Sesta section --}}
         <section class="map-apartament">
 
@@ -117,3 +96,4 @@
 </div>
 
 @endsection
+
