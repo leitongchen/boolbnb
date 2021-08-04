@@ -24,9 +24,9 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 card-group">
             @foreach ($apartments as $apartment)
             <div class="col mb-3">
-                <div class="card my-apartment-card overflow-hidden h-100">
+                <div class="card my-apartment-card overflow-hidden">
                     <div class="my-card-img-container">
-                        <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top my-card-img-top img-fluid" alt="...">
+                        <img src="{{ asset('storage/' . $apartment->img_url) }}" class="card-img-top my-card-img-top" alt="...">
                     </div>
                     <div class="card-body my-card-body d-flex align-content-around flex-column">
  
@@ -63,8 +63,8 @@
                         </p>
                         @endif
 
-                        <div class="m-auto my-btn-container">
-                            <a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}" class="white_button">Vedi i dettagli</a>
+                        <div class="m-auto">
+                            <a href="{{ URL::signedRoute('admin.apartments.show', $apartment->id) }}" class="btn_bool btn_outline">Vedi i dettagli</a>
                         </div>
                     </div>
                 </div>

@@ -101,6 +101,12 @@
     }
 }
 
+a.btn_outline {
+    &:hover {
+        color: white;
+    }
+}
+
 .link_bool {
     cursor: pointer;
 }

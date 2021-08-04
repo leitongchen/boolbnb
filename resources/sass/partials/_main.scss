@@ -101,8 +101,19 @@
         .my-img-container {
             // width: 35vw;
             padding-bottom: $spacing*2;
+
+           
         }
         
+    }
+
+    .my-card-img-container {
+        
+        img {
+            
+            max-height: 200px;
+            object-fit: cover;
+        }
     }
     
     h1 {
