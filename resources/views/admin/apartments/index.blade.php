@@ -57,7 +57,9 @@
             @endforeach
         </div>
         <div class="d-flex justify-content-center pt-5 pb-5">
-            <button class="my-btn-container"><a href="{{ route('admin.apartments.create') }}">Aggiungi un nuovo appartamento</a></button>
+            <div class="m-auto">
+                <a href="{{ route('admin.apartments.create') }}" class="orange_button pt-2 pb-2">Aggiungi un nuovo appartamento</a>
+            </div>
         </div>
     </div>
 </div>

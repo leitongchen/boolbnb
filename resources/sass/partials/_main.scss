@@ -4,44 +4,12 @@
         font-weight: bolder;
     }
 
-    .my-apartment-card {
-
-        box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
-        border-radius: 6%;
-
-        .my-card-body {
-            position: relative;
-            color: $text_colorOne;
-
-            .my-card-title {
-                font-weight: bolder;
-            }
-        }
-
-        .my-card-img-container {
-            overflow: hidden;
-            height: 55%;
-
-            .my-card-img-top {
-                height: 100%;
-            }
-        }
-
-        a {
-            color: $brand_orange;
-            font-weight: 500;
-        }
-        .my-btn-container {
-            position: absolute;
-            bottom: 25px;
-            left: 30%;
-
-            .white_button {
-                display: inline-block;
-                text-align: center;
-            }
-        }
+    a {
+        font-weight: 500;
+        color:white;
     }
+
+    @include apartment-card;
 }
 
 //Dettaglio appartamento privato
