@@ -5,7 +5,7 @@
 
 <body>
     <section id="section-1">
-        <div class="container">
+        <div>
             
             @include('partials.nav')
 

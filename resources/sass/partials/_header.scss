@@ -1,0 +1,48 @@
+nav.my_navbar {
+
+    height: 70px;
+    background-color: white;
+
+    box-shadow: $box_shadow;
+
+    .logo_container {
+        height: 55px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .profile_pic_container {
+
+        a {
+            display: flex;
+            align-items: center;
+
+        }
+
+        img {
+            height: 45px;
+            width: 45px;
+        }
+    }
+
+}
+
+.hamburger_menu {
+    width: 30px;
+    height: 25px;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+
+    margin-right: $spacing/2;
+
+    span {
+        display: inline-block;
+        width: 100%;
+        height: 3px;
+        background-color: $brand_orange;
+    }
+}
