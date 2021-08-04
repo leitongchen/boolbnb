@@ -29,6 +29,8 @@
             </div>
         </div>
 
+        @include('alerts.payment')
+
         <div class="container-fluid sponsored_section">
         
             <h2 class="text-center text_color_two">In evidenza</h2>
