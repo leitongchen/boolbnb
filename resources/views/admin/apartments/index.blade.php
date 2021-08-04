@@ -6,6 +6,12 @@
     <div class="apartment-index-container">
         <h1 class="text-center">I tuoi appartamenti</h1>
 
+        <div class="d-flex justify-content-center pt-2 pb-5">
+            <div class="m-auto">
+                <a href="{{ route('admin.apartments.create') }}" class="orange_button pt-2 pb-2">Aggiungi un nuovo appartamento</a>
+            </div>
+        </div>
+
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 card-group">
             @foreach ($apartments as $apartment)
             <div class="col mb-3">
@@ -55,11 +61,6 @@
                 </div>
             </div>
             @endforeach
-        </div>
-        <div class="d-flex justify-content-center pt-5 pb-5">
-            <div class="m-auto">
-                <a href="{{ route('admin.apartments.create') }}" class="orange_button pt-2 pb-2">Aggiungi un nuovo appartamento</a>
-            </div>
         </div>
     </div>
 </div>
