@@ -4,6 +4,7 @@
 @include('partials.head')
 
 <body>
+
     <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
         <div class="top-right links">
@@ -45,8 +46,8 @@
             </div>
         </div>
     </div>
-    
-    @include('layouts.partials.footer')
+
     @include('partials.scripts')
+    @include('layouts.partials.footer')
 </body>
 </html>

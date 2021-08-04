@@ -71,14 +71,16 @@ class MessageController extends Controller
      */
 
     //vedi i dettagli di un solo messaggio
-    public function show(Message $message)
+    public function show(Message $message, Apartment $apartment)
     {
+        $apartment = Apartment::where('id', '=', $message->apartment_id)->get()->first();
         //formatta la data
         $carbonDate = Carbon::parse($message->created_at)->format("d/m/y h:i:s");
        
         $data = [
             'message' => Message::findOrFail($message -> id),
-            'carbonDate' => $carbonDate
+            'carbonDate' => $carbonDate,
+            'apartment' => $apartment
         ];
 
         return view('admin.messages.show', $data);
