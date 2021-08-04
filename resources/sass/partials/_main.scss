@@ -309,7 +309,12 @@ input{
         }
     }
 
-    
-    
-    
+}
+
+.login-card{
+    margin: $spacing*5 0;
+    .form-control:focus{
+        border-color: #FF9E80;
+        box-shadow: 0 0 0 0.2rem #ff89644d;
+    }
 }

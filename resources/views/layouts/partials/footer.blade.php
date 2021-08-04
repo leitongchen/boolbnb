@@ -34,10 +34,10 @@
              </div>
              <div class="col-lg-3 col-md-6 mb-4 mb-md- 0">
                  <h3> <a class="text-uppercase  mb-0 text-decoration-none" href="">Ci trovi anche su</a></h3>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-facebook-f"></i></a>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-twitter"></i></a>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-google"></i></a>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-instagram"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-facebook-f"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-twitter"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-google"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-instagram"></i></a>
              </div>
          </div>
      </div>
