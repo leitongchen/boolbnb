@@ -1,0 +1,70 @@
+.buttons_container{
+    a{
+        color: white;
+    }
+    a:hover{
+    text-decoration: none;      
+    }
+}
+
+.white_button{
+    padding: 3px 12px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid $brand_orange;
+    a{
+        color: $brand_orange;
+    }
+    a:hover{
+    text-decoration: none;      
+    }
+}
+
+.orange_button{
+    padding: 3px 12px;
+    background-color: $brand_orange;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid $brand_orange;
+    a{
+        color: white;
+    }
+    a:hover{
+    text-decoration: none;      
+    }
+
+}
+
+
+
+.extra_button{
+    padding: 9px 14px;
+    border-radius: 5px;
+    background-color: transparent;
+    text-align: center;
+    border: 2px solid white;
+    a{
+        color: white;
+    }
+    a:hover{
+    text-decoration: none;      
+    }
+}
+
+.search_button{
+    padding: 5px 25px;
+    background-color: $brand_orange;
+    border-radius: 7px;
+    text-align: center;
+    border: 2px solid $brand_orange;
+    a{
+        color: white;
+    }
+    a:hover{
+    text-decoration: none;      
+    }
+
+    
+}
+

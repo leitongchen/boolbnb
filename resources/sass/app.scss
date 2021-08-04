@@ -4,12 +4,17 @@
 // Variables
 @import 'partials/variables';
 @import "partials/common";
+@import "partials/mixin";
 @import "partials/header";
 @import "partials/main";
 @import "partials/footer";
 @import "partials/components/buttons";
+
 @import "partials/components/form_message";
 @import "partials/components/slider";
+
+@import "partials/sections";
+@import "partials/bgColor";
 
 
 // Bootstrap

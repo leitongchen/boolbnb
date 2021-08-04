@@ -3,50 +3,57 @@
 @section('content')
 
 <div class="container">
+    <div class="text-center ">
+        @if (count($messages) == 0)
+            <div class="my-no-msg text-center ">
+                <h1>Non hai messaggi da visualizzare!</h1>
 
-    @if (count($messages) == 0)
-        <h1>Non hai messaggi da visualizzare</h1>
-    @else
-        <h1>Messaggi ricevuti appartamento {{ $apartment->id }}</h1>
-    @endif
+                <div class="my-img-container m-auto w-50">
+                    <img src="{{ asset('images/undraw_empty_xct9.svg') }}" class="img-fluid" alt="empty box">
+                </div>
+            </div>
+        @else
+        <h1>{{ $apartment->user->name }}, <br> ecco i messaggi inviati al tuo appartamento <br> "{{ $apartment->title }}"</h1>
+    </div>
 
-    <table class="table">
-        <thead>
-            <th>Mittente</th>
-            <th>Messaggio</th>
-            <th>Data invio</th>
-            <th>Email mittente</th>
-            <th>Azioni</th>
-        </thead>
+    @foreach($messages as $message)
+        <div class="card mb-3">
+            <div class="card-header my-card-header">
+                Data e ora dell'invio: {{  $message->formattedCreatedAt  }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Sei stato contattato da: {{ $message->sender_name . ' ' . $message->sender_surname }}</h5>
+                <p class="card-text">{{ Str::limit($message->content, 150) }}</p>
+                <p>Per rispondere al tuo cliente scrivi a: <a href="#"><strong>{{ $message->sender_mail }}</strong></a>.</p>
 
-        <tbody>
-            @foreach($messages as $message)
-                <tr>
-                    <td>{{ $message->sender_name . ' ' . $message->sender_surname }}</td>
-                    <td>{{ Str::limit($message->content, 50) }}</td>
-                    <td>{{ $message->formattedCreatedAt }}</td>
-                    <td>{{ $message->sender_mail }}</td>
-                    <td>
+                <div class="msg-buttons">
+                    <div class="orange_button d-inline-block">
                         <a href="{{ URL::signedRoute('admin.messages.show', $message->id) }}">Dettagli</a>
+                    </div>
 
-                        <form action="{{ route('admin.messages.destroy', $message->id) }}" method="POST">
+                    <form class="d-inline-block" action="{{ route('admin.messages.destroy', $message->id) }}" method="POST">
                         @csrf
 
                         @method('DELETE')
-                        <div class="form-group">
-                            <input class="btn btn-danger" type="submit" value="ELIMINA">
-                        </div>
+                        <button type="submit" class="orange_button d-inline-block">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
 
-                        </form>
+                    </form>
+                </div>
+         
+            </div>
+        </div>
 
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    
-    </table>
+    @endforeach
+        
+        @endif
 
-    <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+    <div class="d-flex justify-content-center">
+        <div class="orange_button d-inline-block mb-5 text-center">
+            <a href="{{ route('admin.apartments.index') }}">Torna a tutti gli appartamenti</a>
+        </div>
+    </div>
 </div>
     
 @endsection
