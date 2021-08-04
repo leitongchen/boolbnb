@@ -93,12 +93,8 @@
     </form>
 
     @if ($userId == $apartment->user_id)
-    <a href="{{ URL::signedRoute('admin.visits.show', $apartment->id) }}">Vedi le statistiche</a>
-    <br>
-    <a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a> <br>
+       <a href="{{ URL::signedRoute('admin.messages.index', $apartment->id) }}">Leggi i messaggi ricevuti</a> <br>
     @endif
-
-    <a href="{{ route('messages.create', ['apartment' => $apartment->id]) }}">Manda un messaggio</a>
 
     <div id="app">
         <apartment-show-map
