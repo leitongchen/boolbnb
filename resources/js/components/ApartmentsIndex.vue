@@ -1,10 +1,7 @@
 <template>
   <div>
-    <!-- @reset="onReset" -->
-    <!-- @submit.prevent="filterData" -->
 
-    <div class="card mb-3">
-      <div class="card-body">
+    
           
         <form ref="form"
           action="/api/apartments/search/filter"
@@ -36,10 +33,10 @@
                 ></input-atom>
 
                 <input-atom
-                  label="Cerca nel raggio di"
+                  label="Cerca nel raggio di km "
                   v-model="filters.radius"
                   inputType="number"
-                ></input-atom>km
+                ></input-atom>
 
               </div>
 
@@ -47,7 +44,7 @@
                 
 
                 <multi-check-atom
-                  label="Servizi Extra"
+                  label="Seleziona i servizi"
                   :items="extra_servicesList"
                   v-model="filters.extra_services"
                 ></multi-check-atom>
@@ -63,8 +60,7 @@
         </form>
 
 
-      </div>
-    </div>
+     
 
     <div class="alert alert-success mb-5" v-if="activeFilters">
       Sono stati trovati {{ finalList.length }} risultati per il filtro:
@@ -86,11 +82,8 @@
 </template>
 
 <script type="application/javascript">
-// import InputAtom from "./formInputs/InputAtom.vue";
-// import MultiCheckAtom from "./formInputs/MultiCheckAtom.vue";
 
 export default {
-  // components: { InputAtom, MultiCheckAtom },
   name: "ApartmentsIndex",
   props: 
   {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Qui mappa store locator</h1>
+        
 
         <div class='map' id='map' ref="mapRef"> TomTom map! </div>
         <!-- <p> appartamenti {{ apartments }}</p> -->
