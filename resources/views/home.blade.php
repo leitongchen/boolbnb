@@ -5,9 +5,9 @@
 
 <body>
     <section id="section-1">
-        <div>
+        @include('partials.nav')
+        <div class="container">
             
-            @include('partials.nav')
 
             <div class="padding_t_400 padding_l_16">
                 <h1 class="text_color_w">
