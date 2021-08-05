@@ -1,4 +1,4 @@
- <footer class="">
+ <footer class="my_footer">
      <div class="container p-4">
          <div class="row">
              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -47,7 +47,7 @@
             <div class="row d-flex align-items-center  justify-content-center">
                 <div class="text-center">
                     <div class="p-3">
-                        © 2021 Boolbnb. Team 7 -
+                       <strong> © 2021 Boolbnb. Team 7  </strong>- 
                         <a class=" mb-0 text-decoration-none" href="#"> Privacy - </a>
                         <a class=" mb-0 text-decoration-none" href="#"> Termini - </a>
                         <a class=" mb-0 text-decoration-none" href="#"> Mappa del sito - </a>

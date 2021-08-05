@@ -1,7 +1,8 @@
-footer{
+footer.my_footer{
     background-color: #f2f2f3;
     font-weight: bold;
     color: $text_colorOne;
+    padding-top: $spacing*2;
 
     li{
         padding-bottom: $spacing;
@@ -36,6 +37,26 @@ footer{
 
     .social{
         border-color: transparent;
+    }
+
+
+    h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: $spacing*2;
+    }
+
+    .list-unstyled {
+
+        li {
+            font-size: .85rem;
+            font-weight: 400;
+        }
+    }
+
+    .footer_bottom {
+        font-weight: 400;
+        font-size: .75rem;
     }
 }
 
