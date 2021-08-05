@@ -25,16 +25,37 @@
                 <div class="buttons_container display_flex justify_content_sa">
                     @if (Route::has('login'))
                     @auth
-                    <div class="profile_pic_container">
-                        <a href="{{ url('/admin') }}">
-                            {{-- <div class="hamburger_menu">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div> --}}
-                            <img src="{{ asset('images/undraw_male_avatar_323b.svg') }}" alt="">
-                        </a>
+
+                    <div>
+                        
+                        <div class="profile_pic_container nav-item dropdown">
+                            <a href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <img src="{{ asset('images/undraw_male_avatar_323b.svg') }}" alt="">
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ route('admin.home') }}">
+                                    Dashboard
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                
+                            </div>
+                            
+                        </div>
+                        
                     </div>
+
+                    
                     @else
                     <div class="white_button margin_r_15">
                         <a href="{{ route('register') }}"><strong>Registrati</strong></a>

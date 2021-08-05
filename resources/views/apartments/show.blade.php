@@ -122,7 +122,6 @@
 
             </form>
         </section>
-        <a href="{{ route('apartments.index') }}">Torna a tutti gli appartamenti</a>
     </div>
 </div>
 

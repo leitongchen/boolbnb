@@ -97,6 +97,13 @@
     &:hover {
         background-color: $background_one;
         color: white;
+        text-decoration: none;
+    }
+}
+
+a.btn_outline {
+    &:hover {
+        color: white;
     }
 }
 

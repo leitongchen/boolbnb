@@ -1,33 +1,65 @@
-footer{
+footer.my_footer{
     background-color: #f2f2f3;
+    font-weight: bold;
+    color: $text_colorOne;
+    padding-top: $spacing*2;
+
     li{
         padding-bottom: $spacing;
         a{
-            color: black;
+            color: $text_colorOne;
             padding-bottom: $spacing *2;
         }
         a:hover{
-            color: gray;
+            color: $brand_orange;
         }
     }
     h3{
         a{
-            color: black;
+            color: $text_colorOne;
         }
         a:hover{
-            color: gray;
+            color: $brand_orange;
         }
     }
     .p-3{
         a{
-            color: black;
+            color: $text_colorOne;
         }
         a:hover{
-            color: gray;
+            color: $brand_orange;
         }
+    }
+    i{
+        color:$brand_orange;
+        font-size: 20px;
+    }
+
+    .social{
+        border-color: transparent;
+    }
+
+
+    h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: $spacing*2;
+    }
+
+    .list-unstyled {
+
+        li {
+            font-size: .85rem;
+            font-weight: 400;
+        }
+    }
+
+    .footer_bottom {
+        font-weight: 400;
+        font-size: .75rem;
     }
 }
 
-.footer_bottom {
+.for-line-only {
     border-top: 1px solid black;
 }

@@ -1,4 +1,4 @@
- <footer class="">
+ <footer class="my_footer">
      <div class="container p-4">
          <div class="row">
              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -34,24 +34,27 @@
              </div>
              <div class="col-lg-3 col-md-6 mb-4 mb-md- 0">
                  <h3> <a class="text-uppercase  mb-0 text-decoration-none" href="">Ci trovi anche su</a></h3>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-facebook-f"></i></a>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-twitter"></i></a>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-google"></i></a>
-                 <a class="btn btn-outline-dark btn-floating m-1" class="" role="button"><i class="fab fa-instagram"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-facebook-f"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-twitter"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-google"></i></a>
+                 <a class="btn btn-outline-dark social btn-floating m-1" class="" role="button"><i class="fab fa-instagram"></i></a>
              </div>
          </div>
      </div>
-     <section class="p-3 pt-0 container footer_bottom">
-         <div class="row d-flex align-items-center  justify-content-center">
-             <div class="text-center">
-                 <div class="p-3">
-                     © 2021 Boolbnb. Team 7 -
-                     <a class=" mb-0 text-decoration-none" href="#"> Privacy - </a>
-                     <a class=" mb-0 text-decoration-none" href="#"> Termini - </a>
-                     <a class=" mb-0 text-decoration-none" href="#"> Mappa del sito - </a>
-                     <a class=" mb-0 text-decoration-none" href="#"> Dettagli dell'azienda</a>
+     
+     <div class="for-line-only">
+        <section class="p-3 pt-0 container footer_bottom">
+            <div class="row d-flex align-items-center  justify-content-center">
+                <div class="text-center">
+                    <div class="p-3">
+                       <strong> © 2021 Boolbnb. Team 7  </strong>- 
+                        <a class=" mb-0 text-decoration-none" href="#"> Privacy - </a>
+                        <a class=" mb-0 text-decoration-none" href="#"> Termini - </a>
+                        <a class=" mb-0 text-decoration-none" href="#"> Mappa del sito - </a>
+                        <a class=" mb-0 text-decoration-none" href="#"> Dettagli dell'azienda</a>
 
-                 </div>
-             </div>
-     </section>
+                    </div>
+                </div>
+        </section>
+     </div>
  </footer>

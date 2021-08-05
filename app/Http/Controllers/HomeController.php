@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         $data = [
             "sponsored" => $sponsoredApartments,
-            "apartments" => Apartment::orderBy('updated_at', 'DESC')->get(),
+            "apartments" => Apartment::orderBy('updated_at', 'DESC')->paginate(10),
         ];
         
 
