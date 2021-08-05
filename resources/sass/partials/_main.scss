@@ -297,6 +297,14 @@ input{
 }
 
 
+.apartment_show_img{
+    img {
+        height: 70vh;
+        object-fit: cover;
+    }
+}
+
+
 // RICERCA AVANZATA
 
 .search_box {
