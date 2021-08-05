@@ -29,7 +29,7 @@ braintree.client.create({
         fields: {
             number: {
                 selector: '#card-number',
-                placeholder: '4111 1111 1111 1111'
+                placeholder: '4242 4242 4242 4242'
             },
             cvv: {
                 selector: '#cvv',
@@ -37,7 +37,7 @@ braintree.client.create({
             },
             expirationDate: {
                 selector: '#expiration-date',
-                placeholder: '10/2019'
+                placeholder: '10/2023'
             }
         }
     }, function (hostedFieldsErr, hostedFieldsInstance) {

@@ -69,7 +69,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="name_on_card" class="form-label">Nome e cognome</label>
-                                <input type="text" class="form-control" id="name_on_card" name="name_on_card" placeholder="Mario Rossi">
+                                <input type="text" class="form-control" id="name_on_card" name="name_on_card" placeholder="Albus Dumbledore">
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@
                 <input id="nonce" name="payment_method_nonce" type="hidden" />
 
                 <div class="cta_form">
-                    <a class="my_link" href="{{ asset('admin.apartments.index') }}">
+                    <a class="my_link" href="{{ route('admin.apartments.index') }}">
                         Torna ai tuoi appartamenti
                     </a>
 
